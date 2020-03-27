@@ -1,0 +1,87 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1, 
+  "newProjectRoot": "projects",
+  "projects": {
+    "@CinderForms/Core": {
+      "projectType": "library",
+      "root": "projects/cinder-forms/core",
+      "sourceRoot": "projects/cinder-forms/core/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/cinder-forms/core/tsconfig.lib.json",
+            "project": "projects/cinder-forms/core/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/cinder-forms/core/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/cinder-forms/core/src/test.ts",
+            "tsConfig": "projects/cinder-forms/core/tsconfig.spec.json",
+            "karmaConfig": "projects/cinder-forms/core/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/cinder-forms/core/tsconfig.lib.json",
+              "projects/cinder-forms/core/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@CinderForms/Validators": {
+      "projectType": "library",
+      "root": "projects/cinder-forms/validators",
+      "sourceRoot": "projects/cinder-forms/validators/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/cinder-forms/validators/tsconfig.lib.json",
+            "project": "projects/cinder-forms/validators/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/cinder-forms/validators/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/cinder-forms/validators/src/test.ts",
+            "tsConfig": "projects/cinder-forms/validators/tsconfig.spec.json",
+            "karmaConfig": "projects/cinder-forms/validators/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/cinder-forms/validators/tsconfig.lib.json",
+              "projects/cinder-forms/validators/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }},
+  "defaultProject": "@CinderForms/Core"
+}
