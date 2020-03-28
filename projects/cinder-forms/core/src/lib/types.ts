@@ -217,7 +217,7 @@ export interface FormControlSummary<T> extends FormControlState<T> {
   /**
    * Whether the FormControl has any errors.
    */
-  valid: boolean;
+  invalid: boolean;
 
   /**
    * Whether the value is the same as the intial set value.
@@ -250,9 +250,9 @@ export interface FormGroupSummary<TControls extends FormControls>
   errors: FormGroupErrors<TControls>;
 
   /**
-   * Indicates whether all of the FormControlSummaries inside this group are valid.
+   * Indicates whether any of the FormControlSummaries inside this group are invalid.
    */
-  valid: boolean;
+  invalid: boolean;
 
   /**
    * Indicates whether all of the values inside this group were not yet changed.
@@ -297,9 +297,9 @@ export interface FormArraySummary<T> extends FormArrayState<T> {
   errors: FormArrayErrors;
 
   /**
-   * Indicates whether all of the FormControlSummaries inside this array are valid.
+   * Indicates whether any of the FormControlSummaries inside this array are invalid.
    */
-  valid: boolean;
+  invalid: boolean;
 
   /**
    * Indicates whether all of the values inside this array were not yet changed.

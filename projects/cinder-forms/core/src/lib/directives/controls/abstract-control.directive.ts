@@ -90,7 +90,7 @@ export abstract class AbstractControlDirective<T> implements OnDestroy {
       this.setDisabled(summary.disabled);
     }
 
-    this.chooseClass(cssClasses.invalid, cssClasses.valid, summary.valid);
+    this.chooseClass(cssClasses.valid, cssClasses.invalid, summary.invalid);
     this.chooseClass(cssClasses.dirty, cssClasses.pristine, summary.pristine);
     this.chooseClass(cssClasses.touched, cssClasses.untouched, summary.untouched);
     this.chooseClass(cssClasses.initial, cssClasses.changed, summary.changed);

@@ -238,7 +238,7 @@ describe('selectors', () => {
   });
 
   describe('getFormControlSummary', () => {
-    it('should return valid = true, errors = {}, controls for valid control', () => {
+    it('should returninvalid = false, errors = {}, controls for valid control', () => {
       const control: FormControlState<string> = {
         pristine: true,
         untouched: true,
@@ -256,7 +256,7 @@ describe('selectors', () => {
         validators: [],
         disabled: false,
         errors: {},
-        valid: true,
+        invalid: false,
         changed: false
       };
 
@@ -265,7 +265,7 @@ describe('selectors', () => {
       expect(result).toEqual(expected);
     });
 
-    it('should return valid = false, errors = errors, controls for invalid control', () => {
+    it('should return invalid = true, errors = errors, controls for invalid control', () => {
       const error = {
         alwaysTrue: true
       };
@@ -289,7 +289,7 @@ describe('selectors', () => {
         validators,
         disabled: false,
         errors: error,
-        valid: false,
+        invalid: true,
         changed: false
       };
 
@@ -298,7 +298,7 @@ describe('selectors', () => {
       expect(result).toEqual(expected);
     });
 
-    it('should return valid = false, errors = errors, controls for additional errors', () => {
+    it('should return invalid = true, errors = errors, controls for additional errors', () => {
       const additionalError = {
         additionalError: true
       };
@@ -320,7 +320,7 @@ describe('selectors', () => {
         initialValue: '',
         disabled: false,
         errors: additionalError,
-        valid: false,
+        invalid: true,
         changed: false
       };
 
@@ -357,7 +357,7 @@ describe('selectors', () => {
         validators,
         disabled: false,
         errors: { alwaysTrue: true, additionalError: true },
-        valid: false,
+        invalid: true,
         changed: false
       };
 
@@ -582,7 +582,7 @@ describe('selectors', () => {
       stringControl: string;
     }
 
-    it('all valid should return errors = {} & valid = true', () => {
+    it('all valid should return errors = {} &invalid = false', () => {
       const group = initFormGroup({
         c1: ['']
       });
@@ -590,10 +590,10 @@ describe('selectors', () => {
       const result = getFormGroupSummary(group);
 
       expect(result.errors).toEqual({});
-      expect(result.valid).toEqual(true);
+      expect(result.invalid).toEqual(false);
     });
 
-    it('one error should return errors & valid = false', () => {
+    it('one error should return errors & invalid = true', () => {
       const error = {
         alwaysTrue: true
       };
@@ -610,7 +610,7 @@ describe('selectors', () => {
       const result = getFormGroupSummary(group);
 
       expect(result.errors).toEqual(expected);
-      expect(result.valid).toEqual(false);
+      expect(result.invalid).toEqual(true);
     });
 
     it('should summarize with error for group + controls', () => {
@@ -639,7 +639,7 @@ describe('selectors', () => {
             disabled: false,
             pristine: true,
             untouched: true,
-            valid: false,
+            invalid: true,
             validators: group.controls.stringControl.validators,
             errors: {
               externalError: true,
@@ -656,7 +656,7 @@ describe('selectors', () => {
         },
         pristine: true,
         untouched: true,
-        valid: false,
+        invalid: true,
         changed: false,
         validators: []
       };
@@ -685,7 +685,7 @@ describe('selectors', () => {
             disabled: false,
             pristine: true,
             untouched: true,
-            valid: false,
+            invalid: true,
             validators: group.controls.stringControl.validators,
             errors: {
               externalError: true
@@ -700,7 +700,7 @@ describe('selectors', () => {
         },
         pristine: true,
         untouched: true,
-        valid: false,
+        invalid: true,
         changed: false,
         validators: []
       };
@@ -730,7 +730,7 @@ describe('selectors', () => {
             disabled: false,
             pristine: true,
             untouched: true,
-            valid: false,
+            invalid: true,
             validators: group.controls.stringControl.validators,
             errors: {
               stringError: true
@@ -745,7 +745,7 @@ describe('selectors', () => {
         },
         pristine: true,
         untouched: true,
-        valid: false,
+        invalid: true,
         changed: false,
         validators: []
       };
@@ -768,7 +768,7 @@ describe('selectors', () => {
             disabled: false,
             pristine: true,
             untouched: true,
-            valid: true,
+            invalid: false,
             validators: group.controls.stringControl.validators,
             errors: {},
             changed: false
@@ -777,7 +777,7 @@ describe('selectors', () => {
         errors: {},
         pristine: true,
         untouched: true,
-        valid: true,
+        invalid: false,
         changed: false,
         validators: []
       };
@@ -812,16 +812,16 @@ describe('selectors', () => {
   });
 
   describe('getFormArraySummary', () => {
-    it('all valid should return errors = [{}] & valid = true', () => {
+    it('all valid should return errors = [{}] &invalid = false', () => {
       const array = initFormArray([['']]);
 
       const result = getFormArraySummary(array);
 
       expect(result.errors).toEqual([{}]);
-      expect(result.valid).toEqual(true);
+      expect(result.invalid).toEqual(false);
     });
 
-    it('one error should return errors & valid = false', () => {
+    it('one error should return errors & invalid = true', () => {
       const error = {
         alwaysTrue: true
       };
@@ -833,7 +833,7 @@ describe('selectors', () => {
       const result = getFormArraySummary(array);
 
       expect(result.errors).toEqual(expected);
-      expect(result.valid).toEqual(false);
+      expect(result.invalid).toEqual(true);
     });
 
     it('should summarize with error for array + controls', () => {
@@ -859,7 +859,7 @@ describe('selectors', () => {
             disabled: false,
             pristine: true,
             untouched: true,
-            valid: false,
+            invalid: true,
             validators: array.controls[0].validators,
             errors: {
               externalError: true,
@@ -879,7 +879,7 @@ describe('selectors', () => {
         ],
         pristine: true,
         untouched: true,
-        valid: false,
+        invalid: true,
         changed: false,
         validators: [arrayValidator]
       };
@@ -906,7 +906,7 @@ describe('selectors', () => {
             disabled: false,
             pristine: true,
             untouched: true,
-            valid: false,
+            invalid: true,
             validators: array.controls[0].validators,
             errors: {
               externalError: true
@@ -922,7 +922,7 @@ describe('selectors', () => {
         ],
         pristine: true,
         untouched: true,
-        valid: false,
+        invalid: true,
         changed: false,
         validators: []
       };
@@ -947,7 +947,7 @@ describe('selectors', () => {
             disabled: false,
             pristine: true,
             untouched: true,
-            valid: false,
+            invalid: true,
             validators: array.controls[0].validators,
             errors: {
               stringError: true
@@ -963,7 +963,7 @@ describe('selectors', () => {
         ],
         pristine: true,
         untouched: true,
-        valid: false,
+        invalid: true,
         changed: false,
         validators: []
       };
@@ -984,7 +984,7 @@ describe('selectors', () => {
             disabled: false,
             pristine: true,
             untouched: true,
-            valid: true,
+            invalid: false,
             validators: array.controls[0].validators,
             errors: {},
             changed: false
@@ -994,7 +994,7 @@ describe('selectors', () => {
         errors: [{}],
         pristine: true,
         untouched: true,
-        valid: true,
+        invalid: false,
         changed: false,
         validators: []
       };

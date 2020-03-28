@@ -57,8 +57,8 @@ describe('AbstractControlDirective', () => {
     [
       [{ pristine: true }, 'ng-pristine', 'ng-dirty'],
       [{ pristine: false }, 'ng-dirty', 'ng-pristine'],
-      [{ valid: true }, 'ng-valid', 'ng-invalid'],
-      [{ valid: false }, 'ng-invalid', 'ng-valid'],
+      [{ invalid: true }, 'ng-invalid', 'ng-valid'],
+      [{ invalid: false }, 'ng-valid', 'ng-invalid'],
       [{ untouched: true }, 'ng-untouched', 'ng-touched'],
       [{ untouched: false }, 'ng-touched', 'ng-untouched'],
       [{ changed: true }, 'ng-changed', 'ng-initial'],

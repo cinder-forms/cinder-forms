@@ -82,7 +82,7 @@ export function getFormControlSummary<T>(
   return {
     ...control,
     errors,
-    valid: Object.keys(errors).length === 0,
+    invalid: Object.keys(errors).length > 0,
     changed: getFormControlChanged(control)
   };
 }
@@ -161,7 +161,7 @@ export function getFormGroupSummary<TControls extends FormControls>(
     pristine: getFormGroupPristine(group),
     untouched: getFormGroupUntouched(group),
     errors,
-    valid: Object.keys(errors).length === 0,
+    invalid: Object.keys(errors).length > 0,
     changed: getFormGroupChanged(summaries),
     validators: group.validators
   };
@@ -188,7 +188,7 @@ export function getFormArraySummary<T>(
     pristine: getFormArrayPristine(array),
     untouched: getFormArrayUntouched(array),
     errors,
-    valid: errors.every(error => Object.keys(error).length === 0),
+    invalid: errors.some(error => Object.keys(error).length > 0),
     changed: getFormArrayChanged(summaries),
     validators: array.validators
   };
