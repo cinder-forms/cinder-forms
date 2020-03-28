@@ -183,7 +183,10 @@ describe('selectors', () => {
         alwaysFalse: false
       });
 
-      const group = initFormArray([['', [validatorAlwaysTrue]], ['', [validatorAlwaysFalse]]]);
+      const group = initFormArray([
+        ['', [validatorAlwaysTrue]],
+        ['', [validatorAlwaysFalse]]
+      ]);
 
       const expected = [
         {
@@ -752,7 +755,7 @@ describe('selectors', () => {
       expect(result).toEqual(expected);
     });
 
-    it('should return summary on null errors', () => {
+    it('should return summary on {} errors', () => {
       const group = initFormGroup<TestControls>({
         stringControl: ['initial']
       });
@@ -970,7 +973,7 @@ describe('selectors', () => {
       expect(result).toEqual(expected);
     });
 
-    it('should return summary on null errors', () => {
+    it('should return summary on {} errors', () => {
       const array = initFormArray([['initial']]);
 
       const expected: FormArraySummary<string> = {

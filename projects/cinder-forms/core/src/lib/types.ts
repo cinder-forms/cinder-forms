@@ -245,7 +245,7 @@ export interface FormGroupSummary<TControls extends FormControls>
   /**
    * An object containing all errors. The used keys are the same as for the controls.
    *
-   * If no error is found this value is null.
+   * If no error is found this value is `{}`.
    */
   errors: FormGroupErrors<TControls>;
 

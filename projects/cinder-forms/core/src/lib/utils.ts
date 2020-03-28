@@ -167,7 +167,7 @@ export function validatorOf<T>(...fn: ValidatorFn[]): Validator<T> {
 
 /**
  * Merges an array of `FormControlErrors`.
- * Returns null if all errors are null.
+ * Returns `{}` if all errors are `{}`.
  * @param errors An array of `FormControlErrors` which will be merged into a single `FormControlErrors` value.
  */
 export function mergeFormControlErrors(...errors: FormControlErrors[]): FormControlErrors {
@@ -182,7 +182,7 @@ export function mergeFormControlErrors(...errors: FormControlErrors[]): FormCont
 /**
  * Merges an array of errors.
  * The different child control errors will also be merged.
- * Returns null if all errors are null.
+ * Returns `{}` if all errors are `{}`.
  * @param errors Multiple errors to be merged.
  *
  * @example
@@ -235,7 +235,7 @@ export function mergeFormGroupErrors<TControls extends FormControls>(
 /**
  * Merges an array of errors.
  * Errors at each index will also be merged.
- * Returns null if all errors are null.
+ * Returns `{}` if all errors are `{}`.
  * @param errors Multiple errors to be merged.
  *
  * @example

@@ -47,10 +47,10 @@ describe('reducer', () => {
       expect(result).toEqual(control);
     });
 
-    it('null update should do nothing', () => {
+    it('{} update should do nothing', () => {
       const control = initFormControl(['test']);
 
-      const update = null;
+      const update = {};
 
       const result = reduceFormControl(control, update);
 
@@ -141,7 +141,7 @@ describe('reducer', () => {
       const array = initFormArray([['1'], [initialValue], ['3'], ['4']]);
 
       const update: FormArrayUpdate<string> = {
-        controls: [null, controlUpdate, null]
+        controls: [{}, controlUpdate, {}]
       };
 
       const expected: FormArrayState<string> = {

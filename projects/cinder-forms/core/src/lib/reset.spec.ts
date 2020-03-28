@@ -1,10 +1,10 @@
-import { FormArrayState, FormControlState, FormGroupState } from './types';
 import { initFormArray, initFormControl, initFormGroup } from './init';
 import { resetFormArray, resetFormControl, resetFormGroup } from './reset';
+import { FormArrayState, FormControlState, FormGroupState } from './types';
 
 describe('resetFormControl', () => {
   const initialValue = 'initial';
-  const validators = [() => null];
+  const validators = [() => ({})];
   const disabled = true;
 
   const control: FormControlState<string> = {
@@ -95,7 +95,7 @@ describe('resetFormArray', () => {
   const validators1 = [() => ({ alwaysTrue: true })];
   const validators2 = [];
 
-  const arrayValidators = [() => [{ always6: 6 }, null]];
+  const arrayValidators = [() => [{ always6: 6 }, {}]];
 
   const array: FormArrayState<string> = {
     controls: [
@@ -122,7 +122,10 @@ describe('resetFormArray', () => {
   it('should reset array', () => {
     const result = resetFormArray(array);
     const expected: typeof array = initFormArray(
-      [[initialValue1, validators1, true], [initialValue2, validators2, false]],
+      [
+        [initialValue1, validators1, true],
+        [initialValue2, validators2, false]
+      ],
       arrayValidators
     );
 

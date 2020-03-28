@@ -25,7 +25,7 @@ describe('init', () => {
         expect(result).toEqual(expected);
       });
 
-      it('["value", [() => null]] should create a valid form control state with validator', () => {
+      it('["value", [() => {}]] should create a valid form control state with validator', () => {
         const expected: FormControlState<string> = {
           value,
           initialValue: value,
@@ -72,7 +72,7 @@ describe('init', () => {
         expect(result).toEqual(expected);
       });
 
-      it('["value", [() => null]] should create a valid form control state with validator', () => {
+      it('["value", [() => {}]] should create a valid form control state with validator', () => {
         const expected: FormControlState<string> = {
           value,
           initialValue: value,
