@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "@CinderForms/Core": {
+    "@cinder-forms/core": {
       "projectType": "library",
       "root": "projects/cinder-forms/core",
       "sourceRoot": "projects/cinder-forms/core/src",
@@ -37,7 +37,7 @@
         }
       }
     },
-    "@CinderForms/Validators": {
+    "@cinder-forms/validators": {
       "projectType": "library",
       "root": "projects/cinder-forms/validators",
       "sourceRoot": "projects/cinder-forms/validators/src",
