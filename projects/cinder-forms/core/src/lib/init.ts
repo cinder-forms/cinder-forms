@@ -23,9 +23,7 @@ import { reduceFormControl } from './reducer';
  * initFormControl(['value', [validator]])
  * initFormControl({value: 'value', validators: [validator], disabled: true, ...})
  */
-export function initFormControl<T>(
-  initial: FormControlInit<T>
-): FormControlState<T> {
+export function initFormControl<T>(initial: FormControlInit<T>): FormControlState<T> {
   return Array.isArray(initial)
     ? initFormControlFromTuple(initial)
     : initFormControlFromUpdate(initial);
@@ -52,10 +50,7 @@ export function initFormGroup<TControls extends FormControls>(
       .map(([key, initial]) => ({
         [key]: initFormControl(initial)
       }))
-      .reduce(
-        (ctrl1, ctrl2) => ({ ...ctrl1, ...ctrl2 }),
-        {}
-      ) as FormGroupControlStates<TControls>,
+      .reduce((ctrl1, ctrl2) => ({ ...ctrl1, ...ctrl2 }), {}) as FormGroupControlStates<TControls>,
     validators
   };
 }

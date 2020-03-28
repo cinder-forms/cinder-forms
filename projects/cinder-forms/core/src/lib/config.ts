@@ -3,9 +3,7 @@ import { asyncScheduler, MonoTypeOperatorFunction } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
 import { FormsConfig } from './types';
 
-export const CONFIG_TOKEN = new InjectionToken<FormsConfig>(
-  'NGRX_CLEAN_FORMS_CONFIG'
-);
+export const CONFIG_TOKEN = new InjectionToken<FormsConfig>('NGRX_CLEAN_FORMS_CONFIG');
 
 export const defaultConfig: FormsConfig = {
   throttleTime: 20,

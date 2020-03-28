@@ -38,9 +38,7 @@ export class CinderFormsModule {
    * }),
    *
    */
-  public static withConfig(
-    config: Partial<FormsConfig>
-  ): ModuleWithProviders<CinderFormsModule> {
+  public static withConfig(config: Partial<FormsConfig>): ModuleWithProviders<CinderFormsModule> {
     return {
       ngModule: CinderFormsModule,
       providers: [

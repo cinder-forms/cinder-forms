@@ -1,25 +1,14 @@
-import {
-  Directive,
-  ElementRef,
-  Inject,
-  Optional,
-  Renderer2
-} from '@angular/core';
+import { Directive, ElementRef, Inject, Optional, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { circularDeepEqual } from 'fast-equals';
 import { CONFIG_TOKEN } from '../../config';
 import { FormsConfig } from '../../types';
-import {
-  AbstractControlDirective,
-  CONTROL_DIRECTIVE_SELECTOR
-} from './abstract-control.directive';
+import { AbstractControlDirective, CONTROL_DIRECTIVE_SELECTOR } from './abstract-control.directive';
 
 @Directive({
   selector: `[${CONTROL_DIRECTIVE_SELECTOR}]`
 })
-export class ValueAccessorConnectorDirective extends AbstractControlDirective<
-  any
-> {
+export class ValueAccessorConnectorDirective extends AbstractControlDirective<any> {
   public accessor: ControlValueAccessor;
   public lastValue: any;
 

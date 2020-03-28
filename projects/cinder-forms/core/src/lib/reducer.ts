@@ -79,9 +79,7 @@ export function reduceFormArray<T>(
     ...group,
     ...update,
     controls: group.controls.map((control, index) =>
-      update && update.controls
-        ? reduceFormControl(control, update.controls[index]!)
-        : control
+      update && update.controls ? reduceFormControl(control, update.controls[index]!) : control
     )
   };
 }

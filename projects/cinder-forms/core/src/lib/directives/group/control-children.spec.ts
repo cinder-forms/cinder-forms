@@ -1,18 +1,18 @@
 import { Component, Directive, forwardRef } from '@angular/core';
+import { async, TestBed } from '@angular/core/testing';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { TestBed, async } from '@angular/core/testing';
 
 import { By } from '@angular/platform-browser';
-import { CheckboxInputControlDirective } from '../controls/checkbox-input-control.directive';
+import { first } from 'rxjs/operators';
 import { CinderFormsModule } from '../../cinder-forms.module';
-import { ControlChildren } from './control-children';
+import { CheckboxInputControlDirective } from '../controls/checkbox-input-control.directive';
 import { NumberInputControlDirective } from '../controls/number-input-control.directive';
-import { RadioControlNotSupported } from './../controls/radio-input-control.directive';
 import { RangeInputControlDirective } from '../controls/range-input-control.directive';
 import { SelectControlNotSupported } from '../controls/select-input-control.directive';
 import { TextInputControlDirective } from '../controls/text-input-control.directive';
+import { RadioControlNotSupported } from './../controls/radio-input-control.directive';
 import { ValueAccessorConnectorDirective } from './../controls/value-accessor-connector.directive';
-import { first } from 'rxjs/operators';
+import { ControlChildren } from './control-children';
 
 @Component({
   template: '',

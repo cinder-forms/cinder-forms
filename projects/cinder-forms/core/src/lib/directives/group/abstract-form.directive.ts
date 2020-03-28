@@ -1,10 +1,4 @@
-import {
-  AfterViewInit,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  Output
-} from '@angular/core';
+import { AfterViewInit, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { combineLatest, merge, Observable, ReplaySubject, Subject } from 'rxjs';
 import { filter, map, switchMap, takeUntil } from 'rxjs/operators';
 import {
@@ -20,10 +14,9 @@ import { ControlChildren } from './control-children';
 type FormSummary = FormGroupSummary<any> | FormArraySummary<any>;
 type FormUpdate = FormGroupUpdate<any> | FormArrayUpdate<any>;
 
-export abstract class AbstractFormDirective<
-  Summary extends FormSummary,
-  Update extends FormUpdate
-> extends ControlChildren implements AfterViewInit, OnDestroy {
+export abstract class AbstractFormDirective<Summary extends FormSummary, Update extends FormUpdate>
+  extends ControlChildren
+  implements AfterViewInit, OnDestroy {
   @Input('formSummary')
   set setFormSummary(summary: Summary) {
     if (!summary) {
@@ -46,10 +39,7 @@ export abstract class AbstractFormDirective<
           children.map(child =>
             child.controlUpdate.pipe(
               filter(() => child.controlKey !== undefined),
-              map((update): [typeof update, string] => [
-                update,
-                child.controlKey!
-              ])
+              map((update): [typeof update, string] => [update, child.controlKey!])
             )
           )
         ),
@@ -57,10 +47,7 @@ export abstract class AbstractFormDirective<
       )
       .subscribe(([update, key]) => this.emitUpdate(update, key));
 
-    combineLatest(
-      children$,
-      this.formSummary$
-    ).subscribe(([children, summary]) =>
+    combineLatest(children$, this.formSummary$).subscribe(([children, summary]) =>
       this.updateChildren(children, summary)
     );
   }
@@ -69,10 +56,7 @@ export abstract class AbstractFormDirective<
     this.formSummary$.complete();
   }
 
-  public updateChildren(
-    children: AbstractControlDirective<any>[],
-    summary: FormSummary
-  ) {
+  public updateChildren(children: AbstractControlDirective<any>[], summary: FormSummary) {
     if (!children.length) {
       return;
     }

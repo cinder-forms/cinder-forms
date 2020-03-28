@@ -1,27 +1,12 @@
-import {
-  Directive,
-  ElementRef,
-  HostListener,
-  Inject,
-  Renderer2
-} from '@angular/core';
+import { Directive, ElementRef, HostListener, Inject, Renderer2 } from '@angular/core';
 import { CONFIG_TOKEN } from '../../config';
 import { FormsConfig } from '../../types';
-import {
-  AbstractControlDirective,
-  CONTROL_DIRECTIVE_SELECTOR
-} from './abstract-control.directive';
+import { AbstractControlDirective, CONTROL_DIRECTIVE_SELECTOR } from './abstract-control.directive';
 @Directive({
   selector: `input[type="range"][${CONTROL_DIRECTIVE_SELECTOR}]`
 })
-export class RangeInputControlDirective extends AbstractControlDirective<
-  number | null
-> {
-  constructor(
-    ref: ElementRef,
-    r2: Renderer2,
-    @Inject(CONFIG_TOKEN) config: FormsConfig
-  ) {
+export class RangeInputControlDirective extends AbstractControlDirective<number | null> {
+  constructor(ref: ElementRef, r2: Renderer2, @Inject(CONFIG_TOKEN) config: FormsConfig) {
     super(ref, r2, config);
   }
 

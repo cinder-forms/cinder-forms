@@ -6,8 +6,6 @@ export function isFormArray(formArray: FormArrayState<any>) {
 
 export function isFormGroup(formGroup: FormGroupState<any>) {
   return (
-    typeof formGroup === 'object' &&
-    formGroup.controls &&
-    typeof formGroup.controls === 'object'
+    typeof formGroup === 'object' && formGroup.controls && typeof formGroup.controls === 'object'
   );
 }

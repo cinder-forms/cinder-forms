@@ -3,11 +3,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControlSummary, FormControlUpdate } from '../../types';
 
 import { By } from '@angular/platform-browser';
-import { CinderFormsModule } from '../../cinder-forms.module';
 import { ReplaySubject } from 'rxjs';
-import { TextInputControlDirective } from './text-input-control.directive';
-import { getFormControlSummary } from '../../selectors';
+import { CinderFormsModule } from '../../cinder-forms.module';
 import { initFormControl } from '../../init';
+import { getFormControlSummary } from '../../selectors';
+import { TextInputControlDirective } from './text-input-control.directive';
 
 @Component({
   selector: 'cinder-test-component',

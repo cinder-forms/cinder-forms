@@ -122,10 +122,7 @@ describe('resetFormArray', () => {
   it('should reset array', () => {
     const result = resetFormArray(array);
     const expected: typeof array = initFormArray(
-      [
-        [initialValue1, validators1, true],
-        [initialValue2, validators2, false]
-      ],
+      [[initialValue1, validators1, true], [initialValue2, validators2, false]],
       arrayValidators
     );
 

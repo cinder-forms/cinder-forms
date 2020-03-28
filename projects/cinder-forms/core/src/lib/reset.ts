@@ -37,9 +37,7 @@ export function resetFormControl<T>(
 export function resetFormGroup<TControls extends FormControls>(
   group: FormGroupState<TControls>
 ): FormGroupState<TControls> {
-  const controls = mapFormGroupControlStates(group.controls, control =>
-    resetFormControl(control)
-  );
+  const controls = mapFormGroupControlStates(group.controls, control => resetFormControl(control));
 
   return reduceFormGroup(group, { controls });
 }

@@ -183,10 +183,7 @@ describe('selectors', () => {
         alwaysFalse: false
       });
 
-      const group = initFormArray([
-        ['', [validatorAlwaysTrue]],
-        ['', [validatorAlwaysFalse]]
-      ]);
+      const group = initFormArray([['', [validatorAlwaysTrue]], ['', [validatorAlwaysFalse]]]);
 
       const expected = [
         {
