@@ -117,9 +117,15 @@ export interface FormControlErrors {
   [error: string]: any;
 }
 
-export type FormGroupErrors<TControls extends FormControls> = {
-  [K in keyof Partial<TControls>]: FormControlErrors;
-};
+export type FormGroupErrors<TControls extends FormControls> =
+  | Partial<
+      {
+        [K in keyof Partial<TControls>]: FormControlErrors;
+      }
+    >
+  | {
+      [K in keyof Partial<TControls>]: FormControlErrors;
+    };
 
 export type FormArrayErrors = FormControlErrors[];
 
@@ -204,7 +210,7 @@ export interface FormControlSummary<T> extends FormControlState<T> {
   /**
    * An object containing all errors.
    *
-   * Null if no errors were found.
+   * `{}` if no errors were found.
    */
   errors: FormControlErrors;
 

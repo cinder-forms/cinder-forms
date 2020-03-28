@@ -220,7 +220,7 @@ export function mergeFormGroupErrors<TControls extends FormControls>(
     ...Object.keys(group1)
       .filter(key1 => Object.keys(group2).find(key2 => key1 === key2))
       .map(key => ({
-        [key]: mergeFormControlErrors(group1[key], group2[key])
+        [key]: mergeFormControlErrors(group1[key]!, group2[key]!)
       }))
       .reduce(
         (e1, e2) => ({

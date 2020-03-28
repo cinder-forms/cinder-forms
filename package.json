@@ -13,6 +13,8 @@
     "@angular/platform-browser": "~9.0.7",
     "@angular/platform-browser-dynamic": "~9.0.7",
     "@angular/router": "~9.0.7",
+    "@ngrx/store": "^9.0.0",
+    "@ngrx/store-devtools": "^9.0.0",
     "fast-equals": "^2.0.0",
     "jest-preset-angular": "^8.1.2",
     "rxjs": "~6.5.4",
@@ -37,5 +39,8 @@
     "tslint": "~5.18.0",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "~3.7.5"
+  },
+  "scripts": {
+    "postinstall": "ngcc"
   }
 }

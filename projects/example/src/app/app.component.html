@@ -1,0 +1,69 @@
+<div class="container">
+  <div>
+    <h3>Form example:</h3>
+    <form cinderGroup [formSummary]="formGroup$ | async" (formUpdate)="updateFormGroup($event)">
+      <div>
+        <input type="text" cinderControl="textInput" />
+        <input type="number" cinderControl="numberInput" />
+        <input type="range" cinderControl="rangeInput" />
+        <input type="checkbox" cinderControl="checkboxInput" />
+        <app-custom-input cinderControl="customInput"></app-custom-input>
+      </div>
+
+      <button type="button" (click)="resetFormGroup()">Reset</button>
+    </form>
+
+    <h3>Single example:</h3>
+    <input
+      cinderControl
+      [controlSummary]="singleInput$ | async"
+      (controlUpdate)="updateSingleInput($event)"
+    />
+
+    <h3>State access example:</h3>
+    <small>Forbidden number (from state): {{ forbiddenNumber$ | async }}</small>
+    <form
+      cinderGroup
+      [formSummary]="stateAccessFormGroup$ | async"
+      (formUpdate)="updateStateAccessFormGroup($event)"
+    >
+      <input type="number" cinderControl="exampleInput" />
+    </form>
+
+    <h3>Duplicate form example:</h3>
+    <form cinderGroup [formSummary]="formGroup$ | async" (formUpdate)="updateFormGroup($event)">
+      <div>
+        <input type="range" cinderControl="numberInput" />
+        <app-custom-input cinderControl="rangeInput"></app-custom-input>
+      </div>
+    </form>
+
+    <h3>Error display example:</h3>
+    <form cinderGroup [formSummary]="formGroup$ | async" (formUpdate)="updateFormGroup($event)">
+      <div>
+        <input type="number" cinderControl="numberInput" />
+        <small *ngIf="(formGroup$ | async)?.errors?.numberInput">
+          {{ (formGroup$ | async).errors.numberInput | json }}
+        </small>
+      </div>
+    </form>
+
+    <h3>Form array:</h3>
+    <form cinderArray [formSummary]="formArray$ | async" (formUpdate)="updateFormArray($event)">
+      <div>
+        <button type="button" (click)="addControlToArray()">Add Input</button>
+        <input *ngFor="let key of (formArray$ | async).keys" [cinderControl]="key" type="text" />
+      </div>
+    </form>
+
+    <h3>Throttle: 500ms</h3>
+    <p>State value: {{ (formGroup$ | async).controls.rangeInput.value }}</p>
+    <form cinderGroup [formSummary]="formGroup$ | async" (formUpdate)="updateFormGroup($event)">
+      <input type="range" cinderControl="rangeInput" [controlConfig]="{ throttleTime: 500 }" />
+    </form>
+  </div>
+  <div>
+    <h3>The following is the current state.</h3>
+    <pre>{{ state$ | async | json }}</pre>
+  </div>
+</div>

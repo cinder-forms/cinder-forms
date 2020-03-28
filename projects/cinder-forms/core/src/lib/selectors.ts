@@ -34,7 +34,10 @@ export function getFormControlErrors<T>(control: FormControlState<T>): FormContr
 export function getFormGroupControlSummariesErrors<TControls extends FormControls>(
   summaries: FormGroupControlSummaries<TControls>
 ): FormGroupErrors<TControls> {
-  const errors = mapFormGroupControlSummaries(summaries, summary => summary.errors);
+  const errors: FormGroupErrors<TControls> = mapFormGroupControlSummaries(
+    summaries,
+    summary => summary.errors
+  );
 
   Object.entries(errors)
     .filter(([_, controlErrors]) => containsError(controlErrors))
