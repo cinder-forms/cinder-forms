@@ -4,7 +4,6 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
-    "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "strictNullChecks": true,
@@ -13,11 +12,11 @@
     "importHelpers": true,
     "target": "es2015",
     "lib": ["es2018", "dom"],
+    "declaration": true,
+    "inlineSources": true,
+    "types": ["jest"],
     "paths": {
-      "@cinder-forms/core": [
-        "dist/cinder-forms/core/cinder-forms-core",
-        "dist/cinder-forms/core"
-      ],
+      "@cinder-forms/core": ["dist/cinder-forms/core/cinder-forms-core", "dist/cinder-forms/core"],
       "@cinder-forms/validators": [
         "dist/cinder-forms/validators/cinder-forms-validators",
         "dist/cinder-forms/validators"
@@ -26,6 +25,10 @@
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
-  }
+    "strictInjectionParameters": true,
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "enableResourceInlining": true
+  },
+  "exclude": ["**/*.spec.ts"]
 }
