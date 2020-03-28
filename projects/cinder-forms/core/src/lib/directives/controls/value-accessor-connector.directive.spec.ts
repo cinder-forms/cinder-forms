@@ -21,7 +21,7 @@ import { ValueAccessorConnectorDirective } from './value-accessor-connector.dire
   `
 })
 class TestComponent {
-  public summary$: ReplaySubject<FormControlSummary<string>>;
+  public summary$: ReplaySubject<FormControlSummary<string, any>>;
   public update: () => {};
 }
 
@@ -119,7 +119,7 @@ describe('ValueAccessorConnectorDirective', () => {
   it('value update propagates from child', done => {
     const value = '5';
 
-    const expected: FormControlUpdate<string> = {
+    const expected: FormControlUpdate<string, any> = {
       value,
       dirty: true
     };
@@ -133,7 +133,7 @@ describe('ValueAccessorConnectorDirective', () => {
   });
 
   it('touched update propagates from child', done => {
-    const expected: FormControlUpdate<string> = {
+    const expected: FormControlUpdate<string, any> = {
       touched: true
     };
 

@@ -11,7 +11,9 @@ import {
   FormGroupControlSummaries,
   FormGroupErrors,
   FormGroupState,
-  FormGroupSummary
+  FormGroupSummary,
+  UnknownValidators,
+  ValidatorsToErrors
 } from './types';
 import {
   mapFormGroupControlStates,
@@ -27,7 +29,9 @@ function containsError(errors: FormControlErrors) {
   return Object.keys(errors).length === 0;
 }
 
-export function getFormControlErrors<T>(control: FormControlState<T>): FormControlErrors[] {
+export function getFormControlErrors<T, TValidators extends UnknownValidators<T>>(
+  control: FormControlState<T, TValidators>
+): ValidatorsToErrors<TValidators>[] {
   return control.validators.map(validator => validator(control));
 }
 
@@ -62,7 +66,7 @@ export function getFormArrayErrors<T>(array: FormArrayState<T>): FormArrayErrors
   return mergeFormArrayErrors(...array.validators.map(validator => validator(array)));
 }
 
-export function getFormControlChanged<T>(control: FormControlState<T>): boolean {
+export function getFormControlChanged<T>(control: FormControlState<T, any>): boolean {
   return !circularDeepEqual(control.value, control.initialValue);
 }
 
@@ -73,11 +77,14 @@ export function getFormControlChanged<T>(control: FormControlState<T>): boolean 
  * @param control The `FormControlState` which is used to create the `FormControlSummary`.
  * @param additionalErrors An array of `FormControlErrors` which will be merged into the errors of the control.
  */
-export function getFormControlSummary<T>(
-  control: FormControlState<T>,
-  ...additionalErrors: FormControlErrors[]
-): FormControlSummary<T> {
-  const errors = mergeFormControlErrors(...getFormControlErrors(control), ...additionalErrors);
+export function getFormControlSummary<T, TValidators extends UnknownValidators<T>>(
+  control: FormControlState<T, TValidators>,
+  ...additionalErrors: ValidatorsToErrors<TValidators>[]
+): FormControlSummary<T, TValidators> {
+  const errors = mergeFormControlErrors(
+    ...getFormControlErrors<T, TValidators>(control),
+    ...additionalErrors
+  );
 
   return {
     ...control,
@@ -99,9 +106,9 @@ export function getFormGroupControlSummaries<TControls extends FormControls>(
 }
 
 export function getFormArrayControlSummaries<T>(
-  controls: FormControlState<T>[],
+  controls: FormControlState<T, any>[],
   ...additionalErrors: FormArrayErrors[]
-): FormControlSummary<T>[] {
+): FormControlSummary<T, any>[] {
   const additionalError = mergeFormArrayErrors(...additionalErrors);
 
   return controls.map((control, i) => getFormControlSummary(control, additionalError[i] || {}));

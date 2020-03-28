@@ -27,7 +27,7 @@ export const CONTROL_DIRECTIVE_SELECTOR = `cinderControl`;
 
 export abstract class AbstractControlDirective<T> implements OnDestroy {
   @Input('controlSummary')
-  set setControlSummary(controlSummary: FormControlSummary<T>) {
+  set setControlSummary(controlSummary: FormControlSummary<T, any>) {
     if (!controlSummary) {
       return;
     }
@@ -48,11 +48,11 @@ export abstract class AbstractControlDirective<T> implements OnDestroy {
   @Input(CONTROL_DIRECTIVE_SELECTOR)
   public controlKey?: string;
 
-  @Output() public controlUpdate = new EventEmitter<FormControlUpdate<T>>(true);
+  @Output() public controlUpdate = new EventEmitter<FormControlUpdate<T, any>>(true);
   protected config$ = new BehaviorSubject<FormsConfig>(this.injectedConfig);
 
-  private touched$ = new Subject<FormControlUpdate<T>>();
-  private value$ = new Subject<FormControlUpdate<T>>();
+  private touched$ = new Subject<FormControlUpdate<T, any>>();
+  private value$ = new Subject<FormControlUpdate<T, any>>();
 
   private summarySubscription = new Subscription();
 
@@ -83,7 +83,7 @@ export abstract class AbstractControlDirective<T> implements OnDestroy {
     this.value$.next({ value, dirty: true });
   }
 
-  public updateSummary(summary: FormControlSummary<T>) {
+  public updateSummary(summary: FormControlSummary<T, any>) {
     this.setValue(summary.value);
 
     if (this.setDisabled) {

@@ -5,7 +5,7 @@ import {
   FormControls,
   FormControlState,
   FormGroupState,
-  FormGroupUpdate
+  UnknownValidators
 } from './types';
 import { mapFormGroupControlStates } from './utils';
 
@@ -19,10 +19,10 @@ import { mapFormGroupControlStates } from './utils';
  * @param control The `FormControlState` which should be used to create the reset.
  * @param initialValue Optional parameter for passing a new initial value.
  */
-export function resetFormControl<T>(
-  control: FormControlState<T>,
+export function resetFormControl<T, TValidators extends UnknownValidators<T>>(
+  control: FormControlState<T, TValidators>,
   initialValue = control.initialValue
-): FormControlState<T> {
+): FormControlState<T, TValidators> {
   return initFormControl([initialValue, control.validators, control.disabled]);
 }
 

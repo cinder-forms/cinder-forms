@@ -7,7 +7,7 @@ describe('resetFormControl', () => {
   const validators = [() => ({})];
   const disabled = true;
 
-  const control: FormControlState<string> = {
+  const control: FormControlState<string, typeof validators> = {
     disabled,
     initialValue,
     dirty: true,

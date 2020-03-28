@@ -1,5 +1,5 @@
-import { createAction, props } from '@ngrx/store';
 import { FormArrayUpdate, FormControlUpdate, FormGroupUpdate } from '@cinder-forms/core';
+import { createAction, props } from '@ngrx/store';
 import { ExampleGroupControls, StateAccessExampleFormControls } from './example.reducer';
 
 export const increment = createAction('[Counter Component] Increment');

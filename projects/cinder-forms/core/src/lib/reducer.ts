@@ -5,9 +5,10 @@ import {
   FormControlState,
   FormControlUpdate,
   FormGroupState,
-  FormGroupUpdate
+  FormGroupUpdate,
+  UnknownValidators
 } from './types';
-import { mapFormControls, mapFormGroupControlUpdates } from './utils';
+import { mapFormControls } from './utils';
 
 /**
  * Returns a `FormControlState` which represents the input state with the applied update.
@@ -16,10 +17,10 @@ import { mapFormControls, mapFormGroupControlUpdates } from './utils';
  * @param control The `FormControlState` which the update will be applied to.
  * @param update The `FormControlUpdate` itself.
  */
-export function reduceFormControl<T>(
-  control: FormControlState<T>,
-  update: FormControlUpdate<T>
-): FormControlState<T> {
+export function reduceFormControl<T, TValidators extends UnknownValidators<T>>(
+  control: FormControlState<T, TValidators>,
+  update: FormControlUpdate<T, TValidators>
+): FormControlState<T, TValidators> {
   if (!update) {
     return control;
   }

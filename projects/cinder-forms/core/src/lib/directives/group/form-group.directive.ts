@@ -9,7 +9,7 @@ export class FormGroupDirective extends AbstractFormDirective<
   FormGroupSummary<any>,
   FormGroupUpdate<any>
 > {
-  public emitUpdate(update: FormControlUpdate<any>, key: string) {
+  public emitUpdate(update: FormControlUpdate<any, any>, key: string) {
     this.formUpdate.next({ controls: { [key]: update } });
   }
 }

@@ -7,7 +7,8 @@ export {
   mapFormGroupControlStates,
   mapFormGroupControlSummaries,
   mapFormGroupControlUpdates,
-  validatorOf
+  validatorOf,
+  createValidator
 } from './lib/utils';
 export { CinderFormsModule } from './lib/cinder-forms.module';
 export * from './lib/directives';

@@ -21,7 +21,7 @@ import { RangeInputControlDirective } from './range-input-control.directive';
   `
 })
 class TestComponent {
-  public summary$: ReplaySubject<FormControlSummary<number>>;
+  public summary$: ReplaySubject<FormControlSummary<number, any>>;
   public update: () => {};
 }
 
@@ -85,7 +85,7 @@ describe('RangeInputControlDirective', () => {
   it('value update propagates from child', done => {
     const value = 5;
 
-    const expected: FormControlUpdate<number> = {
+    const expected: FormControlUpdate<number, any> = {
       value,
       dirty: true
     };
@@ -105,7 +105,7 @@ describe('RangeInputControlDirective', () => {
   it('empty value update propagates from child as null', done => {
     const value = '';
 
-    const expected: FormControlUpdate<number | null> = {
+    const expected: FormControlUpdate<number | null, any> = {
       value: null,
       dirty: true
     };
@@ -123,7 +123,7 @@ describe('RangeInputControlDirective', () => {
   });
 
   it('touched update propagates from child', done => {
-    const expected: FormControlUpdate<number> = {
+    const expected: FormControlUpdate<number, any> = {
       touched: true
     };
 

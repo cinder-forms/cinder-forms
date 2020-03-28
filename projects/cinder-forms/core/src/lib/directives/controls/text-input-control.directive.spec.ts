@@ -21,7 +21,7 @@ import { TextInputControlDirective } from './text-input-control.directive';
   `
 })
 class TestComponent {
-  public summary$: ReplaySubject<FormControlSummary<string>>;
+  public summary$: ReplaySubject<FormControlSummary<string, any>>;
   public update: () => {};
 }
 
@@ -84,7 +84,7 @@ describe('TextInputControlDirective', () => {
   it('value update propagates from child', done => {
     const value = '5';
 
-    const expected: FormControlUpdate<string> = {
+    const expected: FormControlUpdate<string, any> = {
       value,
       dirty: true
     };
@@ -102,7 +102,7 @@ describe('TextInputControlDirective', () => {
   });
 
   it('touched update propagates from child', done => {
-    const expected: FormControlUpdate<string> = {
+    const expected: FormControlUpdate<string, any> = {
       touched: true
     };
 

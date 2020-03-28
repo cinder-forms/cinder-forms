@@ -1,8 +1,7 @@
-import * as ExampleActions from './example.actions';
-
+import { Validators } from '@angular/forms';
 import {
   ArrayValidator,
-  FormArrayState,
+  createValidator,
   FormControlState,
   FormGroupState,
   initFormArray,
@@ -12,18 +11,20 @@ import {
   reduceFormControl,
   reduceFormGroup,
   resetFormGroup,
-  Validator,
   validatorOf
 } from '@cinder-forms/core';
 import { createReducer, on } from '@ngrx/store';
+import * as ExampleActions from './example.actions';
 
-import { Validators } from '@angular/forms';
+const below6 = createValidator(
+  ({ value }) => value < 6,
+  () => ({ below6: {} })
+);
 
-const below6: Validator<number> = (control: FormControlState<number>) =>
-  control.value < 6 ? {} : { below6: false };
-
-const required: Validator<string> = (control: FormControlState<string>) =>
-  control.value.trim().length ? {} : { required: true };
+const required = createValidator(
+  ({ value }: FormControlState<string>) => value.length !== 0,
+  () => ({ required: true })
+);
 
 const noDuplicates: ArrayValidator<string> = ({ controls }) =>
   controls
@@ -44,24 +45,30 @@ export interface StateAccessExampleFormControls {
   exampleInput: number;
 }
 
+const initialSingleControl = initFormControl(['initial', [required]]);
+
+const initialGroup = initFormGroup({
+  textInput: { value: 'disabled', disabled: true },
+  numberInput: [0, [validatorOf(Validators.required), below6]],
+  rangeInput: [0],
+  checkboxInput: [false],
+  customInput: [0]
+});
+
+const initialArray = initFormArray([['first'], ['second']], [noDuplicates]);
+
 export interface ExampleState {
-  singleControl: FormControlState<string>;
-  group: FormGroupState<ExampleGroupControls>;
-  array: FormArrayState<string>;
+  singleControl: typeof initialSingleControl;
+  group: typeof initialGroup;
+  array: typeof initialArray;
   stateAccessExampleGroup: FormGroupState<StateAccessExampleFormControls>;
   forbiddenNumber: number;
 }
 
 export const initialState: ExampleState = {
-  singleControl: initFormControl(['initial', [required]]),
-  group: initFormGroup({
-    textInput: { value: 'disabled', disabled: true },
-    numberInput: [0, [validatorOf(Validators.required), below6]],
-    rangeInput: [0],
-    checkboxInput: [false],
-    customInput: [0]
-  }),
-  array: initFormArray([['first'], ['second']], [noDuplicates]),
+  singleControl: initialSingleControl,
+  group: initialGroup,
+  array: initialArray,
   stateAccessExampleGroup: initFormGroup({ exampleInput: [1] }),
   forbiddenNumber: 2
 };

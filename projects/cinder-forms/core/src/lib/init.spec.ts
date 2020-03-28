@@ -1,7 +1,8 @@
 import { initFormArray, initFormControl, initFormGroup } from './init';
-import { FormArrayState, FormControlState, FormGroupState } from './types';
+import { FormArrayState, FormControlErrors, FormControlState, FormGroupState } from './types';
 
 describe('init', () => {
+  const noValidators = [];
   const validator = () => ({});
   const groupValidator = () => ({});
   const arrayValidator = () => [];
@@ -11,7 +12,7 @@ describe('init', () => {
   describe('initFormControl', () => {
     describe('initalizeTuple', () => {
       it('["value"] should create a valid form control state', () => {
-        const expected: FormControlState<string> = {
+        const expected: FormControlState<string, typeof noValidators> = {
           value,
           initialValue: value,
           disabled: false,
@@ -26,7 +27,7 @@ describe('init', () => {
       });
 
       it('["value", [() => {}]] should create a valid form control state with validator', () => {
-        const expected: FormControlState<string> = {
+        const expected: FormControlState<string, typeof noValidators> = {
           value,
           initialValue: value,
           disabled: false,
@@ -41,7 +42,7 @@ describe('init', () => {
       });
 
       it('["value", undefined, true] should create a valid form control state which is disabled', () => {
-        const expected: FormControlState<string> = {
+        const expected: FormControlState<string, typeof noValidators> = {
           value,
           initialValue: value,
           disabled: true,
@@ -58,7 +59,7 @@ describe('init', () => {
 
     describe('initialUpdate', () => {
       it('{value: value} should create a valid form control state', () => {
-        const expected: FormControlState<string> = {
+        const expected: FormControlState<string, typeof noValidators> = {
           value,
           initialValue: value,
           disabled: false,
@@ -73,7 +74,7 @@ describe('init', () => {
       });
 
       it('["value", [() => {}]] should create a valid form control state with validator', () => {
-        const expected: FormControlState<string> = {
+        const expected: FormControlState<string, typeof noValidators> = {
           value,
           initialValue: value,
           disabled: false,
@@ -88,7 +89,7 @@ describe('init', () => {
       });
 
       it('{value: value, disabled: true, dirty: true, touched: true} should create a valid form control state', () => {
-        const expected: FormControlState<string> = {
+        const expected: FormControlState<string, typeof noValidators> = {
           value,
           initialValue: value,
           disabled: true,
@@ -109,7 +110,7 @@ describe('init', () => {
       });
 
       it('value only should set initialValue', () => {
-        const expected: FormControlState<string> = {
+        const expected: FormControlState<string, typeof noValidators> = {
           value,
           initialValue: value,
           disabled: false,
@@ -128,13 +129,13 @@ describe('init', () => {
       it('intialValue should set initialValue', () => {
         const initialValue = 'initial';
 
-        const expected: FormControlState<string> = {
+        const expected: FormControlState<string, typeof noValidators> = {
           value,
           initialValue,
           disabled: false,
           dirty: false,
           touched: false,
-          validators: []
+          validators: noValidators
         };
 
         const result = initFormControl({

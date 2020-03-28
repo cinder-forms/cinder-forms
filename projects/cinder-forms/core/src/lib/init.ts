@@ -1,3 +1,4 @@
+import { reduceFormControl } from './reducer';
 import {
   ArrayValidator,
   FormArrayInit,
@@ -10,10 +11,9 @@ import {
   FormGroupControlStates,
   FormGroupInit,
   FormGroupState,
-  GroupValidator
+  GroupValidator,
+  UnknownValidators
 } from './types';
-
-import { reduceFormControl } from './reducer';
 
 /**
  * Initializes a new `FormControlState`.
@@ -23,7 +23,9 @@ import { reduceFormControl } from './reducer';
  * initFormControl(['value', [validator]])
  * initFormControl({value: 'value', validators: [validator], disabled: true, ...})
  */
-export function initFormControl<T>(initial: FormControlInit<T>): FormControlState<T> {
+export function initFormControl<T, TValidators extends UnknownValidators<T>>(
+  initial: FormControlInit<T, TValidators>
+): FormControlState<T, TValidators> {
   return Array.isArray(initial)
     ? initFormControlFromTuple(initial)
     : initFormControlFromUpdate(initial);
@@ -79,25 +81,27 @@ export function initFormArray<T>(
   };
 }
 
-function initFormControlFromTuple<T>([
+function initFormControlFromTuple<T, TValidators extends UnknownValidators<T>>([
   value,
-  validators = [],
+  // TODO: Remove this type hack. Currently invisible to the the outer API.
+  validators = [] as any,
   disabled = false
-]: FormControlInitTuple<T>): FormControlState<T> {
+]: FormControlInitTuple<T, TValidators>): FormControlState<T, TValidators> {
   return initFormControlFromUpdate({ value, validators, disabled });
 }
 
-function initFormControlFromUpdate<T = any>(
-  initialUpdate: FormControlInitUpdate<T>
-): FormControlState<T> {
-  return reduceFormControl(
+function initFormControlFromUpdate<T, TValidators extends UnknownValidators<T>>(
+  initialUpdate: FormControlInitUpdate<T, TValidators>
+): FormControlState<T, TValidators> {
+  return reduceFormControl<T, TValidators>(
     {
       value: initialUpdate.value,
       initialValue: initialUpdate.value,
       dirty: false,
       touched: false,
       disabled: false,
-      validators: []
+      // TODO: Remove this type hack. Currently invisible to the the outer API.
+      validators: [] as any
     },
     initialUpdate
   );

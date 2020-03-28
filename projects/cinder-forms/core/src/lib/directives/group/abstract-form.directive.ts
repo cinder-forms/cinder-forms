@@ -68,5 +68,5 @@ export abstract class AbstractFormDirective<Summary extends FormSummary, Update 
       });
   }
 
-  public abstract emitUpdate(update: FormControlUpdate<any>, key: string);
+  public abstract emitUpdate(update: FormControlUpdate<any, any>, key: string);
 }

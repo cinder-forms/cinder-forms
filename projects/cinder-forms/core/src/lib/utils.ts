@@ -10,6 +10,7 @@ import {
   FormGroupControlSummaries,
   FormGroupControlUpdates,
   FormGroupErrors,
+  UnknownValidators,
   Validator
 } from './types';
 
@@ -43,7 +44,7 @@ import {
  */
 export function mapFormGroupControlStates<TControls extends FormControls, R>(
   controls: FormGroupControlStates<TControls>,
-  mapFunc: (control: FormControlState<any>, key: string) => R
+  mapFunc: (control: FormControlState<any, any>, key: string) => R
 ): {
   [K in keyof TControls]: R;
 } {
@@ -80,7 +81,7 @@ export function mapFormGroupControlStates<TControls extends FormControls, R>(
  */
 export function mapFormGroupControlSummaries<TControls extends FormControls, R>(
   controls: FormGroupControlSummaries<TControls>,
-  mapFunc: (control: FormControlSummary<any>, key: string) => R
+  mapFunc: (control: FormControlSummary<any, any>, key: string) => R
 ): {
   [K in keyof TControls]: R;
 } {
@@ -117,7 +118,7 @@ export function mapFormGroupControlSummaries<TControls extends FormControls, R>(
  */
 export function mapFormGroupControlUpdates<TControls extends FormControls, R>(
   controls: FormGroupControlUpdates<TControls>,
-  mapFunc: (control: FormControlUpdate<any>, key: string) => R
+  mapFunc: (control: FormControlUpdate<any, any>, key: string) => R
 ): {
   [K in keyof TControls]: R;
 } {
@@ -150,10 +151,10 @@ export function mapFormControls<TControls extends FormControls, R>(
  * `value, dirty, pristine, touched, untouched, enabled, disabled`
  * @param fn Angular validator function..
  */
-export function validatorOf<T>(...fn: ValidatorFn[]): Validator<T> {
+export function validatorOf<T>(...fn: ValidatorFn[]): Validator<T, any> {
   const composed = Validators.compose(fn)!;
 
-  return (control: FormControlState<T>) =>
+  return (control: FormControlState<T, any>) =>
     composed({
       value: control.value,
       pristine: !control.dirty,
@@ -170,13 +171,15 @@ export function validatorOf<T>(...fn: ValidatorFn[]): Validator<T> {
  * Returns `{}` if all errors are `{}`.
  * @param errors An array of `FormControlErrors` which will be merged into a single `FormControlErrors` value.
  */
-export function mergeFormControlErrors(...errors: FormControlErrors[]): FormControlErrors {
-  return errors.reduce((e1, e2) => {
+export function mergeFormControlErrors<TErrors extends FormControlErrors>(
+  ...errors: TErrors[]
+): TErrors {
+  return errors.reduce<TErrors>((e1, e2) => {
     return {
       ...e1,
       ...e2
     };
-  }, {});
+  }, {} as TErrors);
 }
 
 /**
@@ -267,4 +270,29 @@ export function mergeFormArrayErrors(...errors: FormArrayErrors[]): FormArrayErr
     .map((_, i) =>
       mergeFormControlErrors(...errors.map(arrayErrors => arrayErrors && arrayErrors[i]))
     );
+}
+
+/**
+ * This function can be used to create a new validator.
+ * The `isInvalid` function evaluates whether an error should be returned.
+ * The error itself is build by the `buildError` function.
+ *
+ * @param isInvalid Function that evaluates to a boolean.
+ *                  If truthy the Validator will return the error.
+ * @param buildError Function that builds the error, which will be returned.
+ *
+ * @returns The error from `buildError` or `{}` if truthy.
+ *
+ * @example
+ * const notEmpty = createValidator(
+ *   control => control.value !== '',
+ *   _ => ({ empty: true })
+ * );
+ */
+export function createValidator<T extends any, TErrors extends FormControlErrors>(
+  isInvalid: (control: FormControlState<T, UnknownValidators<T>>) => boolean,
+  buildError: (control: FormControlState<T, UnknownValidators<T>>) => TErrors
+): Validator<T, Partial<TErrors>> {
+  return (control: FormControlState<T, UnknownValidators<T>>) =>
+    isInvalid(control) ? buildError(control) : {};
 }
