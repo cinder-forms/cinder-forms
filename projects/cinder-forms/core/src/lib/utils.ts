@@ -156,8 +156,8 @@ export function validatorOf<T>(...fn: ValidatorFn[]): Validator<T> {
   return (control: FormControlState<T>) =>
     composed({
       value: control.value,
-      dirty: !control.pristine,
-      pristine: control.pristine,
+      pristine: !control.dirty,
+      dirty: control.dirty,
       untouched: !control.touched,
       touched: control.touched,
       enabled: !control.disabled,

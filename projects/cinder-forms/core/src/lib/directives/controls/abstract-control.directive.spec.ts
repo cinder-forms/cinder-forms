@@ -55,8 +55,8 @@ describe('AbstractControlDirective', () => {
 
   describe('cssClasses', () => {
     [
-      [{ pristine: true }, 'ng-pristine', 'ng-dirty'],
-      [{ pristine: false }, 'ng-dirty', 'ng-pristine'],
+      [{ dirty: false }, 'ng-pristine', 'ng-dirty'],
+      [{ dirty: true }, 'ng-dirty', 'ng-pristine'],
       [{ invalid: true }, 'ng-invalid', 'ng-valid'],
       [{ invalid: false }, 'ng-valid', 'ng-invalid'],
       [{ touched: false }, 'ng-untouched', 'ng-touched'],

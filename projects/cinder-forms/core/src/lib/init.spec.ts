@@ -15,7 +15,7 @@ describe('init', () => {
           value,
           initialValue: value,
           disabled: false,
-          pristine: true,
+          dirty: false,
           touched: false,
           validators: []
         };
@@ -30,7 +30,7 @@ describe('init', () => {
           value,
           initialValue: value,
           disabled: false,
-          pristine: true,
+          dirty: false,
           touched: false,
           validators: [validator]
         };
@@ -45,7 +45,7 @@ describe('init', () => {
           value,
           initialValue: value,
           disabled: true,
-          pristine: true,
+          dirty: false,
           touched: false,
           validators: []
         };
@@ -62,7 +62,7 @@ describe('init', () => {
           value,
           initialValue: value,
           disabled: false,
-          pristine: true,
+          dirty: false,
           touched: false,
           validators: []
         };
@@ -77,7 +77,7 @@ describe('init', () => {
           value,
           initialValue: value,
           disabled: false,
-          pristine: true,
+          dirty: false,
           touched: false,
           validators: [validator]
         };
@@ -87,12 +87,12 @@ describe('init', () => {
         expect(result).toEqual(expected);
       });
 
-      it('{value: value, disabled: true, pristine: false, touched: true} should create a valid form control state', () => {
+      it('{value: value, disabled: true, dirty: true, touched: true} should create a valid form control state', () => {
         const expected: FormControlState<string> = {
           value,
           initialValue: value,
           disabled: true,
-          pristine: false,
+          dirty: true,
           touched: true,
           validators: []
         };
@@ -100,7 +100,7 @@ describe('init', () => {
         const result = initFormControl({
           value,
           disabled: expected.disabled,
-          pristine: expected.pristine,
+          dirty: expected.dirty,
           touched: expected.touched,
           validators: []
         });
@@ -113,7 +113,7 @@ describe('init', () => {
           value,
           initialValue: value,
           disabled: false,
-          pristine: true,
+          dirty: false,
           touched: false,
           validators: []
         };
@@ -132,7 +132,7 @@ describe('init', () => {
           value,
           initialValue,
           disabled: false,
-          pristine: true,
+          dirty: false,
           touched: false,
           validators: []
         };
@@ -153,7 +153,7 @@ describe('init', () => {
         controls: {
           tuple: {
             disabled: false,
-            pristine: true,
+            dirty: false,
             touched: false,
             validators: [validator],
             value,
@@ -161,7 +161,7 @@ describe('init', () => {
           },
           update: {
             disabled: true,
-            pristine: false,
+            dirty: true,
             touched: true,
             validators: [validator],
             value,
@@ -178,7 +178,7 @@ describe('init', () => {
             value,
             validators: [validator],
             disabled: true,
-            pristine: false,
+            dirty: true,
             touched: true
           }
         },
@@ -197,7 +197,7 @@ describe('init', () => {
             value,
             validators: [validator],
             disabled: false,
-            pristine: true,
+            dirty: false,
             touched: false,
             initialValue: value
           }
@@ -217,7 +217,7 @@ describe('init', () => {
             value,
             validators: [validator],
             disabled: true,
-            pristine: false,
+            dirty: true,
             touched: true,
             initialValue: value
           }
@@ -231,7 +231,7 @@ describe('init', () => {
             value,
             validators: [validator],
             disabled: true,
-            pristine: false,
+            dirty: true,
             touched: true
           }
         ],

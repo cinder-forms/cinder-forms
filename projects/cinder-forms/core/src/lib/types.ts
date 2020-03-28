@@ -147,7 +147,7 @@ export interface FormControlState<T extends any> {
   /**
    * Indicates whether the value was not yet changed.
    */
-  pristine: boolean;
+  dirty: boolean;
 
   /**
    * Indicates whether the FormControl was not yet visited.
@@ -257,7 +257,7 @@ export interface FormGroupSummary<TControls extends FormControls>
   /**
    * Indicates whether all of the values inside this group were not yet changed.
    */
-  pristine: boolean;
+  dirty: boolean;
 
   /**
    * Indicates whether any FormControls inside this group were visited.
@@ -304,7 +304,7 @@ export interface FormArraySummary<T> extends FormArrayState<T> {
   /**
    * Indicates whether all of the values inside this array were not yet changed.
    */
-  pristine: boolean;
+  dirty: boolean;
 
   /**
    * Indicates whether any of the FormControls inside this array were visited.

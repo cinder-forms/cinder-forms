@@ -100,7 +100,7 @@ describe('checkboxInputControlDirective', () => {
 
     const expected: FormControlUpdate<boolean> = {
       value,
-      pristine: false
+      dirty: true
     };
 
     directive.controlUpdate.subscribe(result => {

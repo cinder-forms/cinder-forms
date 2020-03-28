@@ -80,7 +80,7 @@ export abstract class AbstractControlDirective<T> implements OnDestroy {
   }
 
   public emitValue(value: T) {
-    this.value$.next({ value, pristine: false });
+    this.value$.next({ value, dirty: true });
   }
 
   public updateSummary(summary: FormControlSummary<T>) {
@@ -91,7 +91,7 @@ export abstract class AbstractControlDirective<T> implements OnDestroy {
     }
 
     this.chooseClass(cssClasses.valid, cssClasses.invalid, summary.invalid);
-    this.chooseClass(cssClasses.dirty, cssClasses.pristine, summary.pristine);
+    this.chooseClass(cssClasses.pristine, cssClasses.dirty, summary.dirty);
     this.chooseClass(cssClasses.untouched, cssClasses.touched, summary.touched);
     this.chooseClass(cssClasses.initial, cssClasses.changed, summary.changed);
   }

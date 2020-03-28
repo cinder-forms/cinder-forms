@@ -10,7 +10,7 @@ describe('resetFormControl', () => {
   const control: FormControlState<string> = {
     disabled,
     initialValue,
-    pristine: false,
+    dirty: true,
     touched: true,
     validators,
     value: 'value'
@@ -61,7 +61,7 @@ describe('resetFormGorup', () => {
         disabled: true,
         initialValue: initialValue1,
         value: 'some1',
-        pristine: false,
+        dirty: true,
         touched: false,
         validators: validators1
       },
@@ -69,7 +69,7 @@ describe('resetFormGorup', () => {
         disabled: false,
         initialValue: initialValue2,
         value: 'some2',
-        pristine: false,
+        dirty: true,
         touched: false,
         validators: validators2
       }
@@ -103,7 +103,7 @@ describe('resetFormArray', () => {
         disabled: true,
         initialValue: initialValue1,
         value: 'some1',
-        pristine: false,
+        dirty: true,
         touched: false,
         validators: validators1
       },
@@ -111,7 +111,7 @@ describe('resetFormArray', () => {
         disabled: false,
         initialValue: initialValue2,
         value: 'some2',
-        pristine: false,
+        dirty: true,
         touched: false,
         validators: validators2
       }

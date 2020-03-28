@@ -107,14 +107,14 @@ export function getFormArrayControlSummaries<T>(
   return controls.map((control, i) => getFormControlSummary(control, additionalError[i] || {}));
 }
 
-export function getFormGroupPristine<TControls extends FormControls>(
+export function getFormGroupDirty<TControls extends FormControls>(
   group: FormGroupState<TControls>
 ): boolean {
-  return Object.values(group.controls).every(control => control.pristine);
+  return Object.values(group.controls).some(control => control.dirty);
 }
 
-export function getFormArrayPristine<T>(array: FormArrayState<T>): boolean {
-  return array.controls.every(control => control.pristine);
+export function getFormArrayDirty<T>(array: FormArrayState<T>): boolean {
+  return array.controls.some(control => control.dirty);
 }
 
 export function getFormGroupTouched<TControls extends FormControls>(
@@ -158,7 +158,7 @@ export function getFormGroupSummary<TControls extends FormControls>(
 
   return {
     controls: summaries,
-    pristine: getFormGroupPristine(group),
+    dirty: getFormGroupDirty(group),
     touched: getFormGroupTouched(group),
     errors,
     invalid: Object.keys(errors).length > 0,
@@ -185,7 +185,7 @@ export function getFormArraySummary<T>(
   return {
     controls: summaries,
     keys: getFormArrayKeys(array),
-    pristine: getFormArrayPristine(array),
+    dirty: getFormArrayDirty(array),
     touched: getFormArrayTouched(array),
     errors,
     invalid: errors.some(error => Object.keys(error).length > 0),

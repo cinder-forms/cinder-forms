@@ -97,7 +97,7 @@ describe('numberInputControlDirective', () => {
 
     const expected: FormControlUpdate<number> = {
       value,
-      pristine: false
+      dirty: true
     };
 
     directive.controlUpdate.subscribe(result => {
@@ -117,7 +117,7 @@ describe('numberInputControlDirective', () => {
 
     const expected: FormControlUpdate<number | null> = {
       value: null,
-      pristine: false
+      dirty: true
     };
 
     directive.controlUpdate.subscribe(result => {

@@ -121,7 +121,7 @@ describe('ValueAccessorConnectorDirective', () => {
 
     const expected: FormControlUpdate<string> = {
       value,
-      pristine: false
+      dirty: true
     };
 
     directive.controlUpdate.subscribe(result => {

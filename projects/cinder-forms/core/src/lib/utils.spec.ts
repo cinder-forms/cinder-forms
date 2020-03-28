@@ -57,19 +57,19 @@ describe('utils', () => {
         dirty: control.dirty
       }));
 
-      const result = resultFunc({ pristine: false } as FormControlState<any>);
+      const result = resultFunc({ dirty: true } as FormControlState<any>);
 
       expect(result).toEqual(expected);
     });
 
     it('should support pristine property', () => {
-      const expected = { pristine: true };
+      const expected = { dirty: false };
 
       const resultFunc = validatorOf(control => ({
-        pristine: control.pristine
+        dirty: control.dirty
       }));
 
-      const result = resultFunc({ pristine: true } as FormControlState<any>);
+      const result = resultFunc({ dirty: false } as FormControlState<any>);
 
       expect(result).toEqual(expected);
     });

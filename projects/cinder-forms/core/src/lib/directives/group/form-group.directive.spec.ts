@@ -97,7 +97,7 @@ describe('FormGroupDirective', () => {
       controls: {
         control: {
           value,
-          pristine: false
+          dirty: true
         }
       }
     } as FormGroupUpdate<{ control: string }>);
