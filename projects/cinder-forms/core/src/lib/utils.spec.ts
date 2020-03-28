@@ -81,19 +81,19 @@ describe('utils', () => {
         touched: control.touched
       }));
 
-      const result = resultFunc({ untouched: false } as FormControlState<any>);
+      const result = resultFunc({ touched: true } as FormControlState<any>);
 
       expect(result).toEqual(expected);
     });
 
-    it('should support untouched property', () => {
-      const expected = { untouched: true };
+    it('should support touched property', () => {
+      const expected = { touched: false };
 
       const resultFunc = validatorOf(control => ({
-        untouched: control.untouched
+        touched: control.touched
       }));
 
-      const result = resultFunc({ untouched: true } as FormControlState<any>);
+      const result = resultFunc({ touched: false } as FormControlState<any>);
 
       expect(result).toEqual(expected);
     });

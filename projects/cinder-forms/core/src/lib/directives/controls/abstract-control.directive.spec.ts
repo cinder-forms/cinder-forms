@@ -59,8 +59,8 @@ describe('AbstractControlDirective', () => {
       [{ pristine: false }, 'ng-dirty', 'ng-pristine'],
       [{ invalid: true }, 'ng-invalid', 'ng-valid'],
       [{ invalid: false }, 'ng-valid', 'ng-invalid'],
-      [{ untouched: true }, 'ng-untouched', 'ng-touched'],
-      [{ untouched: false }, 'ng-touched', 'ng-untouched'],
+      [{ touched: false }, 'ng-untouched', 'ng-touched'],
+      [{ touched: true }, 'ng-touched', 'ng-untouched'],
       [{ changed: true }, 'ng-changed', 'ng-initial'],
       [{ changed: false }, 'ng-initial', 'ng-changed']
     ].forEach(([update, shouldSet, shouldUnset]) => {

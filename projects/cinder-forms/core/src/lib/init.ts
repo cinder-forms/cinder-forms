@@ -95,7 +95,7 @@ function initFormControlFromUpdate<T = any>(
       value: initialUpdate.value,
       initialValue: initialUpdate.value,
       pristine: true,
-      untouched: true,
+      touched: false,
       disabled: false,
       validators: []
     },

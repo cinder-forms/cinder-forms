@@ -5,7 +5,7 @@ import {
   getFormArrayControlSummariesErrors,
   getFormArrayPristine,
   getFormArraySummary,
-  getFormArrayUntouched,
+  getFormArrayTouched,
   getFormControlErrors,
   getFormControlSummary,
   getFormGroupChanged,
@@ -13,7 +13,7 @@ import {
   getFormGroupControlSummariesErrors,
   getFormGroupPristine,
   getFormGroupSummary,
-  getFormGroupUntouched
+  getFormGroupTouched
 } from './selectors';
 import {
   ArrayValidator,
@@ -241,7 +241,7 @@ describe('selectors', () => {
     it('should returninvalid = false, errors = {}, controls for valid control', () => {
       const control: FormControlState<string> = {
         pristine: true,
-        untouched: true,
+        touched: false,
         value: '',
         initialValue: '',
         validators: [],
@@ -250,7 +250,7 @@ describe('selectors', () => {
 
       const expected: FormControlSummary<string> = {
         pristine: true,
-        untouched: true,
+        touched: false,
         value: '',
         initialValue: '',
         validators: [],
@@ -274,7 +274,7 @@ describe('selectors', () => {
 
       const control: FormControlState<string> = {
         pristine: true,
-        untouched: true,
+        touched: false,
         value: '',
         initialValue: '',
         validators,
@@ -283,7 +283,7 @@ describe('selectors', () => {
 
       const expected: FormControlSummary<string> = {
         pristine: control.pristine,
-        untouched: control.untouched,
+        touched: control.touched,
         value: control.value,
         initialValue: '',
         validators,
@@ -305,7 +305,7 @@ describe('selectors', () => {
 
       const control: FormControlState<string> = {
         pristine: true,
-        untouched: true,
+        touched: false,
         value: '',
         initialValue: '',
         validators: [],
@@ -314,7 +314,7 @@ describe('selectors', () => {
 
       const expected: FormControlSummary<string> = {
         pristine: control.pristine,
-        untouched: control.untouched,
+        touched: control.touched,
         value: control.value,
         validators: [],
         initialValue: '',
@@ -342,7 +342,7 @@ describe('selectors', () => {
 
       const control: FormControlState<string> = {
         pristine: true,
-        untouched: true,
+        touched: false,
         value: '',
         initialValue: '',
         validators,
@@ -351,7 +351,7 @@ describe('selectors', () => {
 
       const expected: FormControlSummary<string> = {
         pristine: control.pristine,
-        untouched: control.untouched,
+        touched: control.touched,
         value: control.value,
         initialValue: '',
         validators,
@@ -443,77 +443,77 @@ describe('selectors', () => {
     });
   });
 
-  describe('getFormGroupUntouched', () => {
-    it('all controls untouched should return true', () => {
+  describe('getFormGroupTouched', () => {
+    it('all controls touched should return true', () => {
       const group = {
         controls: {
           c1: {
-            untouched: true
+            touched: true
           } as FormControlState<any>,
           c2: {
-            untouched: true
+            touched: true
           } as FormControlState<any>
         },
         validators: []
       } as FormGroupState<any>;
 
-      const result = getFormGroupUntouched(group);
+      const result = getFormGroupTouched(group);
 
       expect(result).toEqual(true);
     });
 
-    it('one control touched should return false', () => {
+    it('one control touched should return true', () => {
       const group = {
         controls: {
           c1: {
-            untouched: true
+            touched: false
           } as FormControlState<any>,
           c2: {
-            untouched: false
+            touched: true
           } as FormControlState<any>
         },
         validators: []
       } as FormGroupState<any>;
 
-      const result = getFormGroupUntouched(group);
+      const result = getFormGroupTouched(group);
 
-      expect(result).toEqual(false);
+      expect(result).toEqual(true);
     });
   });
 
-  describe('getFormArrayUntouched', () => {
-    it('all controls untouched should return true', () => {
+  describe('getFormArrayTouched', () => {
+    it('all controls touched should return true', () => {
       const array = {
         controls: [
           {
-            untouched: true
+            touched: true
           } as FormControlState<any>,
           {
-            untouched: true
+            touched: true
           } as FormControlState<any>
         ],
         validators: []
       };
 
-      const result = getFormArrayUntouched(array);
+      const result = getFormArrayTouched(array);
 
       expect(result).toEqual(true);
     });
 
-    it('one control touched should return false', () => {
+    it('one control touched should return true', () => {
       const array = {
         controls: [
           {
-            untouched: true
+            touched: false
           } as FormControlState<any>,
           {
-            untouched: false
+            touched: true
           } as FormControlState<any>
         ],
         validators: []
       };
 
-      const result = getFormArrayUntouched(array);
+      const result = getFormArrayTouched(array);
 
       expect(result).toEqual(false);
     });
@@ -638,7 +638,7 @@ describe('selectors', () => {
             initialValue: 'initial',
             disabled: false,
             pristine: true,
-            untouched: true,
+            touched: false,
             invalid: true,
             validators: group.controls.stringControl.validators,
             errors: {
@@ -655,7 +655,7 @@ describe('selectors', () => {
           }
         },
         pristine: true,
-        untouched: true,
+        touched: false,
         invalid: true,
         changed: false,
         validators: []
@@ -684,7 +684,7 @@ describe('selectors', () => {
             initialValue: 'initial',
             disabled: false,
             pristine: true,
-            untouched: true,
+            touched: false,
             invalid: true,
             validators: group.controls.stringControl.validators,
             errors: {
@@ -699,7 +699,7 @@ describe('selectors', () => {
           }
         },
         pristine: true,
-        untouched: true,
+        touched: false,
         invalid: true,
         changed: false,
         validators: []
@@ -729,7 +729,7 @@ describe('selectors', () => {
             initialValue: 'initial',
             disabled: false,
             pristine: true,
-            untouched: true,
+            touched: false,
             invalid: true,
             validators: group.controls.stringControl.validators,
             errors: {
@@ -744,7 +744,7 @@ describe('selectors', () => {
           }
         },
         pristine: true,
-        untouched: true,
+        touched: false,
         invalid: true,
         changed: false,
         validators: []
@@ -767,7 +767,7 @@ describe('selectors', () => {
             initialValue: 'initial',
             disabled: false,
             pristine: true,
-            untouched: true,
+            touched: false,
             invalid: false,
             validators: group.controls.stringControl.validators,
             errors: {},
@@ -776,7 +776,7 @@ describe('selectors', () => {
         },
         errors: {},
         pristine: true,
-        untouched: true,
+        touched: false,
         invalid: false,
         changed: false,
         validators: []
@@ -858,7 +858,7 @@ describe('selectors', () => {
             initialValue: 'initial',
             disabled: false,
             pristine: true,
-            untouched: true,
+            touched: false,
             invalid: true,
             validators: array.controls[0].validators,
             errors: {
@@ -878,7 +878,7 @@ describe('selectors', () => {
           }
         ],
         pristine: true,
-        untouched: true,
+        touched: false,
         invalid: true,
         changed: false,
         validators: [arrayValidator]
@@ -905,7 +905,7 @@ describe('selectors', () => {
             initialValue: 'initial',
             disabled: false,
             pristine: true,
-            untouched: true,
+            touched: false,
             invalid: true,
             validators: array.controls[0].validators,
             errors: {
@@ -921,7 +921,7 @@ describe('selectors', () => {
           }
         ],
         pristine: true,
-        untouched: true,
+        touched: false,
         invalid: true,
         changed: false,
         validators: []
@@ -946,7 +946,7 @@ describe('selectors', () => {
             initialValue: 'initial',
             disabled: false,
             pristine: true,
-            untouched: true,
+            touched: false,
             invalid: true,
             validators: array.controls[0].validators,
             errors: {
@@ -962,7 +962,7 @@ describe('selectors', () => {
           }
         ],
         pristine: true,
-        untouched: true,
+        touched: false,
         invalid: true,
         changed: false,
         validators: []
@@ -983,7 +983,7 @@ describe('selectors', () => {
             initialValue: 'initial',
             disabled: false,
             pristine: true,
-            untouched: true,
+            touched: false,
             invalid: false,
             validators: array.controls[0].validators,
             errors: {},
@@ -993,7 +993,7 @@ describe('selectors', () => {
         keys: [0],
         errors: [{}],
         pristine: true,
-        untouched: true,
+        touched: false,
         invalid: false,
         changed: false,
         validators: []

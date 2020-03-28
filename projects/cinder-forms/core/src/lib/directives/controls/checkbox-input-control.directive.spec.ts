@@ -117,7 +117,7 @@ describe('checkboxInputControlDirective', () => {
 
   it('touched update propagates from child', done => {
     const expected: FormControlUpdate<boolean> = {
-      untouched: false
+      touched: true
     };
 
     directive.controlUpdate.subscribe(result => {

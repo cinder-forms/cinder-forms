@@ -158,8 +158,8 @@ export function validatorOf<T>(...fn: ValidatorFn[]): Validator<T> {
       value: control.value,
       dirty: !control.pristine,
       pristine: control.pristine,
-      touched: !control.untouched,
-      untouched: control.untouched,
+      untouched: !control.touched,
+      touched: control.touched,
       enabled: !control.disabled,
       disabled: control.disabled
     } as AbstractControl) || {};

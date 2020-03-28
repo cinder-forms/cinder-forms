@@ -76,7 +76,7 @@ export abstract class AbstractControlDirective<T> implements OnDestroy {
   public setDisabled?(disabled: boolean);
 
   public emitTouched() {
-    this.touched$.next({ untouched: false });
+    this.touched$.next({ touched: true });
   }
 
   public emitValue(value: T) {
@@ -92,7 +92,7 @@ export abstract class AbstractControlDirective<T> implements OnDestroy {
 
     this.chooseClass(cssClasses.valid, cssClasses.invalid, summary.invalid);
     this.chooseClass(cssClasses.dirty, cssClasses.pristine, summary.pristine);
-    this.chooseClass(cssClasses.touched, cssClasses.untouched, summary.untouched);
+    this.chooseClass(cssClasses.untouched, cssClasses.touched, summary.touched);
     this.chooseClass(cssClasses.initial, cssClasses.changed, summary.changed);
   }
 

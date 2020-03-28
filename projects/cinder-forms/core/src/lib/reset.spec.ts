@@ -11,7 +11,7 @@ describe('resetFormControl', () => {
     disabled,
     initialValue,
     pristine: false,
-    untouched: false,
+    touched: true,
     validators,
     value: 'value'
   };
@@ -62,7 +62,7 @@ describe('resetFormGorup', () => {
         initialValue: initialValue1,
         value: 'some1',
         pristine: false,
-        untouched: true,
+        touched: false,
         validators: validators1
       },
       k2: {
@@ -70,7 +70,7 @@ describe('resetFormGorup', () => {
         initialValue: initialValue2,
         value: 'some2',
         pristine: false,
-        untouched: true,
+        touched: false,
         validators: validators2
       }
     },
@@ -104,7 +104,7 @@ describe('resetFormArray', () => {
         initialValue: initialValue1,
         value: 'some1',
         pristine: false,
-        untouched: true,
+        touched: false,
         validators: validators1
       },
       {
@@ -112,7 +112,7 @@ describe('resetFormArray', () => {
         initialValue: initialValue2,
         value: 'some2',
         pristine: false,
-        untouched: true,
+        touched: false,
         validators: validators2
       }
     ],

@@ -16,7 +16,7 @@ describe('init', () => {
           initialValue: value,
           disabled: false,
           pristine: true,
-          untouched: true,
+          touched: false,
           validators: []
         };
 
@@ -31,7 +31,7 @@ describe('init', () => {
           initialValue: value,
           disabled: false,
           pristine: true,
-          untouched: true,
+          touched: false,
           validators: [validator]
         };
 
@@ -46,7 +46,7 @@ describe('init', () => {
           initialValue: value,
           disabled: true,
           pristine: true,
-          untouched: true,
+          touched: false,
           validators: []
         };
 
@@ -63,7 +63,7 @@ describe('init', () => {
           initialValue: value,
           disabled: false,
           pristine: true,
-          untouched: true,
+          touched: false,
           validators: []
         };
 
@@ -78,7 +78,7 @@ describe('init', () => {
           initialValue: value,
           disabled: false,
           pristine: true,
-          untouched: true,
+          touched: false,
           validators: [validator]
         };
 
@@ -87,13 +87,13 @@ describe('init', () => {
         expect(result).toEqual(expected);
       });
 
-      it('{value: value, disabled: true, pristine: false, untouched: false} should create a valid form control state', () => {
+      it('{value: value, disabled: true, pristine: false, touched: true} should create a valid form control state', () => {
         const expected: FormControlState<string> = {
           value,
           initialValue: value,
           disabled: true,
           pristine: false,
-          untouched: false,
+          touched: true,
           validators: []
         };
 
@@ -101,7 +101,7 @@ describe('init', () => {
           value,
           disabled: expected.disabled,
           pristine: expected.pristine,
-          untouched: expected.untouched,
+          touched: expected.touched,
           validators: []
         });
 
@@ -114,7 +114,7 @@ describe('init', () => {
           initialValue: value,
           disabled: false,
           pristine: true,
-          untouched: true,
+          touched: false,
           validators: []
         };
 
@@ -133,7 +133,7 @@ describe('init', () => {
           initialValue,
           disabled: false,
           pristine: true,
-          untouched: true,
+          touched: false,
           validators: []
         };
 
@@ -154,7 +154,7 @@ describe('init', () => {
           tuple: {
             disabled: false,
             pristine: true,
-            untouched: true,
+            touched: false,
             validators: [validator],
             value,
             initialValue: value
@@ -162,7 +162,7 @@ describe('init', () => {
           update: {
             disabled: true,
             pristine: false,
-            untouched: false,
+            touched: true,
             validators: [validator],
             value,
             initialValue: value
@@ -179,7 +179,7 @@ describe('init', () => {
             validators: [validator],
             disabled: true,
             pristine: false,
-            untouched: false
+            touched: true
           }
         },
         [groupValidator]
@@ -198,7 +198,7 @@ describe('init', () => {
             validators: [validator],
             disabled: false,
             pristine: true,
-            untouched: true,
+            touched: false,
             initialValue: value
           }
         ],
@@ -218,7 +218,7 @@ describe('init', () => {
             validators: [validator],
             disabled: true,
             pristine: false,
-            untouched: false,
+            touched: true,
             initialValue: value
           }
         ],
@@ -232,7 +232,7 @@ describe('init', () => {
             validators: [validator],
             disabled: true,
             pristine: false,
-            untouched: false
+            touched: true
           }
         ],
         [arrayValidator]

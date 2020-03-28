@@ -117,10 +117,10 @@ export function getFormArrayPristine<T>(array: FormArrayState<T>): boolean {
   return array.controls.every(control => control.pristine);
 }
 
-export function getFormGroupUntouched<TControls extends FormControls>(
+export function getFormGroupTouched<TControls extends FormControls>(
   group: FormGroupState<TControls>
 ): boolean {
-  return Object.values(group.controls).every(control => control.untouched);
+  return Object.values(group.controls).some(control => control.touched);
 }
 
 export function getFormGroupChanged<TControls extends FormControls>(
@@ -133,8 +133,8 @@ export function getFormArrayChanged<T>(controls: FormArrayControlSummaries<T>): 
   return controls.some(control => control.changed);
 }
 
-export function getFormArrayUntouched<T>(array: FormArrayState<T>): boolean {
-  return array.controls.every(control => control.untouched);
+export function getFormArrayTouched<T>(array: FormArrayState<T>): boolean {
+  return array.controls.every(control => control.touched);
 }
 
 export function getFormArrayKeys<T>(array: FormArrayState<T>): number[] {
@@ -159,7 +159,7 @@ export function getFormGroupSummary<TControls extends FormControls>(
   return {
     controls: summaries,
     pristine: getFormGroupPristine(group),
-    untouched: getFormGroupUntouched(group),
+    touched: getFormGroupTouched(group),
     errors,
     invalid: Object.keys(errors).length > 0,
     changed: getFormGroupChanged(summaries),
@@ -186,7 +186,7 @@ export function getFormArraySummary<T>(
     controls: summaries,
     keys: getFormArrayKeys(array),
     pristine: getFormArrayPristine(array),
-    untouched: getFormArrayUntouched(array),
+    touched: getFormArrayTouched(array),
     errors,
     invalid: errors.some(error => Object.keys(error).length > 0),
     changed: getFormArrayChanged(summaries),

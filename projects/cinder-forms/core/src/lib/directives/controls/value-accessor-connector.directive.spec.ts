@@ -134,7 +134,7 @@ describe('ValueAccessorConnectorDirective', () => {
 
   it('touched update propagates from child', done => {
     const expected: FormControlUpdate<string> = {
-      untouched: false
+      touched: true
     };
 
     directive.controlUpdate.subscribe(result => {

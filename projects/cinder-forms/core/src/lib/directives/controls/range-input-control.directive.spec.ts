@@ -124,7 +124,7 @@ describe('RangeInputControlDirective', () => {
 
   it('touched update propagates from child', done => {
     const expected: FormControlUpdate<number> = {
-      untouched: false
+      touched: true
     };
 
     directive.controlUpdate.subscribe(result => {
