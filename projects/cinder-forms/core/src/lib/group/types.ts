@@ -28,18 +28,7 @@ export type toGroupControls<TControls extends GroupStateControls> = {
   [K in keyof TControls]: toFormControlSummary<TControls[K]>;
 };
 
-type toFormControlState<TControlSummary> = TControlSummary extends FormControlSummary<
-  infer T,
-  infer TControls
->
-  ? FormControlSummary<T, TControls>
-  : never;
-
-export type toGroupStateControls<TControls extends GroupControls> = {
-  [K in keyof TControls]: toFormControlState<TControls[K]>;
-};
-
-// Validators:
+// Errors:
 export type toGroupError<TGroupValidator> = TGroupValidator extends GroupStateValidator<
   any,
   infer TError

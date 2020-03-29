@@ -6,7 +6,7 @@ import { CinderGroupState, GroupStateValidator } from './types';
 
 const v1 = createValidator(
   () => true,
-  () => ({ v1: 'v1' })
+  () => ({ required: true })
 );
 
 const k1 = initFormControl('', []);
@@ -29,7 +29,7 @@ describe('initGroup', () => {
       validators: []
     };
 
-    const g = selectGroup(result);
+    expect(result).toEqual(expected);
   });
 
   it('should create group with group validator', () => {

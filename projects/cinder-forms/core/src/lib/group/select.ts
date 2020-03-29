@@ -17,11 +17,11 @@ export function selectGroup<
 >(
   groupState: CinderGroupState<TStateControls, TGroupStateValidators>
 ): CinderGroup<TStateControls, TGroupStateValidators, TControls> {
-  //   const groupErrors = getFormGroupErrors(group);
   const controls = selectGroupControls<TControls, TStateControls, TGroupStateValidators>(
     groupState
   );
-  //   const errors = getFormGroupControlSummariesErrors(summaries);
+
+  const errors = mapGroupControls(controls, control => control.errors);
 
   return {
     dirty: someGroupControl(controls, control => control.dirty),
@@ -30,7 +30,7 @@ export function selectGroup<
     touched: someGroupControl(controls, control => control.touched),
     validators: groupState.validators,
     controls,
-    errors: undefined as any
+    errors
   };
 }
 
@@ -48,7 +48,7 @@ function someGroupControl<TControls extends GroupControls>(
   controls: TControls,
   evaluate: (control: FormControlSummary<any, any>) => boolean
 ) {
-  return Object.values(controls).some(evaluate);
+  return Object.values(controls).some(control => evaluate(control));
 }
 
 function mapGroupStateControls<TStateControls extends GroupStateControls, R>(
@@ -58,6 +58,15 @@ function mapGroupStateControls<TStateControls extends GroupStateControls, R>(
   [K in keyof TStateControls]: R;
 } {
   return mapFormControls<TStateControls, R>(controls, mapFunc);
+}
+
+function mapGroupControls<TControls extends GroupControls, R>(
+  controls: TControls,
+  mapFunc: (control: FormControlSummary<any, any>, key: string) => R
+): {
+  [K in keyof TControls]: R;
+} {
+  return mapFormControls<TControls, R>(controls, mapFunc);
 }
 
 function mapFormControls<TControls extends {}, R>(
