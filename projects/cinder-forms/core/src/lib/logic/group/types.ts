@@ -1,16 +1,13 @@
-import { never } from 'rxjs';
-import {
-  FormControlState,
-  FormControlSummary,
-  UnknownValidators,
-  ValidatorsToErrors
-} from '../types';
-import {
-  GroupErrors,
-  GroupStateControls,
-  GroupStateValidator,
-  UnkownGroupStateValidator
-} from './state/types';
+import { FormControlState, FormControlSummary, ValidatorsToErrors } from '../../types';
+import { GroupStateControls, GroupStateValidator, UnkownGroupStateValidator } from './state/types';
+
+type DeepPartial<T> = {
+  [P in keyof T]?: T[P] extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T[P] extends ReadonlyArray<infer U>
+    ? ReadonlyArray<DeepPartial<U>>
+    : DeepPartial<T[P]>;
+};
 
 // Controls:
 export interface GroupControls {
@@ -44,6 +41,15 @@ export type stateControlsToGroupErrors<TStateControls extends GroupStateControls
   [K in keyof TStateControls]: ValidatorsToErrors<TStateControls[K]['validators']>;
 };
 
+export type controlToGroupErrors<TControls extends GroupControls> = stateControlsToGroupErrors<
+  toGroupControls<TControls>
+>;
+
+type mergeErrors<
+  TStateControls extends GroupStateControls,
+  TGroupValidators extends UnkownGroupStateValidator<TStateControls>[]
+> = DeepPartial<stateControlsToGroupErrors<TStateControls> & toGroupErrors<TGroupValidators>>;
+
 // Type:
 export interface CinderGroup<
   TStateControls extends GroupStateControls,
@@ -62,7 +68,7 @@ export interface CinderGroup<
    *
    * If no error is found this value is `{}`.
    */
-  errors: stateControlsToGroupErrors<TStateControls>;
+  errors: mergeErrors<TStateControls, TGroupValidators>;
 
   /**
    * Indicates whether any of the controls inside this group is invalid.

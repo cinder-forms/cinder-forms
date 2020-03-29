@@ -1,7 +1,8 @@
-import { FormControlState } from '../types';
-import { createValidator } from '../utils';
+import { FormControlState } from '../../types';
+import { createValidator } from '../../utils';
 import { selectGroup } from './select';
 import { initGroup } from './state/init';
+import { createGroupValidator } from './validator/validator';
 
 describe('selectGroup', () => {
   const equalsTest = createValidator(
@@ -10,10 +11,21 @@ describe('selectGroup', () => {
   );
 
   const createTestGroup = () =>
-    initGroup(control => ({
-      key1: control('test', [equalsTest]),
-      key2: control('notTest', [equalsTest])
-    }));
+    initGroup(
+      control => ({
+        key1: control('test', [equalsTest]),
+        key2: control('notTest', [equalsTest])
+      }),
+      [
+        createGroupValidator(
+          group => !!group.controls,
+          () => ({
+            key1: { test: true },
+            key2: { anotherTest: 399 }
+          })
+        )
+      ]
+    );
 
   let baseGroupState: ReturnType<typeof createTestGroup>;
 
@@ -21,8 +33,10 @@ describe('selectGroup', () => {
     baseGroupState = createTestGroup();
   });
 
-  it('validators should merges errors correctly', () => {
+  it('validators should merge errors correctly', () => {
     const result = selectGroup(baseGroupState);
+
+    result.errors.key2;
 
     expect(result.errors).toEqual({
       key1: { equalsTest: 'yes' },

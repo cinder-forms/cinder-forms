@@ -1,7 +1,8 @@
-import { getFormControlSummary } from '../selectors';
-import { FormControlState, FormControlSummary } from '../types';
+import { getFormControlSummary } from '../../selectors';
+import { FormControlSummary } from '../../types';
 import { CinderGroupState, GroupStateControls, UnkownGroupStateValidator } from './state/types';
 import { CinderGroup, GroupControls, toGroupControls } from './types';
+import { mapGroupControls, mapGroupStateControls } from './utils/map';
 
 /**
  * Creates a `CinderGroup` from the given `CinderGroupState`.
@@ -49,39 +50,4 @@ function someGroupControl<TControls extends GroupControls>(
   evaluate: (control: FormControlSummary<any, any>) => boolean
 ) {
   return Object.values(controls).some(control => evaluate(control));
-}
-
-function mapGroupStateControls<TStateControls extends GroupStateControls, R>(
-  controls: TStateControls,
-  mapFunc: (control: FormControlState<any, any>, key: string) => R
-): {
-  [K in keyof TStateControls]: R;
-} {
-  return mapFormControls<TStateControls, R>(controls, mapFunc);
-}
-
-function mapGroupControls<TControls extends GroupControls, R>(
-  controls: TControls,
-  mapFunc: (control: FormControlSummary<any, any>, key: string) => R
-): {
-  [K in keyof TControls]: R;
-} {
-  return mapFormControls<TControls, R>(controls, mapFunc);
-}
-
-function mapFormControls<TControls extends {}, R>(
-  controls: {},
-  mapFunc: (control: {}, key: string) => R
-): {
-  [K in keyof TControls]: R;
-} {
-  const result = Object.entries<{}>(controls)
-    .map(([key, control]) => ({
-      [key]: mapFunc(control, key)
-    }))
-    .reduce((ctrl1, ctrl2) => ({ ...ctrl1, ...ctrl2 }), {});
-
-  return result as {
-    [K in keyof TControls]: R;
-  };
 }
