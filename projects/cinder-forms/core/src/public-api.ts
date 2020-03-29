@@ -1,7 +1,7 @@
-export { initFormControl, initFormGroup, initFormArray } from './lib/init';
+export { initFormControl } from './lib/init';
 export { resetFormControl, resetFormGroup, resetFormArray } from './lib/reset';
 export { reduceFormControl, reduceFormGroup, reduceFormArray } from './lib/reducer';
-export { getFormControlSummary, getFormGroupSummary, getFormArraySummary } from './lib/selectors';
+export { getFormControlSummary } from './lib/selectors';
 export * from './lib/types';
 export {
   mapFormGroupControlStates,

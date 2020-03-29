@@ -1,15 +1,8 @@
 import { AbstractControl, ValidatorFn, Validators } from '@angular/forms';
 import {
-  FormArrayErrors,
   FormControlErrors,
   FormControls,
   FormControlState,
-  FormControlSummary,
-  FormControlUpdate,
-  FormGroupControlStates,
-  FormGroupControlSummaries,
-  FormGroupControlUpdates,
-  FormGroupErrors,
   UnknownValidators,
   Validator
 } from './types';
@@ -42,14 +35,14 @@ import {
  *  secondControl: 'secondValue'
  * }
  */
-export function mapFormGroupControlStates<TControls extends FormControls, R>(
-  controls: FormGroupControlStates<TControls>,
-  mapFunc: (control: FormControlState<any, any>, key: string) => R
-): {
-  [K in keyof TControls]: R;
-} {
-  return mapFormControls<TControls, R>(controls, mapFunc);
-}
+// export function mapFormGroupControlStates<TControls extends FormControls, R>(
+//   controls: FormGroupControlStates<TControls>,
+//   mapFunc: (control: FormControlState<any, any>, key: string) => R
+// ): {
+//   [K in keyof TControls]: R;
+// } {
+//   return mapFormControls<TControls, R>(controls, mapFunc);
+// }
 
 /**
  * Maps an object of control summaries to a value given by the `mapFunc`.
@@ -79,14 +72,14 @@ export function mapFormGroupControlStates<TControls extends FormControls, R>(
  *  secondControl: 'secondValue'
  * }
  */
-export function mapFormGroupControlSummaries<TControls extends FormControls, R>(
-  controls: FormGroupControlSummaries<TControls>,
-  mapFunc: (control: FormControlSummary<any, any>, key: string) => R
-): {
-  [K in keyof TControls]: R;
-} {
-  return mapFormControls<TControls, R>(controls, mapFunc);
-}
+// export function mapFormGroupControlSummaries<TControls extends FormControls, R>(
+//   controls: FormGroupControlSummaries<TControls>,
+//   mapFunc: (control: FormControlSummary<any, any>, key: string) => R
+// ): {
+//   [K in keyof TControls]: R;
+// } {
+//   return mapFormControls<TControls, R>(controls, mapFunc);
+// }
 
 /**
  * Maps an object of control updates to a value given by the `mapFunc`.
@@ -116,14 +109,14 @@ export function mapFormGroupControlSummaries<TControls extends FormControls, R>(
  *  secondControl: 'secondValue'
  * }
  */
-export function mapFormGroupControlUpdates<TControls extends FormControls, R>(
-  controls: FormGroupControlUpdates<TControls>,
-  mapFunc: (control: FormControlUpdate<any, any>, key: string) => R
-): {
-  [K in keyof TControls]: R;
-} {
-  return mapFormControls<TControls, R>(controls, mapFunc);
-}
+// export function mapFormGroupControlUpdates<TControls extends FormControls, R>(
+//   controls: FormGroupControlUpdates<TControls>,
+//   mapFunc: (control: FormControlUpdate<any, any>, key: string) => R
+// ): {
+//   [K in keyof TControls]: R;
+// } {
+//   return mapFormControls<TControls, R>(controls, mapFunc);
+// }
 
 export function mapFormControls<TControls extends FormControls, R>(
   controls: {},
@@ -210,30 +203,30 @@ export function mergeFormControlErrors<TErrors extends FormControlErrors>(
  * }
  *
  */
-export function mergeFormGroupErrors<TControls extends FormControls>(
-  ...errors: FormGroupErrors<TControls>[]
-): FormGroupErrors<TControls> {
-  if (errors.length === 0) {
-    return {};
-  }
+// export function mergeFormGroupErrors<TControls extends FormControls>(
+//   ...errors: FormGroupErrors<TControls>[]
+// ): FormGroupErrors<TControls> {
+//   if (errors.length === 0) {
+//     return {};
+//   }
 
-  return errors.reduce((group1, group2) => ({
-    ...group1,
-    ...group2,
-    ...Object.keys(group1)
-      .filter(key1 => Object.keys(group2).find(key2 => key1 === key2))
-      .map(key => ({
-        [key]: mergeFormControlErrors(group1[key]!, group2[key]!)
-      }))
-      .reduce(
-        (e1, e2) => ({
-          ...e1,
-          ...e2
-        }),
-        {}
-      )
-  }));
-}
+//   return errors.reduce((group1, group2) => ({
+//     ...group1,
+//     ...group2,
+//     ...Object.keys(group1)
+//       .filter(key1 => Object.keys(group2).find(key2 => key1 === key2))
+//       .map(key => ({
+//         [key]: mergeFormControlErrors(group1[key]!, group2[key]!)
+//       }))
+//       .reduce(
+//         (e1, e2) => ({
+//           ...e1,
+//           ...e2
+//         }),
+//         {}
+//       )
+//   }));
+// }
 
 /**
  * Merges an array of errors.
@@ -263,14 +256,14 @@ export function mergeFormGroupErrors<TControls extends FormControls>(
  * ]
  *
  */
-export function mergeFormArrayErrors(...errors: FormArrayErrors[]): FormArrayErrors {
-  return errors
-    .filter(Boolean)
-    .reduce((arr1, arr2) => (arr1.length >= arr2.length ? arr1 : arr2), [])
-    .map((_, i) =>
-      mergeFormControlErrors(...errors.map(arrayErrors => arrayErrors && arrayErrors[i]))
-    );
-}
+// export function mergeFormArrayErrors(...errors: FormArrayErrors[]): FormArrayErrors {
+//   return errors
+//     .filter(Boolean)
+//     .reduce((arr1, arr2) => (arr1.length >= arr2.length ? arr1 : arr2), [])
+//     .map((_, i) =>
+//       mergeFormControlErrors(...errors.map(arrayErrors => arrayErrors && arrayErrors[i]))
+//     );
+// }
 
 /**
  * This function can be used to create a new validator.

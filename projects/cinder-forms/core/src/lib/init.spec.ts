@@ -148,48 +148,6 @@ describe('init', () => {
     });
   });
 
-  describe('initFormGroup', () => {
-    it('should create a valid form group (with initializeTuple & initUpdate)', () => {
-      const expected: FormGroupState<{ tuple: string; update: string }> = {
-        controls: {
-          tuple: {
-            disabled: false,
-            dirty: false,
-            touched: false,
-            validators: [validator],
-            value,
-            initialValue: value
-          },
-          update: {
-            disabled: true,
-            dirty: true,
-            touched: true,
-            validators: [validator],
-            value,
-            initialValue: value
-          }
-        },
-        validators: [groupValidator]
-      };
-
-      const result = initFormGroup(
-        {
-          tuple: [value, [validator]],
-          update: {
-            value,
-            validators: [validator],
-            disabled: true,
-            dirty: true,
-            touched: true
-          }
-        },
-        [groupValidator]
-      );
-
-      expect(result).toEqual(expected);
-    });
-  });
-
   describe('initFormArray', () => {
     it('should create valid form group with initTuple', () => {
       const expected: FormArrayState<string> = {
