@@ -1,4 +1,9 @@
-import { FormControlState, FormControlSummary, ValidatorsToErrors } from '../control/init/types';
+import {
+  FormControlState,
+  FormControlSummary,
+  UnionToIntersection,
+  ValidatorsToErrors
+} from '../control/init/types';
 import { GroupStateControls, GroupStateValidator, UnkownGroupStateValidator } from './state/types';
 
 type DeepPartial<T> = {
@@ -26,15 +31,14 @@ export type toGroupControls<TControls extends GroupStateControls> = {
 };
 
 // Errors:
-export type toGroupError<TGroupValidator> = TGroupValidator extends GroupStateValidator<
-  any,
-  infer TError
->
-  ? TError
-  : never;
+export type toGroupError<
+  TGroupValidator extends GroupStateValidator<any, any>
+> = UnionToIntersection<ReturnType<TGroupValidator>>;
 
 export type toGroupErrors<TGroupValidators> = TGroupValidators extends Array<infer TGroupValidator>
-  ? toGroupError<TGroupValidator>
+  ? TGroupValidator extends GroupStateValidator<any, any>
+    ? toGroupError<TGroupValidator>
+    : never
   : never;
 
 export type stateControlsToGroupErrors<TStateControls extends GroupStateControls> = {

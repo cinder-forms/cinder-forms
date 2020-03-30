@@ -16,3 +16,5 @@ export function createGroupValidator<
 ): GroupStateValidator<TGroupState['controls'], TGroupErrors> {
   return (groupState: TGroupState) => (isInvalid(groupState) ? buildError(groupState) : {});
 }
+
+export const NO_GROUP_ERROR = {} as { [key: string]: {} };
