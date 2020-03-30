@@ -36,8 +36,6 @@ describe('selectGroup', () => {
   it('validators should merge errors correctly', () => {
     const result = selectGroup(baseGroupState);
 
-    result.errors.key2;
-
     expect(result.errors).toEqual({
       key1: { equalsTest: 'yes' },
       key2: {}

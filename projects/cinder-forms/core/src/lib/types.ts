@@ -55,7 +55,7 @@ export interface FormControlUpdate<
  * @param control A FormControl which the validator will be applied on.
  */
 export type Validator<T, R extends FormControlErrors> = (control: FormControlState<T, any>) => R;
-export type UnknownValidators<T> = Validator<T, any>[];
+export type UnknownValidators<T> = Validator<T, {}>[];
 
 /**
  * Can be either of:

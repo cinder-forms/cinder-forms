@@ -54,7 +54,7 @@ type mergeErrors<
 export interface CinderGroup<
   TStateControls extends GroupStateControls,
   TGroupValidators extends UnkownGroupStateValidator<TStateControls>[],
-  TControls extends toGroupControls<TStateControls>
+  TControls extends toGroupControls<TStateControls> = toGroupControls<TStateControls>
 > {
   /**
    * An object containing all controls.

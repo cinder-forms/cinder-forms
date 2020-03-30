@@ -1,7 +1,7 @@
 import { getFormControlSummary } from '../../selectors';
 import { FormControlSummary } from '../../types';
 import { CinderGroupState, GroupStateControls, UnkownGroupStateValidator } from './state/types';
-import { CinderGroup, GroupControls, toGroupControls } from './types';
+import { CinderGroup, GroupControls, toGroupControls, toGroupErrors } from './types';
 import { mapGroupControls, mapGroupStateControls } from './utils/map';
 
 /**
@@ -22,7 +22,7 @@ export function selectGroup<
     groupState
   );
 
-  const errors = mapGroupControls(controls, control => control.errors);
+  const errors = selectGroupErrors(controls);
 
   return {
     dirty: someGroupControl(controls, control => control.dirty),
@@ -33,6 +33,10 @@ export function selectGroup<
     controls,
     errors
   };
+}
+
+function selectGroupErrors<TControls extends GroupControls>(controls: toGroupControls<TControls>) {
+  return mapGroupControls(controls, control => control.errors) as toGroupErrors<TControls>;
 }
 
 function selectGroupControls<
