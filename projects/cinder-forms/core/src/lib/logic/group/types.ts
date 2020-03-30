@@ -1,4 +1,4 @@
-import { FormControlState, FormControlSummary, ValidatorsToErrors } from '../../types';
+import { FormControlState, FormControlSummary, ValidatorsToErrors } from '../control/init/types';
 import { GroupStateControls, GroupStateValidator, UnkownGroupStateValidator } from './state/types';
 
 type DeepPartial<T> = {

@@ -1,4 +1,4 @@
-import { FormArrayState, FormGroupState } from './types';
+import { FormArrayState, FormGroupState } from './logic/control/init/types';
 
 export function isFormArray(formArray: FormArrayState<any>) {
   return typeof formArray === 'object' && Array.isArray(formArray.controls);

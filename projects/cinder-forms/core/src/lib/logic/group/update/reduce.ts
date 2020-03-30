@@ -1,6 +1,6 @@
 import { reduceFormControl } from '../../../reducer';
-import { FormControls, FormControlState } from '../../../types';
 import { mapFormControls } from '../../../utils';
+import { FormControls, FormControlState } from '../../control/init/types';
 import { CinderGroupState, GroupStateControls, UnkownGroupStateValidator } from '../state/types';
 import { CinderGroupUpdate } from './types';
 

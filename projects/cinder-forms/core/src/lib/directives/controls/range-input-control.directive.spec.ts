@@ -1,6 +1,6 @@
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormControlSummary, FormControlUpdate } from '../../types';
+import { FormControlSummary, FormControlUpdate } from '../../logic/control/init/types';
 
 import { By } from '@angular/platform-browser';
 import { ReplaySubject } from 'rxjs';

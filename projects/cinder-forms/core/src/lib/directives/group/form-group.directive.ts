@@ -1,5 +1,9 @@
 import { Directive } from '@angular/core';
-import { FormControlUpdate, FormGroupSummary, FormGroupUpdate } from '../../types';
+import {
+  FormControlUpdate,
+  FormGroupSummary,
+  FormGroupUpdate
+} from '../../logic/control/init/types';
 import { AbstractFormDirective } from './abstract-form.directive';
 
 @Directive({

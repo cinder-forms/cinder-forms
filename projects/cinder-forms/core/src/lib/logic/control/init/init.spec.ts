@@ -1,5 +1,5 @@
-import { initFormArray, initFormControl, initFormGroup } from './init';
-import { FormArrayState, FormControlErrors, FormControlState, FormGroupState } from './types';
+import { initFormControl } from './init';
+import { FormControlState } from './types';
 
 describe('init', () => {
   const noValidators = [];
@@ -21,7 +21,7 @@ describe('init', () => {
           validators: []
         };
 
-        const result = initFormControl([value]);
+        const result = initFormControl(value, []);
 
         expect(result).toEqual(expected);
       });
@@ -36,7 +36,7 @@ describe('init', () => {
           validators: [validator]
         };
 
-        const result = initFormControl([value, [validator]]);
+        const result = initFormControl(value, [validator]);
 
         expect(result).toEqual(expected);
       });
@@ -51,7 +51,7 @@ describe('init', () => {
           validators: []
         };
 
-        const result = initFormControl([value, undefined, true]);
+        const result = initFormControl(value, [], true);
 
         expect(result).toEqual(expected);
       });
@@ -145,59 +145,6 @@ describe('init', () => {
 
         expect(result).toEqual(expected);
       });
-    });
-  });
-
-  describe('initFormArray', () => {
-    it('should create valid form group with initTuple', () => {
-      const expected: FormArrayState<string> = {
-        controls: [
-          {
-            value,
-            validators: [validator],
-            disabled: false,
-            dirty: false,
-            touched: false,
-            initialValue: value
-          }
-        ],
-        validators: [arrayValidator]
-      };
-
-      const result = initFormArray([[value, [validator]]], [arrayValidator]);
-
-      expect(result).toEqual(expected);
-    });
-
-    it('should create valid form group with initUpdate', () => {
-      const expected: FormArrayState<string> = {
-        controls: [
-          {
-            value,
-            validators: [validator],
-            disabled: true,
-            dirty: true,
-            touched: true,
-            initialValue: value
-          }
-        ],
-        validators: [arrayValidator]
-      };
-
-      const result = initFormArray(
-        [
-          {
-            value,
-            validators: [validator],
-            disabled: true,
-            dirty: true,
-            touched: true
-          }
-        ],
-        [arrayValidator]
-      );
-
-      expect(result).toEqual(expected);
     });
   });
 });

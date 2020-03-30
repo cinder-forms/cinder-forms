@@ -2,7 +2,7 @@ export { initFormControl } from './lib/init';
 export { resetFormControl, resetFormGroup, resetFormArray } from './lib/reset';
 export { reduceFormControl, reduceFormGroup, reduceFormArray } from './lib/reducer';
 export { getFormControlSummary } from './lib/selectors';
-export * from './lib/types';
+export * from './lib/logic/control/init/types';
 export {
   mapFormGroupControlStates,
   mapFormGroupControlSummaries,

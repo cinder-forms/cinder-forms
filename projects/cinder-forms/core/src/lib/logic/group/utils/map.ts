@@ -1,4 +1,4 @@
-import { FormControlState, FormControlSummary } from '../../../types';
+import { FormControlState, FormControlSummary } from '../../control/init/types';
 import { GroupStateControls } from '../state/types';
 import { GroupControls } from '../types';
 

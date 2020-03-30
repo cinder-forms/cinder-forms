@@ -1,7 +1,7 @@
 import { InjectionToken } from '@angular/core';
 import { asyncScheduler, MonoTypeOperatorFunction } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
-import { FormsConfig } from './types';
+import { FormsConfig } from './logic/control/init/types';
 
 export const CONFIG_TOKEN = new InjectionToken<FormsConfig>('NGRX_CLEAN_FORMS_CONFIG');
 

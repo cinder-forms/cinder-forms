@@ -1,6 +1,6 @@
 import { Directive, ElementRef, HostListener, Inject, Renderer2 } from '@angular/core';
 import { CONFIG_TOKEN } from '../../config';
-import { FormsConfig } from '../../types';
+import { FormsConfig } from '../../logic/control/init/types';
 import { AbstractControlDirective, CONTROL_DIRECTIVE_SELECTOR } from './abstract-control.directive';
 
 @Directive({

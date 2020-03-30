@@ -1,7 +1,7 @@
 import { Directive, ElementRef, HostListener, Renderer2, Inject } from '@angular/core';
 import { AbstractControlDirective, CONTROL_DIRECTIVE_SELECTOR } from './abstract-control.directive';
 import { CONFIG_TOKEN } from '../../config';
-import { FormsConfig } from '../../types';
+import { FormsConfig } from '../../logic/control/init/types';
 
 export const SelectControlNotSupported = Error(
   // tslint:disable-next-line: max-line-length
@@ -18,7 +18,7 @@ export class SelectInputControlDirective extends AbstractControlDirective<boolea
     throw SelectControlNotSupported;
   }
 
-  setValue(value: boolean) {
+  public setValue(value: boolean) {
     throw SelectControlNotSupported;
   }
 }

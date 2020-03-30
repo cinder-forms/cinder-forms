@@ -7,7 +7,7 @@ import {
   FormControlUpdate,
   FormGroupSummary,
   FormGroupUpdate
-} from '../../types';
+} from '../../logic/control/init/types';
 import { AbstractControlDirective } from '../controls/abstract-control.directive';
 import { ControlChildren } from './control-children';
 

@@ -4,7 +4,7 @@ import { CONFIG_TOKEN, defaultConfig } from './config';
 import { controlDirectives } from './directives/controls/control-directives';
 import { FormArrayDirective } from './directives/group/form-array.directive';
 import { FormGroupDirective } from './directives/group/form-group.directive';
-import { FormsConfig } from './types';
+import { FormsConfig } from './logic/control/init/types';
 
 /**
  * This module represents the entry point of cinder-forms.

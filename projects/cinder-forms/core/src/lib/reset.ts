@@ -1,12 +1,12 @@
 import { initFormControl } from './init';
-import { reduceFormArray, reduceFormGroup } from './reducer';
 import {
   FormArrayState,
   FormControls,
   FormControlState,
   FormGroupState,
   UnknownValidators
-} from './types';
+} from './logic/control/init/types';
+import { reduceFormArray, reduceFormGroup } from './reducer';
 import { mapFormGroupControlStates } from './utils';
 
 /**

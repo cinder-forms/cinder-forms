@@ -2,7 +2,7 @@ import { Directive, ElementRef, Inject, Optional, Renderer2 } from '@angular/cor
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { circularDeepEqual } from 'fast-equals';
 import { CONFIG_TOKEN } from '../../config';
-import { FormsConfig } from '../../types';
+import { FormsConfig } from '../../logic/control/init/types';
 import { AbstractControlDirective, CONTROL_DIRECTIVE_SELECTOR } from './abstract-control.directive';
 
 @Directive({

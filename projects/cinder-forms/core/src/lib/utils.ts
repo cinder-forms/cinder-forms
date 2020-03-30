@@ -5,7 +5,7 @@ import {
   FormControlState,
   UnknownValidators,
   Validator
-} from './types';
+} from './logic/control/init/types';
 
 /**
  * Maps an object of control states to a value given by the `mapFunc`.

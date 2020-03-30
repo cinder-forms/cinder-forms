@@ -1,5 +1,5 @@
 import { getFormControlSummary } from '../../selectors';
-import { FormControlSummary } from '../../types';
+import { FormControlSummary } from '../control/init/types';
 import { CinderGroupState, GroupStateControls, UnkownGroupStateValidator } from './state/types';
 import { CinderGroup, GroupControls, toGroupControls, toGroupErrors } from './types';
 import { mapGroupControls, mapGroupStateControls } from './utils/map';

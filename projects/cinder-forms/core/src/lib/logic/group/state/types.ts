@@ -1,5 +1,5 @@
-import { initFormControl } from '../../../init';
-import { FormControlErrors, FormControlState, UnknownValidators } from '../../../types';
+import { initFormControl } from '../../control/init/init';
+import { FormControlErrors, FormControlState, UnknownValidators } from '../../control/init/types';
 
 export interface GroupStateControls {
   [key: string]: FormControlState<any, any>;

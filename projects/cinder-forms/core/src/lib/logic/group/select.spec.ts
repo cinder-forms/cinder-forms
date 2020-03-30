@@ -1,5 +1,5 @@
-import { FormControlState } from '../../types';
 import { createValidator } from '../../utils';
+import { FormControlState } from '../control/init/types';
 import { selectGroup } from './select';
 import { initGroup } from './state/init';
 import { createGroupValidator } from './validator/validator';

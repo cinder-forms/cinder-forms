@@ -5,7 +5,7 @@ import {
   FormControlSummary,
   UnknownValidators,
   ValidatorsToErrors
-} from './types';
+} from './logic/control/init/types';
 import { mergeFormControlErrors } from './utils';
 
 function containsError(errors: FormControlErrors) {

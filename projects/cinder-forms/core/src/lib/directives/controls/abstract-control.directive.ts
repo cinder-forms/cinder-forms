@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { BehaviorSubject, merge, Observable, Subject, Subscription } from 'rxjs';
 import { filter, switchMap, tap } from 'rxjs/operators';
-import { FormControlSummary, FormControlUpdate, FormsConfig } from '../../types';
+import { FormControlSummary, FormControlUpdate, FormsConfig } from '../../logic/control/init/types';
 import { CONFIG_TOKEN, throttle } from './../../config';
 
 const cssClasses = {
