@@ -19,9 +19,6 @@ export interface FormControls {
   [key: string]: any;
 }
 
-// Builder Functions
-export type GroupBuilder<R extends {}> = (init: typeof initFormControl) => R;
-
 export type ArrayBuilder<R extends FormControlState<any>[]> = (init: typeof initFormControl) => R;
 
 /**

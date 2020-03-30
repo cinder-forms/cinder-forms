@@ -1,6 +1,6 @@
 import { initFormControl } from '../../../init';
-import { FormControls, GroupBuilder } from '../../../types';
-import { CinderGroupState, GroupStateValidator, UnkownGroupStateValidator } from './types';
+import { FormControls } from '../../../types';
+import { CinderGroupState, GroupBuilder, UnkownGroupStateValidator } from './types';
 
 export function initGroup<
   TControls extends FormControls,

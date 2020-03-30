@@ -1,8 +1,14 @@
-import { FormControlErrors, FormControlState, UnknownValidators, Validator } from '../../../types';
+import { initFormControl } from '../../../init';
+import { FormControlErrors, FormControlState, UnknownValidators } from '../../../types';
 
 export interface GroupStateControls {
   [key: string]: FormControlState<any, any>;
 }
+
+// Builder Functions
+export type GroupBuilder<RStateControls extends GroupStateControls> = (
+  init: typeof initFormControl
+) => RStateControls;
 
 export interface GroupValidators {
   [key: string]: UnknownValidators<any>;
@@ -29,5 +35,5 @@ export type GroupStateValidator<
 
 export type UnkownGroupStateValidator<TControls extends GroupStateControls> = GroupStateValidator<
   TControls,
-  any
+  { [key in keyof TControls]: any }
 >;

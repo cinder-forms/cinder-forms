@@ -16,15 +16,7 @@ describe('selectGroup', () => {
         key1: control('test', [equalsTest]),
         key2: control('notTest', [equalsTest])
       }),
-      [
-        createGroupValidator(
-          group => !!group.controls,
-          () => ({
-            key1: { test: true },
-            key2: { anotherTest: 399 }
-          })
-        )
-      ]
+      []
     );
 
   let baseGroupState: ReturnType<typeof createTestGroup>;

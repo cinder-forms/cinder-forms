@@ -16,10 +16,13 @@ const groupValidator = undefined as GroupStateValidator<{}, {}>;
 
 describe('initGroup', () => {
   it('should create group with control validators', () => {
-    const result = initGroup(ctrl => ({
-      k1: ctrl(k1.value, k1.validators),
-      k2: ctrl(k2.value, k2.validators, k2.disabled)
-    }));
+    const result = initGroup(
+      ctrl => ({
+        k1: ctrl(k1.value, k1.validators),
+        k2: ctrl(k2.value, k2.validators, k2.disabled)
+      }),
+      []
+    );
 
     const expected: CinderGroupState<any, any> = {
       controls: {
