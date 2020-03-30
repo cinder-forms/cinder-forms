@@ -11,13 +11,10 @@ describe('selectGroup', () => {
   );
 
   const createTestGroup = () =>
-    initGroup(
-      control => ({
-        key1: control('test', [equalsTest]),
-        key2: control('notTest', [equalsTest])
-      }),
-      []
-    );
+    initGroup({
+      key1: ['test', [equalsTest]],
+      key2: ['notTest', [equalsTest]]
+    });
 
   let baseGroupState: ReturnType<typeof createTestGroup>;
 

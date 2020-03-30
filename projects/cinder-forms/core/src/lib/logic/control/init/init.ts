@@ -1,5 +1,6 @@
 import { reduceFormControl } from '../../../reducer';
 import {
+  FormControlInit,
   FormControlInitTuple,
   FormControlInitUpdate,
   FormControlState,
@@ -8,43 +9,13 @@ import {
 
 /**
  * Initializes a new `FormControlState`.
- * @param initialUpdate __Required.__ Initial update which will be applied to create the control.
- *                      `Value` is the only required property in the `initialUpdate` object.
- */
-export function initFormControl<T, TValidators extends UnknownValidators<T>>(
-  initialUpdate: FormControlInitUpdate<T, TValidators>
-): FormControlState<T, TValidators>;
-
-/**
- * Initializes a new `FormControlState`.
- * @param value __Required.__ Initial value of the control.
- * @param validators __Required.__ An array of validators used for validating the control.
- *                   Pass `[]` to create without validators.
- * @param disabled __Optional.__ Whether the control is disabled or not
- *                 Defaults to `false`.
- */
-export function initFormControl<T, TValidators extends UnknownValidators<T>>(
-  value: T,
-  validators: TValidators,
-  disabled?: boolean
-): FormControlState<T, TValidators>;
-
-/**
- * Initializes a new `FormControlState`.
  *
  * Overload fallback.
  */
 export function initFormControl<T, TValidators extends UnknownValidators<T>>(
-  initOrValue: FormControlInitUpdate<T, TValidators> | T,
-  validators?: TValidators,
-  disabled = false
+  init: FormControlInit<T, TValidators>
 ): FormControlState<T, TValidators> {
-  const value = initOrValue as T;
-  const init = initOrValue as FormControlInitUpdate<T, TValidators>;
-
-  return Array.isArray(validators)
-    ? initFormControlFromTuple([value, validators, disabled])
-    : initFormControlFromUpdate(init);
+  return Array.isArray(init) ? initFormControlFromTuple(init) : initFormControlFromUpdate(init);
 }
 
 function initFormControlFromTuple<T, TValidators extends UnknownValidators<T>>([

@@ -9,20 +9,17 @@ const v1 = createValidator(
   () => ({ required: true })
 );
 
-const k1 = initFormControl('', []);
-const k2 = initFormControl(123, [v1], true);
+const k1 = initFormControl(['', []]);
+const k2 = initFormControl([123, [v1], true]);
 
 const groupValidator = undefined as GroupStateValidator<{}, {}>;
 
 describe('initGroup', () => {
   it('should create group with control validators', () => {
-    const result = initGroup(
-      ctrl => ({
-        k1: ctrl(k1.value, k1.validators),
-        k2: ctrl(k2.value, k2.validators, k2.disabled)
-      }),
-      []
-    );
+    const result = initGroup({
+      k1: [k1.value, k1.validators],
+      k2: [k2.value, k2.validators, k2.disabled]
+    });
 
     const expected: CinderGroupState<any, any> = {
       controls: {
@@ -36,7 +33,7 @@ describe('initGroup', () => {
   });
 
   it('should create group with group validator', () => {
-    const result = initGroup(_ => ({}), [groupValidator]);
+    const result = initGroup({}, [groupValidator]);
 
     const expected: CinderGroupState<any, any> = {
       controls: {},

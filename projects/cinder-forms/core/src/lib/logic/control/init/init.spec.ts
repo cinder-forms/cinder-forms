@@ -4,8 +4,6 @@ import { FormControlState } from './types';
 describe('init', () => {
   const noValidators = [];
   const validator = () => ({});
-  const groupValidator = () => ({});
-  const arrayValidator = () => [];
 
   const value = 'value';
 
@@ -21,7 +19,7 @@ describe('init', () => {
           validators: []
         };
 
-        const result = initFormControl(value, []);
+        const result = initFormControl([value]);
 
         expect(result).toEqual(expected);
       });
@@ -36,7 +34,7 @@ describe('init', () => {
           validators: [validator]
         };
 
-        const result = initFormControl(value, [validator]);
+        const result = initFormControl([value, [validator]]);
 
         expect(result).toEqual(expected);
       });
@@ -51,7 +49,7 @@ describe('init', () => {
           validators: []
         };
 
-        const result = initFormControl(value, [], true);
+        const result = initFormControl([value, [], true]);
 
         expect(result).toEqual(expected);
       });
