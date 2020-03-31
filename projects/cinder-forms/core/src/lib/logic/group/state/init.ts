@@ -1,10 +1,10 @@
 import { initFormControl } from '../../control/init/init';
-import { FormControls } from '../../control/init/types';
-import { selectGroup } from '../select';
-import { NO_GROUP_ERROR } from '../validator/validator';
+import { FormControls, FormControlState } from '../../control/init/types';
+import { toGroupErrors } from '../types';
 import {
   CinderGroupState,
   GroupInit,
+  GroupStateValidator,
   toGroupStateControls,
   UnkownGroupStateValidator
 } from './types';
@@ -12,10 +12,13 @@ import {
 export function initGroup<
   TGroupInit extends GroupInit<FormControls>,
   TControls extends toGroupStateControls<TGroupInit>,
-  TGroupValidators extends UnkownGroupStateValidator<TControls>[]
+  TGroupValidators extends UnkownGroupStateValidator<TControls>[] = GroupStateValidator<
+    TControls,
+    toGroupErrors<TControls>
+  >[]
 >(
   groupInit: TGroupInit,
-  validators: TGroupValidators
+  validators: TGroupValidators = ([] as unknown) as TGroupValidators
 ): CinderGroupState<TControls, TGroupValidators> {
   return {
     controls: initGroupStateControls(groupInit) as TControls,
@@ -32,12 +35,3 @@ function initGroupStateControls<TGroupInit extends GroupInit<FormControls>>(
     }))
     .reduce((ctrl1, ctrl2) => ({ ...ctrl1, ...ctrl2 }), {}) as toGroupStateControls<TGroupInit>;
 }
-
-const selected = selectGroup(
-  initGroup(
-    {
-      uu: ['', [() => ({ test: false })]]
-    },
-    [() => ({ uu: { tru: true } })]
-  )
-);
