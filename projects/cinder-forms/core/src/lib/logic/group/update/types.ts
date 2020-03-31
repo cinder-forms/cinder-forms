@@ -23,6 +23,6 @@ export interface CinderGroupUpdate<
   TControls extends GroupStateControls,
   TGroupValidators extends UnkownGroupStateValidator<TControls>[]
 > {
-  controls?: toGroupUpdateControls<TControls>;
+  controls?: toGroupUpdateControls<TControls> | TControls;
   validators?: TGroupValidators;
 }

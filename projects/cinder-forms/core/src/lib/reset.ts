@@ -1,13 +1,5 @@
-import { initFormControl } from './init';
-import {
-  FormArrayState,
-  FormControls,
-  FormControlState,
-  FormGroupState,
-  UnknownValidators
-} from './logic/control/init/types';
-import { reduceFormArray, reduceFormGroup } from './reducer';
-import { mapFormGroupControlStates } from './utils';
+import { initFormControl } from './logic/control/init/init';
+import { FormControls, FormControlState, UnknownValidators } from './logic/control/init/types';
 
 /**
  * Resets a control back to the default values.
@@ -24,34 +16,4 @@ export function resetFormControl<T, TValidators extends UnknownValidators<T>>(
   initialValue = control.initialValue
 ): FormControlState<T, TValidators> {
   return initFormControl([initialValue, control.validators, control.disabled]);
-}
-
-/**
- * Resets a group back to its default values.
- * Internally calls `resetFormControl` for every control.
- *
- * @see `resetFormControl`
- *
- * @param group The `FormGroupState` which should be used to create the reset.
- */
-export function resetFormGroup<TControls extends FormControls>(
-  group: FormGroupState<TControls>
-): FormGroupState<TControls> {
-  const controls = mapFormGroupControlStates(group.controls, control => resetFormControl(control));
-
-  return reduceFormGroup(group, { controls });
-}
-
-/**
- * Resets an array back to its default values.
- * Internally calls `resetFormControl` for every control.
- *
- * @see `resetFormControl`
- *
- * @param array The `FormArrayState` which should be used to create the reset.
- */
-export function resetFormArray<T>(array: FormArrayState<T>): FormArrayState<T> {
-  const controls = array.controls.map(control => resetFormControl(control));
-
-  return reduceFormArray(array, { controls });
 }
