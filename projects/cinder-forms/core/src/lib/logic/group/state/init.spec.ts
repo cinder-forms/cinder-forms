@@ -19,15 +19,12 @@ const k2 = initFormControl([123, [v1], true]);
 
 describe('initGroup', () => {
   it('should create group with control validators', () => {
-    const result = initGroup(
-      {
-        k1: [k1.value, k1.validators],
-        k2: [k2.value, k2.validators, k2.disabled]
-      },
-      []
-    );
+    const result = initGroup({
+      k1: [k1.value, k1.validators],
+      k2: [k2.value, k2.validators, k2.disabled]
+    });
 
-    const expected: CinderGroupState<any, any> = {
+    const expected: typeof result = {
       controls: {
         k1,
         k2
@@ -42,7 +39,7 @@ describe('initGroup', () => {
     const groupValidator = () => ({});
     const result = initGroup({}, [groupValidator]);
 
-    const expected: CinderGroupState<any, any> = {
+    const expected: typeof result = {
       controls: {},
       validators: [groupValidator]
     };
