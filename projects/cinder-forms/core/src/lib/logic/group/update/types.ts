@@ -1,4 +1,4 @@
-import { FormControlState, FormControlSummary, FormControlUpdate } from '../../control/init/types';
+import { FormControlState, FormControlUpdate } from '../../control/init/types';
 import { CinderGroupState, GroupStateControls, UnkownGroupStateValidator } from '../state/types';
 
 type toFormControlUpdate<TControlState> = TControlState extends FormControlState<
