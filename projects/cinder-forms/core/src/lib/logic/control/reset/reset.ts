@@ -1,5 +1,5 @@
-import { initFormControl } from './logic/control/init/init';
-import { FormControls, FormControlState, UnknownValidators } from './logic/control/init/types';
+import { initFormControl } from '../init/init';
+import { FormControlState, UnknownValidators } from '../init/types';
 
 /**
  * Resets a control back to the default values.
