@@ -1,7 +1,6 @@
 import { reduceFormControl } from '../../../reducer';
-import { mapFormControls } from '../../../utils';
-import { FormControls, FormControlState } from '../../control/init/types';
 import { CinderGroupState, GroupStateControls, UnkownGroupStateValidator } from '../state/types';
+import { mapGroupStateControls } from '../utils/map';
 import { CinderGroupUpdate } from './types';
 
 /**
@@ -34,13 +33,4 @@ export function reduceGroupState<
         : {})
     }
   };
-}
-
-function mapGroupStateControls<TStateControls extends GroupStateControls, R>(
-  controls: TStateControls,
-  mapFunc: (control: FormControlState<any, any>, key: string) => R
-): {
-  [K in keyof TStateControls]: R;
-} {
-  return mapFormControls<TStateControls, R>(controls, mapFunc);
 }
