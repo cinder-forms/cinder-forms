@@ -12,12 +12,12 @@ import { CinderGroupUpdate } from './types';
  * @param update The `CinderGroupUpdate` that will be applied.
  */
 export function reduceGroupState<
-  TControls extends FormControls,
+  TControls extends GroupStateControls,
   TGroupValidators extends UnkownGroupStateValidator<TControls>[]
 >(
   state: CinderGroupState<TControls, TGroupValidators>,
   update: CinderGroupUpdate<TControls, TGroupValidators>
-) {
+): CinderGroupState<TControls, TGroupValidators> {
   if (!update) {
     return state;
   }
@@ -29,7 +29,7 @@ export function reduceGroupState<
       ...state.controls,
       ...(update.controls
         ? mapGroupStateControls(state.controls, (control, key) =>
-            reduceFormControl(control, update[key])
+            reduceFormControl(control, update.controls![key]!)
           )
         : {})
     }
