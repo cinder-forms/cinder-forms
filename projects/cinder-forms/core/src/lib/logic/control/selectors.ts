@@ -1,16 +1,7 @@
 import { circularDeepEqual } from 'fast-equals';
 import { mergeFormControlErrors } from '../../utils';
-import { FormControlState, FormControlSummary, UnknownValidators, ValidatorsToErrors } from './init/types';
-
-function getFormControlErrors<T, TValidators extends UnknownValidators<T>>(
-  control: FormControlState<T, TValidators>
-): ValidatorsToErrors<TValidators>[] {
-  return control.validators.map(validator => validator(control));
-}
-
-function getFormControlChanged<T>(control: FormControlState<T, any>): boolean {
-  return !circularDeepEqual(control.value, control.initialValue);
-}
+import { FormControlState, UnknownValidators } from './init/types';
+import { FormControlSummary, ValidatorsToErrors } from './types';
 
 /**
  * Creates a `FormControlSummary` from the given `FormControlState`.
@@ -34,4 +25,15 @@ export function getFormControlSummary<T, TValidators extends UnknownValidators<T
     invalid: Object.keys(errors).length > 0,
     changed: getFormControlChanged(control)
   };
+}
+
+
+function getFormControlErrors<T, TValidators extends UnknownValidators<T>>(
+  control: FormControlState<T, TValidators>
+): ValidatorsToErrors<TValidators>[] {
+  return control.validators.map(validator => validator(control));
+}
+
+function getFormControlChanged<T>(control: FormControlState<T, any>): boolean {
+  return !circularDeepEqual(control.value, control.initialValue);
 }
