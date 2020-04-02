@@ -1,24 +1,14 @@
 import { circularDeepEqual } from 'fast-equals';
-import {
-  FormControlErrors,
-  FormControlState,
-  FormControlSummary,
-  UnknownValidators,
-  ValidatorsToErrors
-} from './logic/control/init/types';
-import { mergeFormControlErrors } from './utils';
+import { mergeFormControlErrors } from '../../utils';
+import { FormControlState, FormControlSummary, UnknownValidators, ValidatorsToErrors } from './init/types';
 
-function containsError(errors: FormControlErrors) {
-  return Object.keys(errors).length === 0;
-}
-
-export function getFormControlErrors<T, TValidators extends UnknownValidators<T>>(
+function getFormControlErrors<T, TValidators extends UnknownValidators<T>>(
   control: FormControlState<T, TValidators>
 ): ValidatorsToErrors<TValidators>[] {
   return control.validators.map(validator => validator(control));
 }
 
-export function getFormControlChanged<T>(control: FormControlState<T, any>): boolean {
+function getFormControlChanged<T>(control: FormControlState<T, any>): boolean {
   return !circularDeepEqual(control.value, control.initialValue);
 }
 

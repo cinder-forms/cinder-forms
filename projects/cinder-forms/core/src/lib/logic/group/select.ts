@@ -1,4 +1,4 @@
-import { getFormControlSummary } from '../../selectors';
+import { getFormControlSummary } from '../control/selectors';
 import { FormControlSummary } from '../control/init/types';
 import { CinderGroupState, GroupStateControls, UnkownGroupStateValidator } from './state/types';
 import { CinderGroup, GroupControls, toGroupControls, toGroupErrors } from './types';

@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 import { ReplaySubject } from 'rxjs';
 import { CinderFormsModule } from '../../cinder-forms.module';
 import { initFormControl } from '../../init';
-import { getFormControlSummary } from '../../selectors';
+import { getFormControlSummary } from '../../logic/control/selectors';
 import { RangeInputControlDirective } from './range-input-control.directive';
 
 @Component({
