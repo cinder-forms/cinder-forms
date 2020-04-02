@@ -1,4 +1,4 @@
-import { FormControlState, FormControlUpdate, UnknownValidators } from './logic/control/init/types';
+import { FormControlState, FormControlUpdate, UnknownValidators } from '../init/types';
 
 /**
  * Returns a `FormControlState` which represents the input state with the applied update.

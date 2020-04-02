@@ -1,4 +1,4 @@
-import { reduceFormControl } from '../../../reducer';
+import { reduceFormControl } from '../reset/reducer';
 import {
   FormControlInit,
   FormControlInitTuple,

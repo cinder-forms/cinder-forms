@@ -1,4 +1,4 @@
-import { reduceFormControl } from '../../../reducer';
+import { reduceFormControl } from '../../control/reset/reducer';
 import { CinderGroupState, GroupStateControls, UnkownGroupStateValidator } from '../state/types';
 import { mapGroupStateControls } from '../utils/map';
 import { CinderGroupUpdate } from './types';
