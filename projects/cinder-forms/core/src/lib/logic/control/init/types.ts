@@ -4,12 +4,12 @@
  */
 export interface FormsConfig {
   /**
-   * Number of how many milliseconds needs to pass between individual updates of a `FormControl`.
+   * Number of how many milliseconds needs to pass between individual updates of a `Control`.
    * There is no delay on the first update and also always an update after the delay.
    */
   throttleTime: number;
   /**
-   * Specifies whether only distinct values should be written to a `FormControl`.
+   * Specifies whether only distinct values should be written to a `Control`.
    * Only applies to custom inputs added with `ControlValueAccessor`.
    * Prevents update loops and uses [fast-equals](https://www.npmjs.com/package/fast-equals) for comparison.
    */
@@ -24,9 +24,9 @@ export interface CinderControlUpdate<
 
 // Initialization
 /**
- * A FormControl validator.
+ * A Control validator.
  *
- * @param control A FormControl which the validator will be applied on.
+ * @param control A Control which the validator will be applied on.
  */
 export type Validator<T, R extends ControlErrors> = (control: CinderControlState<T, any>) => R;
 export type UnknownValidators<T> = Validator<T, {}>[];
@@ -41,7 +41,7 @@ export type CinderControlInit<T, TValidators extends UnknownValidators<T>> =
   | CinderControlInitUpdate<T, TValidators>;
 
 /**
- * A shorthand to create a new FormControl.
+ * A shorthand to create a new Control.
  * - [0]: Initial value of the control.
  * - [1]: Validator array. Optional.
  * - [2]: Disabled state. Default false. Optional.
@@ -53,7 +53,7 @@ export type CinderControlInitTuple<T, TValidators extends UnknownValidators<T>> 
 ];
 
 /**
- * Explicit type to create a new FormControl.
+ * Explicit type to create a new Control.
  *
  * Identical to CinderControlUpdate, except for `value` which is a required attribute here.
  */
@@ -72,7 +72,7 @@ export interface ControlErrors {
 
 // States
 /**
- * Represents the state of a single FormControl.
+ * Represents the state of a single Control.
  */
 export interface CinderControlState<
   T extends any,
@@ -94,12 +94,12 @@ export interface CinderControlState<
   dirty: boolean;
 
   /**
-   * Indicates whether the FormControl was not yet visited.
+   * Indicates whether the Control was not yet visited.
    */
   touched: boolean;
 
   /**
-   * Indicates whether the FormControl is disabled.
+   * Indicates whether the Control is disabled.
    */
   disabled: boolean;
 

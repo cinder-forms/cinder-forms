@@ -15,7 +15,7 @@ export interface CinderControl<T, TValidators extends UnknownValidators<T> = Unk
   errors: ValidatorsToErrors<TValidators>;
 
   /**
-   * Whether the FormControl has any errors.
+   * Whether the Control has any errors.
    */
   invalid: boolean;
 
