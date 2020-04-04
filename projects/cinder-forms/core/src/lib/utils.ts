@@ -3,7 +3,7 @@ import {
   FormControlErrors,
   FormControlState,
   UnknownValidators,
-  Validator
+  Validator,
 } from './logic/control/init/types';
 
 /**
@@ -26,26 +26,9 @@ export function validatorOf<T>(...fn: ValidatorFn[]): Validator<T, any> {
       untouched: !control.touched,
       touched: control.touched,
       enabled: !control.disabled,
-      disabled: control.disabled
+      disabled: control.disabled,
     } as AbstractControl) || {};
 }
-
-/**
- * Merges an array of `FormControlErrors`.
- * Returns `{}` if all errors are `{}`.
- * @param errors An array of `FormControlErrors` which will be merged into a single `FormControlErrors` value.
- */
-export function mergeFormControlErrors<TErrors extends FormControlErrors>(
-  ...errors: TErrors[]
-): TErrors {
-  return errors.reduce<TErrors>((e1, e2) => {
-    return {
-      ...e1,
-      ...e2
-    };
-  }, {} as TErrors);
-}
-
 
 /**
  * This function can be used to create a new validator.
