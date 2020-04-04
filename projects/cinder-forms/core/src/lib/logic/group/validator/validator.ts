@@ -2,9 +2,11 @@ import {
   CinderGroupState,
   GroupStateControls,
   GroupStateValidator,
-  UnkownGroupStateValidator
+  UnkownGroupStateValidator,
 } from '../state/types';
 import { toGroupErrors } from './types';
+
+export const NO_GROUP_ERROR = {} as { [key: string]: {} };
 
 export function createGroupValidator<
   TStateControls extends GroupStateControls,
@@ -14,7 +16,6 @@ export function createGroupValidator<
   isInvalid: (groupState: TGroupState) => boolean,
   buildError: (groupState: TGroupState) => TGroupErrors
 ): GroupStateValidator<TGroupState['controls'], TGroupErrors> {
-  return (groupState: TGroupState) => (isInvalid(groupState) ? buildError(groupState) : {});
+  return (groupState: TGroupState) =>
+    isInvalid(groupState) ? buildError(groupState) : ({} as TGroupErrors);
 }
-
-export const NO_GROUP_ERROR = {} as { [key: string]: {} };
