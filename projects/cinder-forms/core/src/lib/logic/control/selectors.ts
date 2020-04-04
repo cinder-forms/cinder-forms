@@ -10,7 +10,7 @@ import { mergeFormControlErrors } from './utils/merge';
  * @param control The `FormControlState` which is used to create the `FormControlSummary`.
  * @param additionalErrors An array of `FormControlErrors` which will be merged into the errors of the control.
  */
-export function getFormControlSummary<T, TValidators extends UnknownValidators<T>>(
+export function selectControl<T, TValidators extends UnknownValidators<T>>(
   control: CinderControlState<T, TValidators>,
   ...additionalErrors: ValidatorsToErrors<TValidators>[]
 ): CinderControl<T, TValidators> {

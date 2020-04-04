@@ -1,4 +1,4 @@
-import { getFormControlSummary } from '../control/selectors';
+import { selectControl } from '../control/selectors';
 import { CinderControl } from '../control/types';
 import {
   CinderGroupState,
@@ -78,7 +78,7 @@ function selectGroupControls<
   TGroupValidators extends UnkownGroupStateValidator<TStateControls>[]
 >(groupState: CinderGroupState<TStateControls, TGroupValidators>) {
   return mapGroupStateControls(groupState.controls, (control, key) =>
-    getFormControlSummary(control)
+    selectControl(control)
   ) as TControls;
 }
 

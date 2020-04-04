@@ -1,6 +1,6 @@
 import { initControlState } from './init/init';
 import { CinderControlState } from './init/types';
-import { getFormControlSummary } from './selectors';
+import { selectControl } from './selectors';
 import { CinderControl } from './types';
 
 describe('selectors', () => {
@@ -8,7 +8,7 @@ describe('selectors', () => {
     it('should return {} for empty validators', () => {
       const control = initControlState({ value: '' });
 
-      const result = getFormControlSummary(control);
+      const result = selectControl(control);
 
       expect(result.errors).toEqual({});
     });
@@ -22,7 +22,7 @@ describe('selectors', () => {
       const expected = {
         alwaysTrue: true,
       };
-      const result = getFormControlSummary(control);
+      const result = selectControl(control);
 
       expect(result.errors).toEqual(expected);
     });
@@ -42,23 +42,23 @@ describe('selectors', () => {
         alwaysTrue: true,
         alwaysFalse: false,
       };
-      const result = getFormControlSummary(control);
+      const result = selectControl(control);
 
       expect(result.errors).toEqual(expected);
     });
   });
 
-  describe('getFormControlSummary', () => {
+  describe('selectControl', () => {
     [undefined, null, 0, { value: 'value' }].forEach((value) => {
       it(`${value} match should return changed: false`, () => {
-        const result = getFormControlSummary(initControlState([value]));
+        const result = selectControl(initControlState([value]));
 
         expect(result.changed).toEqual(false);
       });
     });
 
     it('should return changed: true for changed simple value', () => {
-      const result = getFormControlSummary(
+      const result = selectControl(
         initControlState({
           value: 'value',
           initialValue: 'initialValue',
@@ -69,7 +69,7 @@ describe('selectors', () => {
     });
 
     it('should return changed: true for object key value change', () => {
-      const result = getFormControlSummary(
+      const result = selectControl(
         initControlState({
           value: { deeper: { deep: 'value' } },
           initialValue: { deeper: { deep: 'initialValue' } },
@@ -101,7 +101,7 @@ describe('selectors', () => {
         changed: false,
       };
 
-      const result = getFormControlSummary(control);
+      const result = selectControl(control);
 
       expect(result).toEqual(expected);
     });
@@ -134,7 +134,7 @@ describe('selectors', () => {
         changed: false,
       };
 
-      const result = getFormControlSummary(control);
+      const result = selectControl(control);
 
       expect(result).toEqual(expected);
     });
@@ -165,7 +165,7 @@ describe('selectors', () => {
         changed: false,
       };
 
-      const result = getFormControlSummary(control, additionalError);
+      const result = selectControl(control, additionalError);
 
       expect(result).toEqual(expected);
     });
@@ -202,7 +202,7 @@ describe('selectors', () => {
         changed: false,
       };
 
-      const result = getFormControlSummary(control, additionalError);
+      const result = selectControl(control, additionalError);
 
       expect(result).toEqual(expected);
     });
