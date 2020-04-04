@@ -9,7 +9,7 @@ export function mapGroupStateControls<TStateControls extends GroupStateControls,
 ): {
   [K in keyof TStateControls]: R;
 } {
-  return mapFormControls<TStateControls, R>(controls, mapFunc);
+  return mapAnyControls<TStateControls, R>(controls, mapFunc);
 }
 
 export function mapGroupControls<TControls extends GroupControls, R>(
@@ -18,10 +18,10 @@ export function mapGroupControls<TControls extends GroupControls, R>(
 ): {
   [K in keyof TControls]: R;
 } {
-  return mapFormControls<TControls, R>(controls, mapFunc);
+  return mapAnyControls<TControls, R>(controls, mapFunc);
 }
 
-function mapFormControls<TControls extends {}, R>(
+function mapAnyControls<TControls extends {}, R>(
   controls: {},
   mapFunc: (control: {}, key: string) => R
 ): {

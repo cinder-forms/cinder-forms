@@ -23,7 +23,7 @@ export function selectControl<T, TValidators extends UnknownValidators<T>>(
     ...control,
     errors,
     invalid: Object.keys(errors).length > 0,
-    changed: getFormControlChanged(control),
+    changed: getControlChanged(control),
   };
 }
 
@@ -33,6 +33,6 @@ function getControlErrors<T, TValidators extends UnknownValidators<T>>(
   return control.validators.map((validator) => validator(control));
 }
 
-function getFormControlChanged<T>(control: CinderControlState<T, any>): boolean {
+function getControlChanged<T>(control: CinderControlState<T, any>): boolean {
   return !circularDeepEqual(control.value, control.initialValue);
 }

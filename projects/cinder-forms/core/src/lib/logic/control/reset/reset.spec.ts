@@ -1,8 +1,8 @@
 import { initControlState } from '../init/init';
 import { CinderControlState } from '../init/types';
-import { resetFormControl } from './reset';
+import { resetControlState } from './reset';
 
-describe('resetFormControl', () => {
+describe('resetControlState', () => {
   const initialValue = 'initial';
   const validators = [() => ({})];
   const disabled = true;
@@ -17,19 +17,19 @@ describe('resetFormControl', () => {
   };
 
   it('should keep validators', () => {
-    const result = resetFormControl(control);
+    const result = resetControlState(control);
 
     expect(result.validators).toEqual(validators);
   });
 
   it('should keep disabled', () => {
-    const result = resetFormControl(control);
+    const result = resetControlState(control);
 
     expect(result.disabled).toEqual(disabled);
   });
 
   it('should reset everything except validators to initial', () => {
-    const result = resetFormControl(control);
+    const result = resetControlState(control);
     const expected = initControlState([initialValue]);
 
     expected.validators = validators;
@@ -41,7 +41,7 @@ describe('resetFormControl', () => {
   it('should set initialValue and value if passed', () => {
     const newValue = 'newValue';
 
-    const result = resetFormControl(control, newValue);
+    const result = resetControlState(control, newValue);
 
     expect(result.value).toEqual(newValue);
     expect(result.initialValue).toEqual(newValue);

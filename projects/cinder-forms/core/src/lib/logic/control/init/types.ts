@@ -1,8 +1,3 @@
-// Base structural type
-export interface FormControls {
-  [key: string]: any;
-}
-
 /**
  * Config from CinderForms.
  * For details of the different attributes view the TSDoc of specific attributes.
@@ -22,7 +17,7 @@ export interface FormsConfig {
 }
 
 // Updates
-export interface FormControlUpdate<
+export interface CinderControlUpdate<
   T,
   TValidators extends UnknownValidators<T> = UnknownValidators<T>
 > extends Partial<CinderControlState<T, TValidators>> {}
@@ -60,10 +55,10 @@ export type CinderControlInitTuple<T, TValidators extends UnknownValidators<T>> 
 /**
  * Explicit type to create a new FormControl.
  *
- * Identical to FormControlUpdate, except for `value` which is a required attribute here.
+ * Identical to CinderControlUpdate, except for `value` which is a required attribute here.
  */
 export interface CinderControlInitUpdate<T, TValidators extends Validator<T, any>[]>
-  extends FormControlUpdate<T, TValidators> {
+  extends CinderControlUpdate<T, TValidators> {
   /**
    * Initial value of the control.
    */

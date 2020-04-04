@@ -4,10 +4,13 @@ import {
   CinderControlInit,
   CinderControlInitTuple,
   CinderControlInitUpdate,
-  FormControls,
   CinderControlState,
   UnknownValidators,
 } from '../../control/init/types';
+
+export interface BaseControls {
+  [key: string]: any;
+}
 
 export interface GroupStateControls {
   [key: string]: CinderControlState<any, any>;
@@ -18,7 +21,7 @@ export type GroupBuilder<RStateControls extends GroupStateControls> = (
   init: typeof initControlState
 ) => RStateControls;
 
-export type GroupInit<TControls extends FormControls> = {
+export type GroupInit<TControls extends {}> = {
   [K in keyof TControls]: CinderControlInit<TControls[K], UnknownValidators<TControls[K]>>;
 };
 
@@ -31,7 +34,7 @@ export type toControlState<TControlInit> = TControlInit extends CinderControlIni
   ? CinderControlState<TUpdate, TUpdateValidators>
   : never;
 
-export type toGroupStateControls<TGroupInit extends FormControls> = {
+export type toGroupStateControls<TGroupInit extends BaseControls> = {
   [K in keyof TGroupInit]: toControlState<TGroupInit[K]>;
 };
 

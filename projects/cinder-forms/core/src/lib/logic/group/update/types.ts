@@ -1,15 +1,15 @@
-import { CinderControlState, FormControlUpdate } from '../../control/init/types';
+import { CinderControlState, CinderControlUpdate } from '../../control/init/types';
 import { CinderGroupState, GroupStateControls, UnkownGroupStateValidator } from '../state/types';
 
-type toFormControlUpdate<TControlState> = TControlState extends CinderControlState<
+type toCinderControlUpdate<TControlState> = TControlState extends CinderControlState<
   infer T,
   infer TControls
 >
-  ? FormControlUpdate<T, TControls>
+  ? CinderControlUpdate<T, TControls>
   : never;
 
 export type toGroupUpdateControls<TControls extends GroupStateControls> = {
-  [K in keyof TControls]?: toFormControlUpdate<TControls[K]>;
+  [K in keyof TControls]?: toCinderControlUpdate<TControls[K]>;
 };
 
 export type toGroupUpdate<TGroupState> = TGroupState extends CinderGroupState<

@@ -1,4 +1,4 @@
-import { reduceFormControl } from '../../control/reset/reducer';
+import { reduceControlState } from '../../control/reset/reducer';
 import { CinderGroupState, GroupStateControls, UnkownGroupStateValidator } from '../state/types';
 import { mapGroupStateControls } from '../utils/map';
 import { CinderGroupUpdate } from './types';
@@ -28,9 +28,9 @@ export function reduceGroupState<
       ...state.controls,
       ...(update.controls
         ? mapGroupStateControls(state.controls, (control, key) =>
-            reduceFormControl(control, update.controls![key]!)
+            reduceControlState(control, update.controls![key]!)
           )
-        : {})
-    }
+        : {}),
+    },
   };
 }

@@ -1,5 +1,5 @@
 import { initControlState } from '../../control/init/init';
-import { FormControls, CinderControlState } from '../../control/init/types';
+import { CinderControlState } from '../../control/init/types';
 import { toGroupErrors } from '../types';
 import {
   CinderGroupState,
@@ -7,10 +7,11 @@ import {
   GroupStateValidator,
   toGroupStateControls,
   UnkownGroupStateValidator,
+  BaseControls,
 } from './types';
 
 export function initGroup<
-  TGroupInit extends GroupInit<FormControls>,
+  TGroupInit extends GroupInit<BaseControls>,
   TControls extends toGroupStateControls<TGroupInit>,
   TGroupValidators extends UnkownGroupStateValidator<TControls>[] = GroupStateValidator<
     TControls,
@@ -26,7 +27,7 @@ export function initGroup<
   };
 }
 
-function initGroupStateControls<TGroupInit extends GroupInit<FormControls>>(
+function initGroupStateControls<TGroupInit extends GroupInit<BaseControls>>(
   groupInit: TGroupInit
 ): toGroupStateControls<TGroupInit> {
   return Object.entries(groupInit)

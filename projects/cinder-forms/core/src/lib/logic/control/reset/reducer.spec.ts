@@ -1,15 +1,15 @@
 import { initControlState } from '../init/init';
-import { FormControlUpdate } from '../init/types';
-import { reduceFormControl } from './reducer';
+import { CinderControlUpdate } from '../init/types';
+import { reduceControlState } from './reducer';
 
 describe('reducer', () => {
-  describe('reduceFormControl', () => {
+  describe('reduceControlState', () => {
     it('empty update should do nothing', () => {
       const control = initControlState(['test']);
 
       const update = {};
 
-      const result = reduceFormControl(control, update);
+      const result = reduceControlState(control, update);
 
       expect(result).toEqual(control);
     });
@@ -22,11 +22,11 @@ describe('reducer', () => {
         value: 'new',
       };
 
-      const update: FormControlUpdate<string> = {
+      const update: CinderControlUpdate<string> = {
         value: 'new',
       };
 
-      const result = reduceFormControl(control, update);
+      const result = reduceControlState(control, update);
 
       expect(result).toEqual(expected);
     });
@@ -36,7 +36,7 @@ describe('reducer', () => {
 
       const update = undefined;
 
-      const result = reduceFormControl(control, update);
+      const result = reduceControlState(control, update);
 
       expect(result).toEqual(control);
     });
@@ -46,7 +46,7 @@ describe('reducer', () => {
 
       const update = {};
 
-      const result = reduceFormControl(control, update);
+      const result = reduceControlState(control, update);
 
       expect(result).toEqual(control);
     });

@@ -8,10 +8,10 @@ import { CinderControlState, UnknownValidators } from '../init/types';
  * - `validators`
  * - `disabled`
  *
- * @param control The `FormControlState` which should be used to create the reset.
+ * @param control The `CinderControlState` which should be used to create the reset.
  * @param initialValue Optional parameter for passing a new initial value.
  */
-export function resetFormControl<T, TValidators extends UnknownValidators<T>>(
+export function resetControlState<T, TValidators extends UnknownValidators<T>>(
   control: CinderControlState<T, TValidators>,
   initialValue = control.initialValue
 ): CinderControlState<T, TValidators> {

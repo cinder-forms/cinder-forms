@@ -3,7 +3,7 @@ import { CinderControlState, UnknownValidators, Validator } from './init/types';
 
 // Summaries
 /**
- * A summary of a `FormControlState`. Contains additional information.
+ * A summary of a `CinderControlState`. Contains additional information.
  */
 export interface CinderControl<T, TValidators extends UnknownValidators<T> = UnknownValidators<T>>
   extends CinderControlState<T, TValidators> {
@@ -21,9 +21,9 @@ export interface CinderControl<T, TValidators extends UnknownValidators<T> = Unk
 
   /**
    * Whether the value is the same as the intial set value.
-   * Uses the `intialValue` property of the `FormControlState`.
+   * Uses the `intialValue` property of the `CinderControlState`.
    *
-   * @see  `FormControlState`
+   * @see  `CinderControlState`
    */
   changed: boolean;
 }

@@ -1,4 +1,4 @@
-import { reduceFormControl } from '../reset/reducer';
+import { reduceControlState } from '../reset/reducer';
 import {
   CinderControlInit,
   CinderControlInitTuple,
@@ -8,7 +8,7 @@ import {
 } from './types';
 
 /**
- * Initializes a new `FormControlState`.
+ * Initializes a new `CinderControlState`.
  *
  * Overload fallback.
  */
@@ -30,7 +30,7 @@ function initControlStateFromTuple<T, TValidators extends UnknownValidators<T>>(
 function initControlStateFromUpdate<T, TValidators extends UnknownValidators<T>>(
   initialUpdate: CinderControlInitUpdate<T, TValidators>
 ): CinderControlState<T, TValidators> {
-  return reduceFormControl<T, TValidators>(
+  return reduceControlState<T, TValidators>(
     {
       value: initialUpdate.value,
       initialValue: initialUpdate.value,
