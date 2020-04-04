@@ -5,8 +5,8 @@ import { CinderControlConnector } from './types';
 
 export const connectControl = <TControlState extends CinderControlState<any, any>>(
   update: (update: toUpdate<TControlState>) => void,
-  changes$: Observable<toSelected<TControlState>>
+  control$: Observable<toSelected<TControlState>>
 ): CinderControlConnector<TControlState> => ({
   update,
-  changes$,
+  control$,
 });

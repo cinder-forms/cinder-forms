@@ -5,6 +5,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { exampleReducer } from './+state/example.reducer';
 import { AppComponent } from './app.component';
 import { CustomInputComponent } from './custom-input/custom-input.component';
+import { CinderFormsModule } from '@cinder-forms/core';
 
 @NgModule({
   declarations: [AppComponent, CustomInputComponent],
@@ -12,6 +13,7 @@ import { CustomInputComponent } from './custom-input/custom-input.component';
     BrowserModule,
     StoreModule.forRoot({ example: exampleReducer }),
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
+    CinderFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

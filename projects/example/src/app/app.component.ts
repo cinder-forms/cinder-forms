@@ -1,5 +1,5 @@
-import { connectControl } from '@cinder-forms/core';
 import { Component } from '@angular/core';
+import { connectControl } from '@cinder-forms/core';
 import { Store } from '@ngrx/store';
 import { AppState } from './+state/app.state';
 import * as ExampleActions from './+state/example.actions';
