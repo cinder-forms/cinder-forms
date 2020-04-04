@@ -1,21 +1,7 @@
-// Type Operators
-
-import { initFormControl } from './init';
-
-export type UnionToIntersection<U> = (U extends any
-? (k: U) => void
-: never) extends (k: infer I) => void
-  ? I
-  : never;
-
-
-
 // Base structural type
 export interface FormControls {
   [key: string]: any;
 }
-
-export type ArrayBuilder<R extends FormControlState<any>[]> = (init: typeof initFormControl) => R;
 
 /**
  * Config from CinderForms.

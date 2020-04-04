@@ -1,5 +1,5 @@
-import { ArrayElement } from '../utils/types';
-import { FormControlState, UnionToIntersection, UnknownValidators, Validator } from './init/types';
+import { ArrayElement, UnionToIntersection } from '../utils/types';
+import { FormControlState, UnknownValidators, Validator } from './init/types';
 
 // Summaries
 /**
@@ -33,5 +33,3 @@ export interface FormControlSummary<
 export type ValidatorsToErrors<TValidators extends Array<Validator<any, any>>> = Partial<
   UnionToIntersection<ReturnType<ArrayElement<TValidators>>>
 >;
-
-

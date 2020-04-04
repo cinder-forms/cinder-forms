@@ -1,7 +1,6 @@
 import { mergeFormControlErrors } from '../../../utils';
+import { ArrayElement, UnionToIntersection } from '../../utils/types';
 import { GroupErrors } from '../state/types';
-import { ArrayElement } from '../../utils/types';
-import { UnionToIntersection } from '../../control/init/types';
 
 /**
  * Merges an array of errors.

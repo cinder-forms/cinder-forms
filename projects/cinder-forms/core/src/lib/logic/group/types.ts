@@ -1,12 +1,13 @@
-import { NO_GROUP_ERROR } from './validator/validator';
-import { FormControlState, UnionToIntersection } from '../control/init/types';
+import { FormControlState } from '../control/init/types';
 import { FormControlSummary, ValidatorsToErrors } from '../control/types';
+import { UnionToIntersection } from '../utils/types';
 import {
+  GroupErrors,
   GroupStateControls,
   GroupStateValidator,
   UnkownGroupStateValidator,
-  GroupErrors,
 } from './state/types';
+import { NO_GROUP_ERROR } from './validator/validator';
 
 type DeepPartial<T> = {
   [P in keyof T]?: T[P] extends Array<infer U>

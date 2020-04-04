@@ -1,6 +1,7 @@
 import { initFormControl } from './init/init';
-import { FormControlState, FormControlSummary } from './init/types';
+import { FormControlState } from './init/types';
 import { getFormControlSummary } from './selectors';
+import { FormControlSummary } from './types';
 
 describe('selectors', () => {
   describe('errors', () => {
@@ -14,12 +15,12 @@ describe('selectors', () => {
 
     it('should return error', () => {
       const validator = () => ({
-        alwaysTrue: true
+        alwaysTrue: true,
       });
       const control = initFormControl(['', [validator]]);
 
       const expected = {
-        alwaysTrue: true
+        alwaysTrue: true,
       };
       const result = getFormControlSummary(control);
 
@@ -29,17 +30,17 @@ describe('selectors', () => {
     it('should return multiple erros', () => {
       const validators = [
         () => ({
-          alwaysTrue: true
+          alwaysTrue: true,
         }),
         () => ({
-          alwaysFalse: false
-        })
+          alwaysFalse: false,
+        }),
       ];
       const control = initFormControl(['', validators]);
 
       const expected = {
         alwaysTrue: true,
-        alwaysFalse: false
+        alwaysFalse: false,
       };
       const result = getFormControlSummary(control);
 
@@ -48,7 +49,7 @@ describe('selectors', () => {
   });
 
   describe('getFormControlSummary', () => {
-    [undefined, null, 0, { value: 'value' }].forEach(value => {
+    [undefined, null, 0, { value: 'value' }].forEach((value) => {
       it(`${value} match should return changed: false`, () => {
         const result = getFormControlSummary(initFormControl([value]));
 
@@ -60,7 +61,7 @@ describe('selectors', () => {
       const result = getFormControlSummary(
         initFormControl({
           value: 'value',
-          initialValue: 'initialValue'
+          initialValue: 'initialValue',
         })
       );
 
@@ -71,7 +72,7 @@ describe('selectors', () => {
       const result = getFormControlSummary(
         initFormControl({
           value: { deeper: { deep: 'value' } },
-          initialValue: { deeper: { deep: 'initialValue' } }
+          initialValue: { deeper: { deep: 'initialValue' } },
         })
       );
 
@@ -85,7 +86,7 @@ describe('selectors', () => {
         value: '',
         initialValue: '',
         validators: [],
-        disabled: false
+        disabled: false,
       };
 
       const expected: FormControlSummary<string> = {
@@ -97,7 +98,7 @@ describe('selectors', () => {
         disabled: false,
         errors: {},
         invalid: false,
-        changed: false
+        changed: false,
       };
 
       const result = getFormControlSummary(control);
@@ -107,7 +108,7 @@ describe('selectors', () => {
 
     it('should return invalid = true, errors = errors, controls for invalid control', () => {
       const error = {
-        alwaysTrue: true
+        alwaysTrue: true,
       };
 
       const validators = [() => error];
@@ -118,7 +119,7 @@ describe('selectors', () => {
         value: '',
         initialValue: '',
         validators,
-        disabled: false
+        disabled: false,
       };
 
       const expected: FormControlSummary<string> = {
@@ -130,7 +131,7 @@ describe('selectors', () => {
         disabled: false,
         errors: error,
         invalid: true,
-        changed: false
+        changed: false,
       };
 
       const result = getFormControlSummary(control);
@@ -140,7 +141,7 @@ describe('selectors', () => {
 
     it('should return invalid = true, errors = errors, controls for additional errors', () => {
       const additionalError = {
-        additionalError: true
+        additionalError: true,
       };
 
       const control: FormControlState<string> = {
@@ -149,7 +150,7 @@ describe('selectors', () => {
         value: '',
         initialValue: '',
         validators: [],
-        disabled: false
+        disabled: false,
       };
 
       const expected: FormControlSummary<string> = {
@@ -161,7 +162,7 @@ describe('selectors', () => {
         disabled: false,
         errors: additionalError,
         invalid: true,
-        changed: false
+        changed: false,
       };
 
       const result = getFormControlSummary(control, additionalError);
@@ -171,11 +172,11 @@ describe('selectors', () => {
 
     it('should merge errors with additional errors', () => {
       const additionalError = {
-        additionalError: true
+        additionalError: true,
       };
 
       const error = {
-        alwaysTrue: true
+        alwaysTrue: true,
       };
 
       const validators = [() => error];
@@ -186,7 +187,7 @@ describe('selectors', () => {
         value: '',
         initialValue: '',
         validators,
-        disabled: false
+        disabled: false,
       };
 
       const expected: FormControlSummary<string> = {
@@ -198,7 +199,7 @@ describe('selectors', () => {
         disabled: false,
         errors: { alwaysTrue: true, additionalError: true },
         invalid: true,
-        changed: false
+        changed: false,
       };
 
       const result = getFormControlSummary(control, additionalError);
