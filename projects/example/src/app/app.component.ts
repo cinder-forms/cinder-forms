@@ -1,3 +1,4 @@
+import { connectControl } from '@cinder-forms/core';
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from './+state/app.state';
@@ -10,8 +11,10 @@ import * as ExampleSelectors from './+state/example.selectors';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  constructor(private store: Store<AppState>) {
-    this.store.select(ExampleSelectors.selectSimpleControl).subscribe(console.log);
-    this.store.dispatch(ExampleActions.updateSimpleControl({ update: { value: 'newValue' } }));
-  }
+  public simpleControl = connectControl(
+    (update) => this.store.dispatch(ExampleActions.updateSimpleControl({ update })),
+    this.store.select(ExampleSelectors.selectSimpleControl)
+  );
+
+  constructor(private store: Store<AppState>) {}
 }

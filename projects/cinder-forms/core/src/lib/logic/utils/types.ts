@@ -1,4 +1,5 @@
 import { CinderControlState, CinderControlUpdate } from '../control/init/types';
+import { CinderControl } from '../control/types';
 
 export type ArrayElement<T extends Array<any>> = T extends (infer U)[] ? U : never;
 
@@ -13,4 +14,11 @@ export type toUpdate<T> = T extends CinderControlState<
   infer TControlValidators
 >
   ? CinderControlUpdate<TControlValue, TControlValidators>
+  : never;
+
+export type toSelected<T> = T extends CinderControlState<
+  infer TControlValue,
+  infer TControlValidators
+>
+  ? CinderControl<TControlValue, TControlValidators>
   : never;
