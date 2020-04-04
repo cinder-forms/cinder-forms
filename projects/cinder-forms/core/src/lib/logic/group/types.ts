@@ -1,5 +1,5 @@
 import { CinderControlState } from '../control/init/types';
-import { FormControlSummary, ValidatorsToErrors } from '../control/types';
+import { CinderControl, ValidatorsToErrors } from '../control/types';
 import { UnionToIntersection } from '../utils/types';
 import {
   GroupErrors,
@@ -19,14 +19,14 @@ type DeepPartial<T> = {
 
 // Controls:
 export interface GroupControls {
-  [key: string]: FormControlSummary<any, any>;
+  [key: string]: CinderControl<any, any>;
 }
 
 type toFormControlSummary<TControlState> = TControlState extends CinderControlState<
   infer T,
   infer TControls
 >
-  ? FormControlSummary<T, TControls>
+  ? CinderControl<T, TControls>
   : never;
 
 export type toGroupControls<TControls extends GroupStateControls> = {

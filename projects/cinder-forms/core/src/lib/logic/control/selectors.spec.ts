@@ -1,7 +1,7 @@
 import { initFormControl } from './init/init';
 import { CinderControlState } from './init/types';
 import { getFormControlSummary } from './selectors';
-import { FormControlSummary } from './types';
+import { CinderControl } from './types';
 
 describe('selectors', () => {
   describe('errors', () => {
@@ -89,7 +89,7 @@ describe('selectors', () => {
         disabled: false,
       };
 
-      const expected: FormControlSummary<string> = {
+      const expected: CinderControl<string> = {
         dirty: false,
         touched: false,
         value: '',
@@ -122,7 +122,7 @@ describe('selectors', () => {
         disabled: false,
       };
 
-      const expected: FormControlSummary<string> = {
+      const expected: CinderControl<string> = {
         dirty: control.dirty,
         touched: control.touched,
         value: control.value,
@@ -153,7 +153,7 @@ describe('selectors', () => {
         disabled: false,
       };
 
-      const expected: FormControlSummary<string> = {
+      const expected: CinderControl<string> = {
         dirty: control.dirty,
         touched: control.touched,
         value: control.value,
@@ -190,7 +190,7 @@ describe('selectors', () => {
         disabled: false,
       };
 
-      const expected: FormControlSummary<string> = {
+      const expected: CinderControl<string> = {
         dirty: control.dirty,
         touched: control.touched,
         value: control.value,

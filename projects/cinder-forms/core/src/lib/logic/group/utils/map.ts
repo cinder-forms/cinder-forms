@@ -1,5 +1,5 @@
 import { CinderControlState } from '../../control/init/types';
-import { FormControlSummary } from '../../control/types';
+import { CinderControl } from '../../control/types';
 import { GroupStateControls } from '../state/types';
 import { GroupControls } from '../types';
 
@@ -14,7 +14,7 @@ export function mapGroupStateControls<TStateControls extends GroupStateControls,
 
 export function mapGroupControls<TControls extends GroupControls, R>(
   controls: TControls,
-  mapFunc: (control: FormControlSummary<any, any>, key: string) => R
+  mapFunc: (control: CinderControl<any, any>, key: string) => R
 ): {
   [K in keyof TControls]: R;
 } {

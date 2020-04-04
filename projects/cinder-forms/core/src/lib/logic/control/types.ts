@@ -5,10 +5,8 @@ import { CinderControlState, UnknownValidators, Validator } from './init/types';
 /**
  * A summary of a `FormControlState`. Contains additional information.
  */
-export interface FormControlSummary<
-  T,
-  TValidators extends UnknownValidators<T> = UnknownValidators<T>
-> extends CinderControlState<T, TValidators> {
+export interface CinderControl<T, TValidators extends UnknownValidators<T> = UnknownValidators<T>>
+  extends CinderControlState<T, TValidators> {
   /**
    * An object containing all errors.
    *

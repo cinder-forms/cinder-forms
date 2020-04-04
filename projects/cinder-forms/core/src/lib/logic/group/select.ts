@@ -1,5 +1,5 @@
 import { getFormControlSummary } from '../control/selectors';
-import { FormControlSummary } from '../control/types';
+import { CinderControl } from '../control/types';
 import {
   CinderGroupState,
   GroupErrors,
@@ -84,7 +84,7 @@ function selectGroupControls<
 
 function someGroupControl<TControls extends GroupControls>(
   controls: TControls,
-  evaluate: (control: FormControlSummary<any, any>) => boolean
+  evaluate: (control: CinderControl<any, any>) => boolean
 ) {
   return Object.values(controls).some((control) => evaluate(control));
 }
