@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CONFIG_TOKEN, defaultConfig } from './config';
+import { DefaultInputDirective } from './directives/control/inputs/default-input.directive';
 import { CinderConfig } from './logic/control/init/types';
-import { CinderControlDirective } from './directives/control/cinder-control.directive';
 
 /**
  * This module represents the entry point of cinder-forms.
@@ -14,9 +14,9 @@ import { CinderControlDirective } from './directives/control/cinder-control.dire
  * - [documentation](https://github.com/cinder-forms/cinder-forms)
  */
 @NgModule({
-  declarations: [CinderControlDirective],
+  declarations: [DefaultInputDirective],
   imports: [CommonModule],
-  exports: [CinderControlDirective],
+  exports: [DefaultInputDirective],
   providers: [
     {
       provide: CONFIG_TOKEN,
