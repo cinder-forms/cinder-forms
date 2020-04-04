@@ -1,9 +1,5 @@
-import {
-  FormControlState,
-  FormControlSummary,
-  UnionToIntersection,
-  ValidatorsToErrors
-} from '../control/init/types';
+import { FormControlState, UnionToIntersection } from '../control/init/types';
+import { FormControlSummary, ValidatorsToErrors } from '../control/types';
 import { GroupStateControls, GroupStateValidator, UnkownGroupStateValidator } from './state/types';
 
 type DeepPartial<T> = {
