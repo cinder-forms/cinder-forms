@@ -1,4 +1,4 @@
-import { initFormControl } from '../../control/init/init';
+import { initControlState } from '../../control/init/init';
 import {
   FormControlErrors,
   FormControlInit,
@@ -15,7 +15,7 @@ export interface GroupStateControls {
 
 // Builder Functions
 export type GroupBuilder<RStateControls extends GroupStateControls> = (
-  init: typeof initFormControl
+  init: typeof initControlState
 ) => RStateControls;
 
 export type GroupInit<TControls extends FormControls> = {

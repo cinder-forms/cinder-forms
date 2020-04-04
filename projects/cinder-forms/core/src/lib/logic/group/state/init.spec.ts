@@ -1,4 +1,4 @@
-import { initFormControl } from '../../control/init/init';
+import { initControlState } from '../../control/init/init';
 import { createValidator } from '../../control/utils/validator';
 import { initGroup } from './init';
 
@@ -7,8 +7,8 @@ const v1 = createValidator(
   () => ({ required: true })
 );
 
-const k1 = initFormControl(['', []]);
-const k2 = initFormControl([123, [v1], true]);
+const k1 = initControlState(['', []]);
+const k2 = initControlState([123, [v1], true]);
 
 describe('initGroup', () => {
   it('should create group with control validators', () => {

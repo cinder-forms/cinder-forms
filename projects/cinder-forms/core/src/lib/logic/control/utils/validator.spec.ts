@@ -1,4 +1,4 @@
-import { initFormControl } from '../init/init';
+import { initControlState } from '../init/init';
 import { CinderControlState } from './../init/types';
 import { createValidator } from './validator';
 
@@ -11,7 +11,7 @@ describe('createValidator', () => {
       () => someError
     );
 
-    const control = initFormControl([false]);
+    const control = initControlState([false]);
 
     const result = validator(control);
 
@@ -24,7 +24,7 @@ describe('createValidator', () => {
       () => someError
     );
 
-    const control = initFormControl([true]);
+    const control = initControlState([true]);
 
     const result = validator(control);
 

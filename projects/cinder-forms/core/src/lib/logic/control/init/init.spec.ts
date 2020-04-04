@@ -1,4 +1,4 @@
-import { initFormControl } from './init';
+import { initControlState } from './init';
 import { CinderControlState } from './types';
 
 describe('init', () => {
@@ -7,7 +7,7 @@ describe('init', () => {
 
   const value = 'value';
 
-  describe('initFormControl', () => {
+  describe('initControlState', () => {
     describe('initalizeTuple', () => {
       it('["value"] should create a valid form control state', () => {
         const expected: CinderControlState<string, typeof noValidators> = {
@@ -19,7 +19,7 @@ describe('init', () => {
           validators: [],
         };
 
-        const result = initFormControl([value]);
+        const result = initControlState([value]);
 
         expect(result).toEqual(expected);
       });
@@ -34,7 +34,7 @@ describe('init', () => {
           validators: [validator],
         };
 
-        const result = initFormControl([value, [validator]]);
+        const result = initControlState([value, [validator]]);
 
         expect(result).toEqual(expected);
       });
@@ -49,7 +49,7 @@ describe('init', () => {
           validators: [],
         };
 
-        const result = initFormControl([value, [], true]);
+        const result = initControlState([value, [], true]);
 
         expect(result).toEqual(expected);
       });
@@ -66,7 +66,7 @@ describe('init', () => {
           validators: [],
         };
 
-        const result = initFormControl({ value });
+        const result = initControlState({ value });
 
         expect(result).toEqual(expected);
       });
@@ -81,7 +81,7 @@ describe('init', () => {
           validators: [validator],
         };
 
-        const result = initFormControl({ value, validators: [validator] });
+        const result = initControlState({ value, validators: [validator] });
 
         expect(result).toEqual(expected);
       });
@@ -96,7 +96,7 @@ describe('init', () => {
           validators: [],
         };
 
-        const result = initFormControl({
+        const result = initControlState({
           value,
           disabled: expected.disabled,
           dirty: expected.dirty,
@@ -117,7 +117,7 @@ describe('init', () => {
           validators: [],
         };
 
-        const result = initFormControl({
+        const result = initControlState({
           value,
         });
 
@@ -136,7 +136,7 @@ describe('init', () => {
           validators: noValidators,
         };
 
-        const result = initFormControl({
+        const result = initControlState({
           value,
           initialValue,
         });

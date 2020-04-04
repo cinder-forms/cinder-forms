@@ -1,4 +1,4 @@
-import { initFormControl } from '../init/init';
+import { initControlState } from '../init/init';
 import { CinderControlState } from '../init/types';
 import { resetFormControl } from './reset';
 
@@ -30,7 +30,7 @@ describe('resetFormControl', () => {
 
   it('should reset everything except validators to initial', () => {
     const result = resetFormControl(control);
-    const expected = initFormControl([initialValue]);
+    const expected = initControlState([initialValue]);
 
     expected.validators = validators;
     expected.disabled = disabled;

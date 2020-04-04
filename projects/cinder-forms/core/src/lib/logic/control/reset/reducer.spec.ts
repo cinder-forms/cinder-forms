@@ -1,11 +1,11 @@
-import {  initFormControl } from '../init/init';
+import { initControlState } from '../init/init';
 import { FormControlUpdate } from '../init/types';
-import {  reduceFormControl } from './reducer';
+import { reduceFormControl } from './reducer';
 
 describe('reducer', () => {
   describe('reduceFormControl', () => {
     it('empty update should do nothing', () => {
-      const control = initFormControl(['test']);
+      const control = initControlState(['test']);
 
       const update = {};
 
@@ -15,15 +15,15 @@ describe('reducer', () => {
     });
 
     it('value update should only update value', () => {
-      const control = initFormControl(['test']);
+      const control = initControlState(['test']);
 
       const expected = {
         ...control,
-        value: 'new'
+        value: 'new',
       };
 
       const update: FormControlUpdate<string> = {
-        value: 'new'
+        value: 'new',
       };
 
       const result = reduceFormControl(control, update);
@@ -32,7 +32,7 @@ describe('reducer', () => {
     });
 
     it('undefined update should do nothing', () => {
-      const control = initFormControl(['test']);
+      const control = initControlState(['test']);
 
       const update = undefined;
 
@@ -42,7 +42,7 @@ describe('reducer', () => {
     });
 
     it('{} update should do nothing', () => {
-      const control = initFormControl(['test']);
+      const control = initControlState(['test']);
 
       const update = {};
 

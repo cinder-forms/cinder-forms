@@ -1,4 +1,4 @@
-import { initFormControl } from '../init/init';
+import { initControlState } from '../init/init';
 import { CinderControlState, UnknownValidators } from '../init/types';
 
 /**
@@ -15,5 +15,5 @@ export function resetFormControl<T, TValidators extends UnknownValidators<T>>(
   control: CinderControlState<T, TValidators>,
   initialValue = control.initialValue
 ): CinderControlState<T, TValidators> {
-  return initFormControl([initialValue, control.validators, control.disabled]);
+  return initControlState([initialValue, control.validators, control.disabled]);
 }

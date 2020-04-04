@@ -1,4 +1,4 @@
-import { initFormControl } from '../init/init';
+import { initControlState } from '../init/init';
 import { CinderControlState } from '../init/types';
 import { validatorOf } from './validator-of';
 
@@ -10,7 +10,7 @@ describe('validatorOf', () => {
       value: control.value,
     }));
 
-    const result = resultFunc(initFormControl([expected.value]));
+    const result = resultFunc(initControlState([expected.value]));
 
     expect(result).toEqual(expected);
   });

@@ -12,22 +12,22 @@ import {
  *
  * Overload fallback.
  */
-export function initFormControl<T, TValidators extends UnknownValidators<T>>(
+export function initControlState<T, TValidators extends UnknownValidators<T>>(
   init: FormControlInit<T, TValidators>
 ): CinderControlState<T, TValidators> {
-  return Array.isArray(init) ? initFormControlFromTuple(init) : initFormControlFromUpdate(init);
+  return Array.isArray(init) ? initControlStateFromTuple(init) : initControlStateFromUpdate(init);
 }
 
-function initFormControlFromTuple<T, TValidators extends UnknownValidators<T>>([
+function initControlStateFromTuple<T, TValidators extends UnknownValidators<T>>([
   value,
   // TODO: Remove this type hack. Currently invisible to the the outer API.
   validators = [] as any,
   disabled = false,
 ]: FormControlInitTuple<T, TValidators>): CinderControlState<T, TValidators> {
-  return initFormControlFromUpdate({ value, validators, disabled });
+  return initControlStateFromUpdate({ value, validators, disabled });
 }
 
-function initFormControlFromUpdate<T, TValidators extends UnknownValidators<T>>(
+function initControlStateFromUpdate<T, TValidators extends UnknownValidators<T>>(
   initialUpdate: FormControlInitUpdate<T, TValidators>
 ): CinderControlState<T, TValidators> {
   return reduceFormControl<T, TValidators>(

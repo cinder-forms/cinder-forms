@@ -1,4 +1,4 @@
-import { initFormControl } from '../../control/init/init';
+import { initControlState } from '../../control/init/init';
 import { FormControls, CinderControlState } from '../../control/init/types';
 import { toGroupErrors } from '../types';
 import {
@@ -31,7 +31,7 @@ function initGroupStateControls<TGroupInit extends GroupInit<FormControls>>(
 ): toGroupStateControls<TGroupInit> {
   return Object.entries(groupInit)
     .map(([key, init]) => ({
-      [key]: initFormControl(init),
+      [key]: initControlState(init),
     }))
     .reduce((ctrl1, ctrl2) => ({ ...ctrl1, ...ctrl2 }), {}) as toGroupStateControls<TGroupInit>;
 }

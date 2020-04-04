@@ -1,4 +1,4 @@
-import { initFormControl } from './init/init';
+import { initControlState } from './init/init';
 import { CinderControlState } from './init/types';
 import { getFormControlSummary } from './selectors';
 import { CinderControl } from './types';
@@ -6,7 +6,7 @@ import { CinderControl } from './types';
 describe('selectors', () => {
   describe('errors', () => {
     it('should return {} for empty validators', () => {
-      const control = initFormControl({ value: '' });
+      const control = initControlState({ value: '' });
 
       const result = getFormControlSummary(control);
 
@@ -17,7 +17,7 @@ describe('selectors', () => {
       const validator = () => ({
         alwaysTrue: true,
       });
-      const control = initFormControl(['', [validator]]);
+      const control = initControlState(['', [validator]]);
 
       const expected = {
         alwaysTrue: true,
@@ -36,7 +36,7 @@ describe('selectors', () => {
           alwaysFalse: false,
         }),
       ];
-      const control = initFormControl(['', validators]);
+      const control = initControlState(['', validators]);
 
       const expected = {
         alwaysTrue: true,
@@ -51,7 +51,7 @@ describe('selectors', () => {
   describe('getFormControlSummary', () => {
     [undefined, null, 0, { value: 'value' }].forEach((value) => {
       it(`${value} match should return changed: false`, () => {
-        const result = getFormControlSummary(initFormControl([value]));
+        const result = getFormControlSummary(initControlState([value]));
 
         expect(result.changed).toEqual(false);
       });
@@ -59,7 +59,7 @@ describe('selectors', () => {
 
     it('should return changed: true for changed simple value', () => {
       const result = getFormControlSummary(
-        initFormControl({
+        initControlState({
           value: 'value',
           initialValue: 'initialValue',
         })
@@ -70,7 +70,7 @@ describe('selectors', () => {
 
     it('should return changed: true for object key value change', () => {
       const result = getFormControlSummary(
-        initFormControl({
+        initControlState({
           value: { deeper: { deep: 'value' } },
           initialValue: { deeper: { deep: 'initialValue' } },
         })
