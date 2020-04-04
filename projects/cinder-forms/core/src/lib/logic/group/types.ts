@@ -22,15 +22,12 @@ export interface GroupControls {
   [key: string]: CinderControl<any, any>;
 }
 
-type toFormControlSummary<TControlState> = TControlState extends CinderControlState<
-  infer T,
-  infer TControls
->
+type toControl<TControlState> = TControlState extends CinderControlState<infer T, infer TControls>
   ? CinderControl<T, TControls>
   : never;
 
 export type toGroupControls<TControls extends GroupStateControls> = {
-  [K in keyof TControls]: toFormControlSummary<TControls[K]>;
+  [K in keyof TControls]: toControl<TControls[K]>;
 };
 
 // Errors:

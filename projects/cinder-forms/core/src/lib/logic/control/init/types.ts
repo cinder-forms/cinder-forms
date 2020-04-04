@@ -38,12 +38,12 @@ export type UnknownValidators<T> = Validator<T, {}>[];
 
 /**
  * Can be either of:
- * @see `FormControlInitTuple`
- * @see `FormControlInitUpdate`
+ * @see `CinderControlInitTuple`
+ * @see `CinderControlInitUpdate`
  */
-export type FormControlInit<T, TValidators extends UnknownValidators<T>> =
-  | FormControlInitTuple<T, TValidators>
-  | FormControlInitUpdate<T, TValidators>;
+export type CinderControlInit<T, TValidators extends UnknownValidators<T>> =
+  | CinderControlInitTuple<T, TValidators>
+  | CinderControlInitUpdate<T, TValidators>;
 
 /**
  * A shorthand to create a new FormControl.
@@ -51,7 +51,7 @@ export type FormControlInit<T, TValidators extends UnknownValidators<T>> =
  * - [1]: Validator array. Optional.
  * - [2]: Disabled state. Default false. Optional.
  */
-export type FormControlInitTuple<T, TValidators extends UnknownValidators<T>> = [
+export type CinderControlInitTuple<T, TValidators extends UnknownValidators<T>> = [
   T,
   TValidators?,
   boolean?
@@ -62,7 +62,7 @@ export type FormControlInitTuple<T, TValidators extends UnknownValidators<T>> = 
  *
  * Identical to FormControlUpdate, except for `value` which is a required attribute here.
  */
-export interface FormControlInitUpdate<T, TValidators extends Validator<T, any>[]>
+export interface CinderControlInitUpdate<T, TValidators extends Validator<T, any>[]>
   extends FormControlUpdate<T, TValidators> {
   /**
    * Initial value of the control.

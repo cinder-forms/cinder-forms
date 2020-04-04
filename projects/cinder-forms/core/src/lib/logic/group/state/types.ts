@@ -1,9 +1,9 @@
 import { initControlState } from '../../control/init/init';
 import {
   ControlErrors,
-  FormControlInit,
-  FormControlInitTuple,
-  FormControlInitUpdate,
+  CinderControlInit,
+  CinderControlInitTuple,
+  CinderControlInitUpdate,
   FormControls,
   CinderControlState,
   UnknownValidators,
@@ -19,15 +19,15 @@ export type GroupBuilder<RStateControls extends GroupStateControls> = (
 ) => RStateControls;
 
 export type GroupInit<TControls extends FormControls> = {
-  [K in keyof TControls]: FormControlInit<TControls[K], UnknownValidators<TControls[K]>>;
+  [K in keyof TControls]: CinderControlInit<TControls[K], UnknownValidators<TControls[K]>>;
 };
 
-export type toControlState<TControlInit> = TControlInit extends FormControlInitTuple<
+export type toControlState<TControlInit> = TControlInit extends CinderControlInitTuple<
   infer TTuple,
   infer TTupleValidators
 >
   ? CinderControlState<TTuple, TTupleValidators>
-  : TControlInit extends FormControlInitUpdate<infer TUpdate, infer TUpdateValidators>
+  : TControlInit extends CinderControlInitUpdate<infer TUpdate, infer TUpdateValidators>
   ? CinderControlState<TUpdate, TUpdateValidators>
   : never;
 
