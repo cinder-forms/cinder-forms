@@ -32,7 +32,7 @@ export function selectGroup<
 >(
   groupState: CinderGroupState<TStateControls, TGroupStateValidators>,
   additionalErrors: Array<TAdditionalErrors> = []
-): CinderGroup<TStateControls, TGroupStateValidators> {
+): CinderGroup<TStateControls, TGroupStateValidators, TAdditionalErrors> {
   const controls = selectGroupControls<TControls, TStateControls, TGroupStateValidators>(
     groupState
   );

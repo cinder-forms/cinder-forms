@@ -56,7 +56,7 @@ export type mergeErrors<
   TGroupValidators extends UnkownGroupStateValidator<TStateControls>[],
   TGroupErrors extends GroupErrors
 > = DeepPartial<
-  stateControlsToGroupErrors<TStateControls> & toGroupErrors<TGroupValidators & TGroupErrors>
+  stateControlsToGroupErrors<TStateControls> & toGroupErrors<TGroupValidators> & TGroupErrors
 >;
 
 // Type:

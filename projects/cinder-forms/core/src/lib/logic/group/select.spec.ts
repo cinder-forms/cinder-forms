@@ -2,7 +2,6 @@ import { createValidator } from '../../utils';
 import { FormControlState } from '../control/init/types';
 import { selectGroup } from './select';
 import { initGroup } from './state/init';
-import { createGroupValidator } from './validator/validator';
 
 describe('selectGroup', () => {
   const equalsTest = createValidator(
@@ -43,6 +42,42 @@ describe('selectGroup', () => {
 
     expect(result.errors).toEqual({
       someControl: { alwaysTrue: true, controlErrors: 'controlError' },
+    });
+  });
+
+  it('should merge additional errors', () => {
+    const controlError = true;
+    const groupError = true;
+    const additionalError1 = true;
+    const additionalError2 = true;
+
+    const group = initGroup(
+      {
+        ctrl: ['ctrl', [() => ({ controlError })]],
+      },
+      [() => ({ ctrl: { groupError } })]
+    );
+
+    const result = selectGroup(group, [
+      {
+        ctrl: {
+          additionalError1,
+        },
+      },
+      {
+        ctrl: {
+          additionalError2,
+        },
+      },
+    ]);
+
+    expect(result.errors).toEqual({
+      ctrl: {
+        controlError,
+        groupError,
+        additionalError1,
+        additionalError2,
+      },
     });
   });
 
