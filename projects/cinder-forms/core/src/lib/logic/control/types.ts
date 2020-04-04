@@ -1,5 +1,5 @@
 import { ArrayElement, UnionToIntersection } from '../utils/types';
-import { FormControlState, UnknownValidators, Validator } from './init/types';
+import { CinderControlState, UnknownValidators, Validator } from './init/types';
 
 // Summaries
 /**
@@ -8,7 +8,7 @@ import { FormControlState, UnknownValidators, Validator } from './init/types';
 export interface FormControlSummary<
   T,
   TValidators extends UnknownValidators<T> = UnknownValidators<T>
-> extends FormControlState<T, TValidators> {
+> extends CinderControlState<T, TValidators> {
   /**
    * An object containing all errors.
    *

@@ -1,5 +1,5 @@
 import { AbstractControl, ValidatorFn, Validators } from '@angular/forms';
-import { FormControlState, Validator } from '../init/types';
+import { CinderControlState, Validator } from '../init/types';
 
 /**
  * Converts one or multiple Angular validators for the usage with this framework.
@@ -13,7 +13,7 @@ import { FormControlState, Validator } from '../init/types';
 export function validatorOf<T>(...fn: ValidatorFn[]): Validator<T, any> {
   const composed = Validators.compose(fn)!;
 
-  return (control: FormControlState<T, any>) =>
+  return (control: CinderControlState<T, any>) =>
     composed({
       value: control.value,
       pristine: !control.dirty,

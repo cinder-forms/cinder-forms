@@ -1,4 +1,4 @@
-import { FormControlState } from '../control/init/types';
+import { CinderControlState } from '../control/init/types';
 import { FormControlSummary, ValidatorsToErrors } from '../control/types';
 import { UnionToIntersection } from '../utils/types';
 import {
@@ -22,7 +22,7 @@ export interface GroupControls {
   [key: string]: FormControlSummary<any, any>;
 }
 
-type toFormControlSummary<TControlState> = TControlState extends FormControlState<
+type toFormControlSummary<TControlState> = TControlState extends CinderControlState<
   infer T,
   infer TControls
 >

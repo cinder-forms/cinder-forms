@@ -1,5 +1,5 @@
 import { initFormControl } from './init';
-import { FormControlState } from './types';
+import { CinderControlState } from './types';
 
 describe('init', () => {
   const noValidators = [];
@@ -10,13 +10,13 @@ describe('init', () => {
   describe('initFormControl', () => {
     describe('initalizeTuple', () => {
       it('["value"] should create a valid form control state', () => {
-        const expected: FormControlState<string, typeof noValidators> = {
+        const expected: CinderControlState<string, typeof noValidators> = {
           value,
           initialValue: value,
           disabled: false,
           dirty: false,
           touched: false,
-          validators: []
+          validators: [],
         };
 
         const result = initFormControl([value]);
@@ -25,13 +25,13 @@ describe('init', () => {
       });
 
       it('["value", [() => {}]] should create a valid form control state with validator', () => {
-        const expected: FormControlState<string, typeof noValidators> = {
+        const expected: CinderControlState<string, typeof noValidators> = {
           value,
           initialValue: value,
           disabled: false,
           dirty: false,
           touched: false,
-          validators: [validator]
+          validators: [validator],
         };
 
         const result = initFormControl([value, [validator]]);
@@ -40,13 +40,13 @@ describe('init', () => {
       });
 
       it('["value", undefined, true] should create a valid form control state which is disabled', () => {
-        const expected: FormControlState<string, typeof noValidators> = {
+        const expected: CinderControlState<string, typeof noValidators> = {
           value,
           initialValue: value,
           disabled: true,
           dirty: false,
           touched: false,
-          validators: []
+          validators: [],
         };
 
         const result = initFormControl([value, [], true]);
@@ -57,13 +57,13 @@ describe('init', () => {
 
     describe('initialUpdate', () => {
       it('{value: value} should create a valid form control state', () => {
-        const expected: FormControlState<string, typeof noValidators> = {
+        const expected: CinderControlState<string, typeof noValidators> = {
           value,
           initialValue: value,
           disabled: false,
           dirty: false,
           touched: false,
-          validators: []
+          validators: [],
         };
 
         const result = initFormControl({ value });
@@ -72,13 +72,13 @@ describe('init', () => {
       });
 
       it('["value", [() => {}]] should create a valid form control state with validator', () => {
-        const expected: FormControlState<string, typeof noValidators> = {
+        const expected: CinderControlState<string, typeof noValidators> = {
           value,
           initialValue: value,
           disabled: false,
           dirty: false,
           touched: false,
-          validators: [validator]
+          validators: [validator],
         };
 
         const result = initFormControl({ value, validators: [validator] });
@@ -87,13 +87,13 @@ describe('init', () => {
       });
 
       it('{value: value, disabled: true, dirty: true, touched: true} should create a valid form control state', () => {
-        const expected: FormControlState<string, typeof noValidators> = {
+        const expected: CinderControlState<string, typeof noValidators> = {
           value,
           initialValue: value,
           disabled: true,
           dirty: true,
           touched: true,
-          validators: []
+          validators: [],
         };
 
         const result = initFormControl({
@@ -101,24 +101,24 @@ describe('init', () => {
           disabled: expected.disabled,
           dirty: expected.dirty,
           touched: expected.touched,
-          validators: []
+          validators: [],
         });
 
         expect(result).toEqual(expected);
       });
 
       it('value only should set initialValue', () => {
-        const expected: FormControlState<string, typeof noValidators> = {
+        const expected: CinderControlState<string, typeof noValidators> = {
           value,
           initialValue: value,
           disabled: false,
           dirty: false,
           touched: false,
-          validators: []
+          validators: [],
         };
 
         const result = initFormControl({
-          value
+          value,
         });
 
         expect(result).toEqual(expected);
@@ -127,18 +127,18 @@ describe('init', () => {
       it('intialValue should set initialValue', () => {
         const initialValue = 'initial';
 
-        const expected: FormControlState<string, typeof noValidators> = {
+        const expected: CinderControlState<string, typeof noValidators> = {
           value,
           initialValue,
           disabled: false,
           dirty: false,
           touched: false,
-          validators: noValidators
+          validators: noValidators,
         };
 
         const result = initFormControl({
           value,
-          initialValue
+          initialValue,
         });
 
         expect(result).toEqual(expected);

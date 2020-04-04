@@ -1,5 +1,5 @@
 import { circularDeepEqual } from 'fast-equals';
-import { FormControlState, UnknownValidators } from './init/types';
+import { CinderControlState, UnknownValidators } from './init/types';
 import { FormControlSummary, ValidatorsToErrors } from './types';
 import { mergeFormControlErrors } from './utils/merge';
 
@@ -11,7 +11,7 @@ import { mergeFormControlErrors } from './utils/merge';
  * @param additionalErrors An array of `FormControlErrors` which will be merged into the errors of the control.
  */
 export function getFormControlSummary<T, TValidators extends UnknownValidators<T>>(
-  control: FormControlState<T, TValidators>,
+  control: CinderControlState<T, TValidators>,
   ...additionalErrors: ValidatorsToErrors<TValidators>[]
 ): FormControlSummary<T, TValidators> {
   const errors = mergeFormControlErrors(
@@ -28,11 +28,11 @@ export function getFormControlSummary<T, TValidators extends UnknownValidators<T
 }
 
 function getFormControlErrors<T, TValidators extends UnknownValidators<T>>(
-  control: FormControlState<T, TValidators>
+  control: CinderControlState<T, TValidators>
 ): ValidatorsToErrors<TValidators>[] {
   return control.validators.map((validator) => validator(control));
 }
 
-function getFormControlChanged<T>(control: FormControlState<T, any>): boolean {
+function getFormControlChanged<T>(control: CinderControlState<T, any>): boolean {
   return !circularDeepEqual(control.value, control.initialValue);
 }

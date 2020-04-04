@@ -1,5 +1,5 @@
 import { initFormControl } from '../init/init';
-import { FormControlState } from '../init/types';
+import { CinderControlState } from '../init/types';
 import { validatorOf } from './validator-of';
 
 describe('validatorOf', () => {
@@ -22,7 +22,7 @@ describe('validatorOf', () => {
       dirty: control.dirty,
     }));
 
-    const result = resultFunc({ dirty: true } as FormControlState<any>);
+    const result = resultFunc({ dirty: true } as CinderControlState<any>);
 
     expect(result).toEqual(expected);
   });
@@ -34,7 +34,7 @@ describe('validatorOf', () => {
       dirty: control.dirty,
     }));
 
-    const result = resultFunc({ dirty: false } as FormControlState<any>);
+    const result = resultFunc({ dirty: false } as CinderControlState<any>);
 
     expect(result).toEqual(expected);
   });
@@ -46,7 +46,7 @@ describe('validatorOf', () => {
       touched: control.touched,
     }));
 
-    const result = resultFunc({ touched: true } as FormControlState<any>);
+    const result = resultFunc({ touched: true } as CinderControlState<any>);
 
     expect(result).toEqual(expected);
   });
@@ -58,7 +58,7 @@ describe('validatorOf', () => {
       touched: control.touched,
     }));
 
-    const result = resultFunc({ touched: false } as FormControlState<any>);
+    const result = resultFunc({ touched: false } as CinderControlState<any>);
 
     expect(result).toEqual(expected);
   });
@@ -70,7 +70,7 @@ describe('validatorOf', () => {
       disabled: control.disabled,
     }));
 
-    const result = resultFunc({ disabled: true } as FormControlState<any>);
+    const result = resultFunc({ disabled: true } as CinderControlState<any>);
 
     expect(result).toEqual(expected);
   });
@@ -82,7 +82,7 @@ describe('validatorOf', () => {
       enabled: control.enabled,
     }));
 
-    const result = resultFunc({ disabled: false } as FormControlState<any>);
+    const result = resultFunc({ disabled: false } as CinderControlState<any>);
 
     expect(result).toEqual(expected);
   });
@@ -99,7 +99,7 @@ describe('validatorOf', () => {
       })
     );
 
-    const result = resultFunc({} as FormControlState<any>);
+    const result = resultFunc({} as CinderControlState<any>);
 
     expect(result).toEqual(expected);
   });

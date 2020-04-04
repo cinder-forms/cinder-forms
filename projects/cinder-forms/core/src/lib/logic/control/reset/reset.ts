@@ -1,5 +1,5 @@
 import { initFormControl } from '../init/init';
-import { FormControlState, UnknownValidators } from '../init/types';
+import { CinderControlState, UnknownValidators } from '../init/types';
 
 /**
  * Resets a control back to the default values.
@@ -12,8 +12,8 @@ import { FormControlState, UnknownValidators } from '../init/types';
  * @param initialValue Optional parameter for passing a new initial value.
  */
 export function resetFormControl<T, TValidators extends UnknownValidators<T>>(
-  control: FormControlState<T, TValidators>,
+  control: CinderControlState<T, TValidators>,
   initialValue = control.initialValue
-): FormControlState<T, TValidators> {
+): CinderControlState<T, TValidators> {
   return initFormControl([initialValue, control.validators, control.disabled]);
 }

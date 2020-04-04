@@ -1,5 +1,5 @@
 import { initFormControl } from '../init/init';
-import { FormControlState } from '../init/types';
+import { CinderControlState } from '../init/types';
 import { resetFormControl } from './reset';
 
 describe('resetFormControl', () => {
@@ -7,13 +7,13 @@ describe('resetFormControl', () => {
   const validators = [() => ({})];
   const disabled = true;
 
-  const control: FormControlState<string, typeof validators> = {
+  const control: CinderControlState<string, typeof validators> = {
     disabled,
     initialValue,
     dirty: true,
     touched: true,
     validators,
-    value: 'value'
+    value: 'value',
   };
 
   it('should keep validators', () => {

@@ -5,12 +5,12 @@ import {
   FormControlInitTuple,
   FormControlInitUpdate,
   FormControls,
-  FormControlState,
+  CinderControlState,
   UnknownValidators,
 } from '../../control/init/types';
 
 export interface GroupStateControls {
-  [key: string]: FormControlState<any, any>;
+  [key: string]: CinderControlState<any, any>;
 }
 
 // Builder Functions
@@ -26,9 +26,9 @@ export type toControlState<TControlInit> = TControlInit extends FormControlInitT
   infer TTuple,
   infer TTupleValidators
 >
-  ? FormControlState<TTuple, TTupleValidators>
+  ? CinderControlState<TTuple, TTupleValidators>
   : TControlInit extends FormControlInitUpdate<infer TUpdate, infer TUpdateValidators>
-  ? FormControlState<TUpdate, TUpdateValidators>
+  ? CinderControlState<TUpdate, TUpdateValidators>
   : never;
 
 export type toGroupStateControls<TGroupInit extends FormControls> = {

@@ -1,4 +1,4 @@
-import { FormControlErrors, FormControlState, UnknownValidators, Validator } from '../init/types';
+import { FormControlErrors, CinderControlState, UnknownValidators, Validator } from '../init/types';
 
 /**
  * This function can be used to create a new validator.
@@ -18,9 +18,9 @@ import { FormControlErrors, FormControlState, UnknownValidators, Validator } fro
  * );
  */
 export function createValidator<T extends any, TErrors extends FormControlErrors>(
-  isInvalid: (control: FormControlState<T, UnknownValidators<T>>) => boolean,
-  buildError: (control: FormControlState<T, UnknownValidators<T>>) => TErrors
+  isInvalid: (control: CinderControlState<T, UnknownValidators<T>>) => boolean,
+  buildError: (control: CinderControlState<T, UnknownValidators<T>>) => TErrors
 ): Validator<T, Partial<TErrors>> {
-  return (control: FormControlState<T, UnknownValidators<T>>) =>
+  return (control: CinderControlState<T, UnknownValidators<T>>) =>
     isInvalid(control) ? buildError(control) : {};
 }

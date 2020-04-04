@@ -1,5 +1,5 @@
 import { initFormControl } from '../init/init';
-import { FormControlState } from './../init/types';
+import { CinderControlState } from './../init/types';
 import { createValidator } from './validator';
 
 describe('createValidator', () => {
@@ -7,7 +7,7 @@ describe('createValidator', () => {
 
   it('should return {} if isInvalid returns false', () => {
     const validator = createValidator(
-      ({ value }: FormControlState<boolean>) => value,
+      ({ value }: CinderControlState<boolean>) => value,
       () => someError
     );
 
@@ -20,7 +20,7 @@ describe('createValidator', () => {
 
   it('should return error if isInvalid returns true', () => {
     const validator = createValidator(
-      ({ value }: FormControlState<boolean>) => value,
+      ({ value }: CinderControlState<boolean>) => value,
       () => someError
     );
 

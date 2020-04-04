@@ -1,11 +1,11 @@
-import { FormControlState } from '../control/init/types';
+import { CinderControlState } from '../control/init/types';
 import { createValidator } from '../control/utils/validator';
 import { selectGroup } from './select';
 import { initGroup } from './state/init';
 
 describe('selectGroup', () => {
   const equalsTest = createValidator(
-    ({ value }: FormControlState<string>) => value === 'test',
+    ({ value }: CinderControlState<string>) => value === 'test',
     () => ({ equalsTest: 'yes' })
   );
 

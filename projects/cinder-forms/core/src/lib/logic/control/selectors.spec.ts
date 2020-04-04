@@ -1,5 +1,5 @@
 import { initFormControl } from './init/init';
-import { FormControlState } from './init/types';
+import { CinderControlState } from './init/types';
 import { getFormControlSummary } from './selectors';
 import { FormControlSummary } from './types';
 
@@ -80,7 +80,7 @@ describe('selectors', () => {
     });
 
     it('should returninvalid = false, errors = {}, controls for valid control', () => {
-      const control: FormControlState<string> = {
+      const control: CinderControlState<string> = {
         dirty: false,
         touched: false,
         value: '',
@@ -113,7 +113,7 @@ describe('selectors', () => {
 
       const validators = [() => error];
 
-      const control: FormControlState<string> = {
+      const control: CinderControlState<string> = {
         dirty: false,
         touched: false,
         value: '',
@@ -144,7 +144,7 @@ describe('selectors', () => {
         additionalError: true,
       };
 
-      const control: FormControlState<string> = {
+      const control: CinderControlState<string> = {
         dirty: false,
         touched: false,
         value: '',
@@ -181,7 +181,7 @@ describe('selectors', () => {
 
       const validators = [() => error];
 
-      const control: FormControlState<string> = {
+      const control: CinderControlState<string> = {
         dirty: false,
         touched: false,
         value: '',

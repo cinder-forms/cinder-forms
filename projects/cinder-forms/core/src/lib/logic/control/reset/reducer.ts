@@ -1,4 +1,4 @@
-import { FormControlState, FormControlUpdate, UnknownValidators } from '../init/types';
+import { CinderControlState, FormControlUpdate, UnknownValidators } from '../init/types';
 
 /**
  * Returns a `FormControlState` which represents the input state with the applied update.
@@ -8,15 +8,15 @@ import { FormControlState, FormControlUpdate, UnknownValidators } from '../init/
  * @param update The `FormControlUpdate` itself.
  */
 export function reduceFormControl<T, TValidators extends UnknownValidators<T>>(
-  control: FormControlState<T, TValidators>,
+  control: CinderControlState<T, TValidators>,
   update: FormControlUpdate<T, TValidators>
-): FormControlState<T, TValidators> {
+): CinderControlState<T, TValidators> {
   if (!update) {
     return control;
   }
 
   return {
     ...control,
-    ...update
+    ...update,
   };
 }

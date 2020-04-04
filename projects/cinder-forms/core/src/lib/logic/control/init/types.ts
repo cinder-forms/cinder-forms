@@ -25,7 +25,7 @@ export interface FormsConfig {
 export interface FormControlUpdate<
   T,
   TValidators extends UnknownValidators<T> = UnknownValidators<T>
-> extends Partial<FormControlState<T, TValidators>> {}
+> extends Partial<CinderControlState<T, TValidators>> {}
 
 // Initialization
 /**
@@ -33,7 +33,7 @@ export interface FormControlUpdate<
  *
  * @param control A FormControl which the validator will be applied on.
  */
-export type Validator<T, R extends FormControlErrors> = (control: FormControlState<T, any>) => R;
+export type Validator<T, R extends FormControlErrors> = (control: CinderControlState<T, any>) => R;
 export type UnknownValidators<T> = Validator<T, {}>[];
 
 /**
@@ -79,7 +79,7 @@ export interface FormControlErrors {
 /**
  * Represents the state of a single FormControl.
  */
-export interface FormControlState<
+export interface CinderControlState<
   T extends any,
   TValidators extends UnknownValidators<T> = UnknownValidators<T>
 > {
