@@ -2,11 +2,11 @@ import { Directive, ElementRef, Inject, Optional, Renderer2 } from '@angular/cor
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { circularDeepEqual } from 'fast-equals';
 import { CONFIG_TOKEN } from '../../config';
-import { FormsConfig } from '../../logic/control/init/types';
+import { CinderConfig } from '../../logic/control/init/types';
 import { AbstractControlDirective, CONTROL_DIRECTIVE_SELECTOR } from './abstract-control.directive';
 
 @Directive({
-  selector: `[${CONTROL_DIRECTIVE_SELECTOR}]`
+  selector: `[${CONTROL_DIRECTIVE_SELECTOR}]`,
 })
 export class ValueAccessorConnectorDirective extends AbstractControlDirective<any> {
   public accessor: ControlValueAccessor;
@@ -15,7 +15,7 @@ export class ValueAccessorConnectorDirective extends AbstractControlDirective<an
   constructor(
     ref: ElementRef,
     r2: Renderer2,
-    @Inject(CONFIG_TOKEN) config: FormsConfig,
+    @Inject(CONFIG_TOKEN) config: CinderConfig,
     @Optional()
     @Inject(NG_VALUE_ACCESSOR)
     accessors: ControlValueAccessor[]
@@ -30,7 +30,7 @@ export class ValueAccessorConnectorDirective extends AbstractControlDirective<an
     }
 
     this.accessor = accessors[0];
-    this.accessor.registerOnChange(val => super.emitValue(val));
+    this.accessor.registerOnChange((val) => super.emitValue(val));
     this.accessor.registerOnTouched(() => super.emitTouched());
   }
 

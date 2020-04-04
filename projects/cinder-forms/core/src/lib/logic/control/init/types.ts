@@ -2,7 +2,7 @@
  * Config from CinderForms.
  * For details of the different attributes view the TSDoc of specific attributes.
  */
-export interface FormsConfig {
+export interface CinderConfig {
   /**
    * Number of how many milliseconds needs to pass between individual updates of a `Control`.
    * There is no delay on the first update and also always an update after the delay.

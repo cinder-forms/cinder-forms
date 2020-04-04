@@ -1,6 +1,6 @@
 import { Directive, ElementRef, HostListener, Inject, Renderer2 } from '@angular/core';
 import { CONFIG_TOKEN } from '../../config';
-import { FormsConfig } from '../../logic/control/init/types';
+import { CinderConfig } from '../../logic/control/init/types';
 import { AbstractControlDirective, CONTROL_DIRECTIVE_SELECTOR } from './abstract-control.directive';
 
 export const RadioControlNotSupported = Error(
@@ -9,10 +9,10 @@ export const RadioControlNotSupported = Error(
 );
 
 @Directive({
-  selector: `input[type="radio"][${CONTROL_DIRECTIVE_SELECTOR}]`
+  selector: `input[type="radio"][${CONTROL_DIRECTIVE_SELECTOR}]`,
 })
 export class RadioInputControlDirective extends AbstractControlDirective<boolean> {
-  constructor(ref: ElementRef, r2: Renderer2, @Inject(CONFIG_TOKEN) config: FormsConfig) {
+  constructor(ref: ElementRef, r2: Renderer2, @Inject(CONFIG_TOKEN) config: CinderConfig) {
     super(ref, r2, config);
 
     throw RadioControlNotSupported;

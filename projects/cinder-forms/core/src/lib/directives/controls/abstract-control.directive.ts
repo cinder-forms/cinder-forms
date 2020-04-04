@@ -5,11 +5,15 @@ import {
   Input,
   OnDestroy,
   Output,
-  Renderer2
+  Renderer2,
 } from '@angular/core';
 import { BehaviorSubject, merge, Observable, Subject, Subscription } from 'rxjs';
 import { filter, switchMap, tap } from 'rxjs/operators';
-import { FormControlSummary, FormControlUpdate, FormsConfig } from '../../logic/control/init/types';
+import {
+  FormControlSummary,
+  FormControlUpdate,
+  CinderConfig,
+} from '../../logic/control/init/types';
 import { CONFIG_TOKEN, throttle } from './../../config';
 
 const cssClasses = {
@@ -20,7 +24,7 @@ const cssClasses = {
   touched: 'ng-touched',
   untouched: 'ng-untouched',
   changed: 'ng-changed',
-  initial: 'ng-initial'
+  initial: 'ng-initial',
 };
 
 export const CONTROL_DIRECTIVE_SELECTOR = `cinderControl`;
@@ -36,10 +40,10 @@ export abstract class AbstractControlDirective<T> implements OnDestroy {
   }
 
   @Input('controlConfig')
-  set setConfig(inputConfig: Partial<FormsConfig>) {
+  set setConfig(inputConfig: Partial<CinderConfig>) {
     const config = {
       ...this.injectedConfig,
-      ...inputConfig
+      ...inputConfig,
     };
 
     this.config$.next(config);
@@ -49,7 +53,7 @@ export abstract class AbstractControlDirective<T> implements OnDestroy {
   public controlKey?: string;
 
   @Output() public controlUpdate = new EventEmitter<FormControlUpdate<T, any>>(true);
-  protected config$ = new BehaviorSubject<FormsConfig>(this.injectedConfig);
+  protected config$ = new BehaviorSubject<CinderConfig>(this.injectedConfig);
 
   private touched$ = new Subject<FormControlUpdate<T, any>>();
   private value$ = new Subject<FormControlUpdate<T, any>>();
@@ -59,14 +63,14 @@ export abstract class AbstractControlDirective<T> implements OnDestroy {
   constructor(
     protected ref: ElementRef,
     protected r2: Renderer2,
-    @Inject(CONFIG_TOKEN) private injectedConfig: FormsConfig
+    @Inject(CONFIG_TOKEN) private injectedConfig: CinderConfig
   ) {
     this.config$
       .pipe(
-        switchMap(config =>
+        switchMap((config) =>
           merge(this.touched$.pipe(throttle(config)), this.value$.pipe(throttle(config)))
         ),
-        tap(update => this.controlUpdate.emit(update))
+        tap((update) => this.controlUpdate.emit(update))
       )
       .subscribe();
   }

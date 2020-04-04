@@ -1,6 +1,6 @@
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormControlSummary, FormsConfig } from '../../types';
+import { FormControlSummary, CinderConfig } from '../../types';
 
 import { By } from '@angular/platform-browser';
 import { ReplaySubject } from 'rxjs';
@@ -18,7 +18,7 @@ import { TextInputControlDirective } from './text-input-control.directive';
       [controlSummary]="summary$ | async"
       (controlUpdate)="update($event)"
     />
-  `
+  `,
 })
 class TestComponent {
   public summary$: ReplaySubject<FormControlSummary<string>>;
@@ -26,9 +26,9 @@ class TestComponent {
 }
 
 describe('AbstractControlDirective', () => {
-  const moduleFormsConfig: FormsConfig = {
+  const moduleCinderConfig: CinderConfig = {
     distinctWritesOnly: true,
-    throttleTime: 111111111111
+    throttleTime: 111111111111,
   };
 
   let testComponent: ComponentFixture<TestComponent>;
@@ -38,8 +38,8 @@ describe('AbstractControlDirective', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [CinderFormsModule.withConfig(moduleFormsConfig)],
-      declarations: [TestComponent]
+      imports: [CinderFormsModule.withConfig(moduleCinderConfig)],
+      declarations: [TestComponent],
     });
 
     testComponent = TestBed.createComponent(TestComponent);
@@ -62,12 +62,12 @@ describe('AbstractControlDirective', () => {
       [{ touched: false }, 'ng-untouched', 'ng-touched'],
       [{ touched: true }, 'ng-touched', 'ng-untouched'],
       [{ changed: true }, 'ng-changed', 'ng-initial'],
-      [{ changed: false }, 'ng-initial', 'ng-changed']
+      [{ changed: false }, 'ng-initial', 'ng-changed'],
     ].forEach(([update, shouldSet, shouldUnset]) => {
       it(`${update} should set ${shouldSet} and unset ${shouldUnset}`, () => {
         testComponent.componentInstance.summary$.next({
           ...getFormControlSummary(initFormControl([''])),
-          ...(update as Partial<FormControlSummary<any>>)
+          ...(update as Partial<FormControlSummary<any>>),
         });
 
         testComponent.detectChanges();
@@ -87,13 +87,13 @@ describe('AbstractControlDirective', () => {
     it('subject should have the default module config', () => {
       // tslint:disable-next-line
       const config$ = directive['config$'];
-      expect(config$.value).toEqual(moduleFormsConfig);
+      expect(config$.value).toEqual(moduleCinderConfig);
     });
 
     it('setConfig should override module config', () => {
-      const config: FormsConfig = {
+      const config: CinderConfig = {
         distinctWritesOnly: false,
-        throttleTime: 2222222
+        throttleTime: 2222222,
       };
 
       directive.setConfig = config;

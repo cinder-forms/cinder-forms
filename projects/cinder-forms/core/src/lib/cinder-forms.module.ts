@@ -4,7 +4,7 @@ import { CONFIG_TOKEN, defaultConfig } from './config';
 import { controlDirectives } from './directives/controls/control-directives';
 import { FormArrayDirective } from './directives/group/form-array.directive';
 import { FormGroupDirective } from './directives/group/form-group.directive';
-import { FormsConfig } from './logic/control/init/types';
+import { CinderConfig } from './logic/control/init/types';
 
 /**
  * This module represents the entry point of cinder-forms.
@@ -30,7 +30,7 @@ export class CinderFormsModule {
   /**
    * Creates a new module with the given config. Missing values will be set with default values.
    *
-   * @param config A partial `FormsConfig` object, supplying config paramters.
+   * @param config A partial `CinderConfig` object, supplying config paramters.
    *
    * @example
    * CinderFormsModule.withConfig({
@@ -38,7 +38,7 @@ export class CinderFormsModule {
    * }),
    *
    */
-  public static withConfig(config: Partial<FormsConfig>): ModuleWithProviders<CinderFormsModule> {
+  public static withConfig(config: Partial<CinderConfig>): ModuleWithProviders<CinderFormsModule> {
     return {
       ngModule: CinderFormsModule,
       providers: [

@@ -1,7 +1,7 @@
 import { Directive, ElementRef, HostListener, Renderer2, Inject } from '@angular/core';
 import { AbstractControlDirective, CONTROL_DIRECTIVE_SELECTOR } from './abstract-control.directive';
 import { CONFIG_TOKEN } from '../../config';
-import { FormsConfig } from '../../logic/control/init/types';
+import { CinderConfig } from '../../logic/control/init/types';
 
 export const SelectControlNotSupported = Error(
   // tslint:disable-next-line: max-line-length
@@ -9,10 +9,10 @@ export const SelectControlNotSupported = Error(
 );
 
 @Directive({
-  selector: `select[${CONTROL_DIRECTIVE_SELECTOR}]`
+  selector: `select[${CONTROL_DIRECTIVE_SELECTOR}]`,
 })
 export class SelectInputControlDirective extends AbstractControlDirective<boolean> {
-  constructor(ref: ElementRef, r2: Renderer2, @Inject(CONFIG_TOKEN) config: FormsConfig) {
+  constructor(ref: ElementRef, r2: Renderer2, @Inject(CONFIG_TOKEN) config: CinderConfig) {
     super(ref, r2, config);
 
     throw SelectControlNotSupported;

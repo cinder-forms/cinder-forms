@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { CinderFormsModule } from './cinder-forms.module';
 import { CONFIG_TOKEN, defaultConfig } from './config';
-import { FormsConfig } from './types';
+import { CinderConfig } from './types';
 
 describe('CinderFormsModule', () => {
   it('can be created', async () => {
@@ -11,32 +11,32 @@ describe('CinderFormsModule', () => {
       imports: [
         CinderFormsModule.withConfig({
           distinctWritesOnly: expected.distinctWritesOnly,
-          throttleTime: expected.throttleTime
-        })
-      ]
+          throttleTime: expected.throttleTime,
+        }),
+      ],
     }).compileComponents();
 
-    const result: FormsConfig = TestBed.get(CONFIG_TOKEN);
+    const result: CinderConfig = TestBed.get(CONFIG_TOKEN);
 
     expect(result).toEqual(expected);
   });
 
   it('can be created with config', async () => {
-    const expected: FormsConfig = {
+    const expected: CinderConfig = {
       throttleTime: 9123,
-      distinctWritesOnly: false
+      distinctWritesOnly: false,
     };
 
     await TestBed.configureTestingModule({
       imports: [
         CinderFormsModule.withConfig({
           distinctWritesOnly: expected.distinctWritesOnly,
-          throttleTime: expected.throttleTime
-        })
-      ]
+          throttleTime: expected.throttleTime,
+        }),
+      ],
     }).compileComponents();
 
-    const result: FormsConfig = TestBed.get(CONFIG_TOKEN);
+    const result: CinderConfig = TestBed.get(CONFIG_TOKEN);
 
     expect(result).toEqual(expected);
   });
