@@ -33,7 +33,7 @@ export interface FormControlUpdate<
  *
  * @param control A FormControl which the validator will be applied on.
  */
-export type Validator<T, R extends FormControlErrors> = (control: CinderControlState<T, any>) => R;
+export type Validator<T, R extends ControlErrors> = (control: CinderControlState<T, any>) => R;
 export type UnknownValidators<T> = Validator<T, {}>[];
 
 /**
@@ -71,7 +71,7 @@ export interface FormControlInitUpdate<T, TValidators extends Validator<T, any>[
 }
 
 // Errors
-export interface FormControlErrors {
+export interface ControlErrors {
   [error: string]: any;
 }
 

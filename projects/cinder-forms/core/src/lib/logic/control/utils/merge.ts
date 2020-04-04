@@ -1,13 +1,11 @@
-import { FormControlErrors } from '../init/types';
+import { ControlErrors } from '../init/types';
 
 /**
- * Merges an array of `FormControlErrors`.
+ * Merges an array of `ControlErrors`.
  * Returns `{}` if all errors are `{}`.
- * @param errors An array of `FormControlErrors` which will be merged into a single `FormControlErrors` value.
+ * @param errors An array of `ControlErrors` which will be merged into a single `ControlErrors` value.
  */
-export function mergeFormControlErrors<TErrors extends FormControlErrors>(
-  ...errors: TErrors[]
-): TErrors {
+export function mergeControlErrors<TErrors extends ControlErrors>(...errors: TErrors[]): TErrors {
   return errors.reduce<TErrors>((e1, e2) => {
     return {
       ...e1,

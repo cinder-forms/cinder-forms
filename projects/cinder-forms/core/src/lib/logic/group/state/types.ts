@@ -1,6 +1,6 @@
 import { initControlState } from '../../control/init/init';
 import {
-  FormControlErrors,
+  ControlErrors,
   FormControlInit,
   FormControlInitTuple,
   FormControlInitUpdate,
@@ -40,7 +40,7 @@ export interface GroupValidators {
 }
 
 export interface GroupErrors {
-  [key: string]: FormControlErrors;
+  [key: string]: ControlErrors;
 }
 
 export interface CinderGroupState<
