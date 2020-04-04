@@ -166,8 +166,33 @@ describe('mergeGroupErrors', () => {
   });
 
   it('typing should work', () => {
+    const someObj1 = {
+      someAttr: 7
+    }
+
+    const someObj2 = {
+      someAttr: 'S'
+    }
+
     const errors1 = selectGroup(initGroup({
-      test: ['test', [() => ({test1: true})]]
-    }))
+      test: ['test', [() => ({test1: someObj1})]]
+    })).errors;
+
+    const errors2 = selectGroup(initGroup({
+      test: ['test', [() => ({test2: someObj2})]]
+    })).errors;
+
+    // type check
+      const errors = mergeGroupErrors(errors1, errors2);
+
+    errors.test = errors1.test;
+    errors.test = errors2.test;
+    let error1 = errors1.test.test1;
+    error1 = errors.test.test1;
+    let error2 = errors2.test.test2;
+    error2 = errors.test.test2;
+
+    // expect to compile
+    expect(errors).toBeDefined();
   })
 });

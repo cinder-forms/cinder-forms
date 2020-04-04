@@ -1,5 +1,7 @@
 import { mergeFormControlErrors } from '../../../utils';
-import { GroupErrors, GroupStateControls } from '../state/types';
+import { GroupErrors } from '../state/types';
+import { ArrayElement } from '../../utils/types';
+import { UnionToIntersection } from '../../control/init/types';
 
 /**
  * Merges an array of errors.
@@ -31,7 +33,7 @@ import { GroupErrors, GroupStateControls } from '../state/types';
  */
 export function mergeGroupErrors<TGroupErrors extends GroupErrors[]>(
   ...errors: TGroupErrors
-): TGroupErrors[0]  {
+)  {
   return errors.reduce((group1, group2) => {
       return {
           ...group1,
@@ -49,5 +51,5 @@ export function mergeGroupErrors<TGroupErrors extends GroupErrors[]>(
                   {}
               ),
       };
-  }, {});
+  }, {}) as unknown as UnionToIntersection<ArrayElement<TGroupErrors>>;
 }

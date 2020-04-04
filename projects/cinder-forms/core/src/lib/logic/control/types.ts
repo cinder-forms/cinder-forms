@@ -1,3 +1,4 @@
+import { ArrayElement } from '../utils/types';
 import { FormControlState, UnionToIntersection, UnknownValidators, Validator } from './init/types';
 
 // Summaries
@@ -33,4 +34,4 @@ export type ValidatorsToErrors<TValidators extends Array<Validator<any, any>>> =
   UnionToIntersection<ReturnType<ArrayElement<TValidators>>>
 >;
 
-type ArrayElement<T extends Array<any>> = T extends (infer U)[] ? U : never;
+
