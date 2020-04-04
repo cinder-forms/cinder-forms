@@ -3,7 +3,7 @@ import {
   mapFormGroupControlStates,
   mergeFormArrayErrors,
   mergeFormControlErrors,
-  mergeFormGroupErrors,
+  mergeGroupErrors,
   validatorOf
 } from './utils';
 
@@ -11,32 +11,6 @@ import { initFormControl } from './init';
 import { FormArrayErrors } from './types';
 
 describe('utils', () => {
-  describe('mapFormGroupControlStates', () => {
-    it('should return {} for {}', () => {
-      const input = {};
-
-      const result = mapFormGroupControlStates(input, () => 'test');
-
-      expect(result).toEqual({});
-    });
-
-    it('should map accordingly', () => {
-      const input = {
-        c1: initFormControl(['a']),
-        c2: initFormControl(['b'])
-      };
-
-      const expected = {
-        c1: 'a',
-        c2: 'b'
-      };
-
-      const result = mapFormGroupControlStates(input, control => control.value);
-
-      expect(result).toEqual(expected);
-    });
-  });
-
   describe('validatorOf', () => {
     it('should support value property', () => {
       const expected = { value: 'val' };
@@ -140,7 +114,7 @@ describe('utils', () => {
     });
   });
 
-  describe('mergeFormGroupErrors', () => {
+  describe('mergeGroupErrors', () => {
     interface TestControls {
       stringControl: string;
       numberControl: number;
@@ -168,7 +142,7 @@ describe('utils', () => {
         }
       };
 
-      const result = mergeFormGroupErrors(e1, e2);
+      const result = mergeGroupErrors(e1, e2);
 
       expect(result).toEqual(expected);
     });
@@ -193,7 +167,7 @@ describe('utils', () => {
         }
       };
 
-      const result = mergeFormGroupErrors(e1, e2);
+      const result = mergeGroupErrors(e1, e2);
 
       expect(result).toEqual(expected);
     });
@@ -221,7 +195,7 @@ describe('utils', () => {
         }
       };
 
-      const result = mergeFormGroupErrors(e1, e2);
+      const result = mergeGroupErrors(e1, e2);
 
       expect(result).toEqual(expected);
     });
@@ -266,13 +240,13 @@ describe('utils', () => {
         }
       };
 
-      const result = mergeFormGroupErrors(e1, e2, e3, e4);
+      const result = mergeGroupErrors(e1, e2, e3, e4);
 
       expect(result).toEqual(expected);
     });
 
     it('should return {} on all inputs {}', () => {
-      const result = mergeFormGroupErrors({}, {});
+      const result = mergeGroupErrors({}, {});
 
       expect(result).toEqual({});
     });
@@ -284,7 +258,7 @@ describe('utils', () => {
         }
       };
 
-      const result = mergeFormGroupErrors(e1, {});
+      const result = mergeGroupErrors(e1, {});
 
       expect(result).toEqual(e1);
     });
@@ -296,13 +270,13 @@ describe('utils', () => {
         }
       };
 
-      const result = mergeFormGroupErrors({}, e2);
+      const result = mergeGroupErrors({}, e2);
 
       expect(result).toEqual(e2);
     });
 
     it('should return {} on {}', () => {
-      const result = mergeFormGroupErrors({});
+      const result = mergeGroupErrors({});
 
       expect(result).toEqual({});
     });

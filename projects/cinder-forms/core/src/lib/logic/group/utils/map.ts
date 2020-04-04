@@ -1,6 +1,7 @@
-import { FormControlState, FormControlSummary } from '../../control/init/types';
+import { FormControlState } from '../../control/init/types';
 import { GroupStateControls } from '../state/types';
 import { GroupControls } from '../types';
+import { FormControlSummary } from '../../control/types';
 
 export function mapGroupStateControls<TStateControls extends GroupStateControls, R>(
   controls: TStateControls,
