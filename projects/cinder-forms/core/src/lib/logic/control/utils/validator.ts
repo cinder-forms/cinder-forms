@@ -1,10 +1,4 @@
-import { AbstractControl, ValidatorFn, Validators } from '@angular/forms';
-import {
-  FormControlErrors,
-  FormControlState,
-  UnknownValidators,
-  Validator,
-} from './logic/control/init/types';
+import { FormControlErrors, FormControlState, UnknownValidators, Validator } from '../init/types';
 
 /**
  * This function can be used to create a new validator.

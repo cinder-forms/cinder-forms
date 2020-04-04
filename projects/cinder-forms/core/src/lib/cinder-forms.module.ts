@@ -13,7 +13,7 @@ import { FormsConfig } from './logic/control/init/types';
  * The `.withConfig()` method can be used to pass a config to the module.
  *
  * - [npm](https://www.npmjs.com/package/cinder-forms)
- * - [documentation](https://github.com/NiklasPor/cinder-forms)
+ * - [documentation](https://github.com/cinder-forms/cinder-forms)
  */
 @NgModule({
   declarations: [FormGroupDirective, FormArrayDirective, ...controlDirectives],
@@ -22,9 +22,9 @@ import { FormsConfig } from './logic/control/init/types';
   providers: [
     {
       provide: CONFIG_TOKEN,
-      useValue: defaultConfig
-    }
-  ]
+      useValue: defaultConfig,
+    },
+  ],
 })
 export class CinderFormsModule {
   /**
@@ -46,10 +46,10 @@ export class CinderFormsModule {
           provide: CONFIG_TOKEN,
           useValue: {
             ...defaultConfig,
-            ...config
-          }
-        }
-      ]
+            ...config,
+          },
+        },
+      ],
     };
   }
 }
