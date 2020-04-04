@@ -13,7 +13,7 @@ describe('selectGroup', () => {
   const createTestGroup = () =>
     initGroup({
       key1: ['test', [equalsTest]],
-      key2: ['notTest', [equalsTest]]
+      key2: ['notTest', [equalsTest]],
     });
 
   let baseGroupState: ReturnType<typeof createTestGroup>;
@@ -27,7 +27,22 @@ describe('selectGroup', () => {
 
     expect(result.errors).toEqual({
       key1: { equalsTest: 'yes' },
-      key2: {}
+      key2: {},
+    });
+  });
+
+  it('group validators should merge errors correctly', () => {
+    const group = initGroup(
+      {
+        someControl: ['some', [() => ({ controlErrors: 'controlError' })]],
+      },
+      [() => ({ someControl: { alwaysTrue: true } })]
+    );
+
+    const result = selectGroup(group);
+
+    expect(result.errors).toEqual({
+      someControl: { alwaysTrue: true, controlErrors: 'controlError' },
     });
   });
 

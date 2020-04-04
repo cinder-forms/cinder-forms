@@ -6,7 +6,7 @@ import {
   FormControlInitUpdate,
   FormControls,
   FormControlState,
-  UnknownValidators
+  UnknownValidators,
 } from '../../control/init/types';
 
 export interface GroupStateControls {
@@ -54,9 +54,7 @@ export interface CinderGroupState<
 export type GroupStateValidator<
   TControls extends GroupStateControls,
   TErrors extends GroupErrors
-> = (
-  group: CinderGroupState<TControls, UnkownGroupStateValidator<TControls>[]>
-) => Partial<TErrors>;
+> = (group: CinderGroupState<TControls, UnkownGroupStateValidator<TControls>[]>) => TErrors;
 
 export type UnkownGroupStateValidator<TControls extends GroupStateControls> = GroupStateValidator<
   TControls,

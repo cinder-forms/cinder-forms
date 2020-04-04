@@ -1,6 +1,12 @@
+import { NO_GROUP_ERROR } from './validator/validator';
 import { FormControlState, UnionToIntersection } from '../control/init/types';
 import { FormControlSummary, ValidatorsToErrors } from '../control/types';
-import { GroupStateControls, GroupStateValidator, UnkownGroupStateValidator } from './state/types';
+import {
+  GroupStateControls,
+  GroupStateValidator,
+  UnkownGroupStateValidator,
+  GroupErrors,
+} from './state/types';
 
 type DeepPartial<T> = {
   [P in keyof T]?: T[P] extends Array<infer U>
@@ -45,15 +51,19 @@ export type controlToGroupErrors<TControls extends GroupControls> = stateControl
   toGroupControls<TControls>
 >;
 
-type mergeErrors<
+export type mergeErrors<
   TStateControls extends GroupStateControls,
-  TGroupValidators extends UnkownGroupStateValidator<TStateControls>[]
-> = DeepPartial<stateControlsToGroupErrors<TStateControls> & toGroupErrors<TGroupValidators>>;
+  TGroupValidators extends UnkownGroupStateValidator<TStateControls>[],
+  TGroupErrors extends GroupErrors
+> = DeepPartial<
+  stateControlsToGroupErrors<TStateControls> & toGroupErrors<TGroupValidators & TGroupErrors>
+>;
 
 // Type:
 export interface CinderGroup<
   TStateControls extends GroupStateControls,
   TGroupValidators extends UnkownGroupStateValidator<TStateControls>[],
+  TAdditionalErrors extends GroupErrors = typeof NO_GROUP_ERROR,
   TControls extends toGroupControls<TStateControls> = toGroupControls<TStateControls>
 > {
   /**
@@ -68,7 +78,7 @@ export interface CinderGroup<
    *
    * If no error is found this value is `{}`.
    */
-  errors: mergeErrors<TStateControls, TGroupValidators>;
+  errors: mergeErrors<TStateControls, TGroupValidators, TAdditionalErrors>;
 
   /**
    * Indicates whether any of the controls inside this group is invalid.

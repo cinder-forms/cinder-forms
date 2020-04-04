@@ -33,23 +33,23 @@ import { UnionToIntersection } from '../../control/init/types';
  */
 export function mergeGroupErrors<TGroupErrors extends GroupErrors[]>(
   ...errors: TGroupErrors
-)  {
-  return errors.reduce((group1, group2) => {
-      return {
-          ...group1,
-          ...group2,
-          ...Object.keys(group1)
-              .filter(key1 => Object.keys(group2).find(key2 => key1 === key2))
-              .map(key => ({
-                  [key]: mergeFormControlErrors(group1[key], group2[key]),
-              }))
-              .reduce(
-                  (e1, e2) => ({
-                      ...e1,
-                      ...e2,
-                  }),
-                  {}
-              ),
-      };
-  }, {}) as unknown as UnionToIntersection<ArrayElement<TGroupErrors>>;
+): UnionToIntersection<ArrayElement<TGroupErrors>> {
+  return (errors.reduce((group1, group2) => {
+    return {
+      ...group1,
+      ...group2,
+      ...Object.keys(group1)
+        .filter((key1) => Object.keys(group2).find((key2) => key1 === key2))
+        .map((key) => ({
+          [key]: mergeFormControlErrors(group1[key], group2[key]),
+        }))
+        .reduce(
+          (e1, e2) => ({
+            ...e1,
+            ...e2,
+          }),
+          {}
+        ),
+    };
+  }, {}) as unknown) as UnionToIntersection<ArrayElement<TGroupErrors>>;
 }
