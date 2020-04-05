@@ -1,4 +1,4 @@
-import { ElementRef, Input, Renderer2 } from '@angular/core';
+import { ElementRef, Input, Renderer2, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { circularDeepEqual } from 'fast-equals';
 import { BehaviorSubject, NEVER } from 'rxjs';
 import { distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
@@ -26,17 +26,25 @@ const cssClasses = {
 
 export const CINDER_CONTROL_DIRECTIVE_SELECTOR = '[cinderControl]';
 
-export abstract class CinderControlDirective {
+export abstract class CinderControlDirective implements OnDestroy {
   private readonly connector$ = new BehaviorSubject(EmptyConnector);
   private readonly control$ = this.connector$.pipe(switchMap((connector) => connector.control$));
 
-  constructor(protected ref: ElementRef, protected r2: Renderer2) {
+  constructor(
+    protected ref: ElementRef,
+    protected r2: Renderer2,
+    protected cdr: ChangeDetectorRef
+  ) {
     this.subscribeToControls();
   }
 
   @Input('cinderControl')
   public set setCinderControl(controlConnector: TControlConnector) {
     this.connector$.next(controlConnector);
+  }
+
+  public ngOnDestroy() {
+    this.connector$.complete();
   }
 
   protected update(update: TControlUpdate) {
@@ -56,6 +64,8 @@ export abstract class CinderControlDirective {
   protected abstract setValue(value: any);
 
   private subscribeToControls() {
+    this.control$.subscribe(() => this.cdr.detectChanges());
+
     this.control$
       .pipe(
         map((control) => control.dirty),

@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, HostListener, Renderer2, ChangeDetectorRef } from '@angular/core';
 import {
   CINDER_CONTROL_DIRECTIVE_SELECTOR,
   CinderControlDirective,
@@ -8,8 +8,8 @@ import {
   selector: `input[type="text"][${CINDER_CONTROL_DIRECTIVE_SELECTOR}],textarea[${CINDER_CONTROL_DIRECTIVE_SELECTOR}],input:not([type="checkbox"]):not([type="number"]):not([type="range"]):not([type="radio"])[${CINDER_CONTROL_DIRECTIVE_SELECTOR}]`,
 })
 export class DefaultInputDirective<T = string> extends CinderControlDirective {
-  constructor(ref: ElementRef, r2: Renderer2) {
-    super(ref, r2);
+  constructor(ref: ElementRef, r2: Renderer2, cdr: ChangeDetectorRef) {
+    super(ref, r2, cdr);
   }
 
   protected setDirty(dirty: boolean) {}
