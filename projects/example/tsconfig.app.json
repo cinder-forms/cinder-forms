@@ -3,7 +3,8 @@
   "compilerOptions": {
     "strictNullChecks": false,
     "outDir": "./out-tsc/example",
-    "types": []
+    "types": [],
+    "declaration": false
   },
   "files": ["src/main.ts", "src/polyfills.ts"],
   "include": ["main.ts"],
