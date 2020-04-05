@@ -1,12 +1,12 @@
-import { Directive, Input, Renderer2, ElementRef } from '@angular/core';
+import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
+import { circularDeepEqual } from 'fast-equals';
 import { BehaviorSubject, NEVER } from 'rxjs';
-import { exhaustMap, map, distinctUntilChanged, tap } from 'rxjs/operators';
+import { distinctUntilChanged, exhaustMap, map, tap } from 'rxjs/operators';
 import { CinderControlState } from '../../logic/control/init/types';
 import { toUpdate } from '../../logic/utils/types';
 import { connectControl } from './../../connector/control/connect';
-import { circularDeepEqual } from 'fast-equals';
 
-type TControlState = CinderControlState<{}, any>;
+type TControlState = CinderControlState<any, any>;
 type TControlUpdate = toUpdate<TControlState>;
 
 const EmptyConnector = connectControl<TControlState>(() => {}, NEVER);

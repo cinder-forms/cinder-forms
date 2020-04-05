@@ -1,10 +1,10 @@
 import { initControlState } from '../../control/init/init';
 import {
-  ControlErrors,
   CinderControlInit,
   CinderControlInitTuple,
   CinderControlInitUpdate,
   CinderControlState,
+  ControlErrors,
   UnknownValidators,
 } from '../../control/init/types';
 

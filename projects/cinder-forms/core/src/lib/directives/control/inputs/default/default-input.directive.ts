@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Renderer2, HostListener } from '@angular/core';
+import { Directive, ElementRef, HostListener, Renderer2 } from '@angular/core';
 import {
   CINDER_CONTROL_DIRECTIVE_SELECTOR,
   CinderControlDirective,
@@ -17,7 +17,7 @@ export class DefaultInputDirective extends CinderControlDirective {
   protected setInvalid(invalid: boolean) {}
   protected setChanged(changed: boolean) {}
 
-  protected setValue(value: string) {
+  protected setValue(value: any) {
     if (value === this.ref.nativeElement.value) {
       return;
     }

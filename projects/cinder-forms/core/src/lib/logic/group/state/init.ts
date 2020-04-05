@@ -2,12 +2,12 @@ import { initControlState } from '../../control/init/init';
 import { CinderControlState } from '../../control/init/types';
 import { toGroupErrors } from '../types';
 import {
+  BaseControls,
   CinderGroupState,
   GroupInit,
   GroupStateValidator,
   toGroupStateControls,
   UnkownGroupStateValidator,
-  BaseControls,
 } from './types';
 
 export function initGroup<

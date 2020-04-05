@@ -1,4 +1,4 @@
-import { ControlErrors, CinderControlState, UnknownValidators, Validator } from '../init/types';
+import { CinderControlState, ControlErrors, UnknownValidators, Validator } from '../init/types';
 
 /**
  * This function can be used to create a new validator.
