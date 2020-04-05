@@ -1,1 +1,4 @@
-<input type="range" [cinderControl]="simpleControl" />
+<input [cinderControl]="simpleControl" />
+<small *ngIf="simpleControl.errors.maxLength3">
+  {{ simpleControl.errors.maxLength3 }}
+</small>

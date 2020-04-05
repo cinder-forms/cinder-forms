@@ -1,7 +1,7 @@
-import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
+import { ElementRef, Input, Renderer2 } from '@angular/core';
 import { circularDeepEqual } from 'fast-equals';
 import { BehaviorSubject, NEVER } from 'rxjs';
-import { distinctUntilChanged, exhaustMap, map, tap } from 'rxjs/operators';
+import { distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
 import { CinderControlState } from '../../logic/control/init/types';
 import { toUpdate } from '../../logic/utils/types';
 import { connectControl } from './../../connector/control/connect';
@@ -28,7 +28,7 @@ export const CINDER_CONTROL_DIRECTIVE_SELECTOR = '[cinderControl]';
 
 export abstract class CinderControlDirective {
   private readonly connector$ = new BehaviorSubject(EmptyConnector);
-  private readonly control$ = this.connector$.pipe(exhaustMap((connector) => connector.control$));
+  private readonly control$ = this.connector$.pipe(switchMap((connector) => connector.control$));
 
   constructor(protected ref: ElementRef, protected r2: Renderer2) {
     this.subscribeToControls();

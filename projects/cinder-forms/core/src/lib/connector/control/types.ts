@@ -1,8 +1,11 @@
 import { Observable } from 'rxjs';
-import { CinderControlState } from '../../logic/control/init/types';
-import { toSelected, toUpdate } from '../../logic/utils/types';
+import { CinderControlUpdate, UnknownValidators } from '../../logic/control/init/types';
+import { CinderControl } from '../../logic/control/types';
 
-export interface CinderControlConnector<TControlState extends CinderControlState<any, any>> {
-  update: (update: toUpdate<TControlState>) => void;
-  control$: Observable<toSelected<TControlState>>;
+export interface CinderControlConnector<
+  T extends any,
+  TValidators extends UnknownValidators<T> = UnknownValidators<T>
+> extends CinderControl<T, TValidators> {
+  update: (update: CinderControlUpdate<T, TValidators>) => void;
+  control$: Observable<CinderControl<T, TValidators>>;
 }

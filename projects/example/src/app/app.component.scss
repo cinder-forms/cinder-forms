@@ -1,15 +1,15 @@
 .container {
-    display: flex;
+  display: flex;
 
-    > * {
-        width: 50%;
-    }
+  > * {
+    width: 50%;
+  }
 }
 
 .ng-invalid {
-    background-color: orange;
+  background-color: orange;
 }
 
 .ng-initial {
-    font-style: italic;
+  font-style: italic;
 }
