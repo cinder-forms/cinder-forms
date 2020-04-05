@@ -18,10 +18,6 @@ export class DefaultInputDirective<T = string> extends CinderControlDirective {
   protected setChanged(changed: boolean) {}
 
   protected setValue(value: T) {
-    if (value === this.ref.nativeElement.value) {
-      return;
-    }
-
     this.r2.setProperty(this.ref.nativeElement, 'value', value);
   }
 
