@@ -5,7 +5,7 @@ import { CINDER_CONTROL_DIRECTIVE_SELECTOR } from '../../cinder-control.directiv
 @Directive({
   selector: `input[type="number"][${CINDER_CONTROL_DIRECTIVE_SELECTOR}]`,
 })
-export class NumberInputDirectiveDirective extends DefaultInputDirective {
+export class NumberInputDirectiveDirective extends DefaultInputDirective<number | string> {
   protected setValue(value: number) {
     const safeValue = value === null ? '' : value;
     super.setValue(safeValue);

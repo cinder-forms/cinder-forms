@@ -7,7 +7,7 @@ import {
 @Directive({
   selector: `input[type="text"][${CINDER_CONTROL_DIRECTIVE_SELECTOR}],textarea[${CINDER_CONTROL_DIRECTIVE_SELECTOR}],input:not([type="checkbox"]):not([type="number"]):not([type="range"]):not([type="radio"])[${CINDER_CONTROL_DIRECTIVE_SELECTOR}]`,
 })
-export class DefaultInputDirective extends CinderControlDirective {
+export class DefaultInputDirective<T = string> extends CinderControlDirective {
   constructor(ref: ElementRef, r2: Renderer2) {
     super(ref, r2);
   }
@@ -17,7 +17,7 @@ export class DefaultInputDirective extends CinderControlDirective {
   protected setInvalid(invalid: boolean) {}
   protected setChanged(changed: boolean) {}
 
-  protected setValue(value: any) {
+  protected setValue(value: T) {
     if (value === this.ref.nativeElement.value) {
       return;
     }

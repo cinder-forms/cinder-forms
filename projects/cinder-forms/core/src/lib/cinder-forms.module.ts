@@ -4,6 +4,8 @@ import { CONFIG_TOKEN, defaultConfig } from './config';
 import { DefaultInputDirective } from './directives/control/inputs/default/default-input.directive';
 import { NumberInputDirectiveDirective } from './directives/control/inputs/number/number-input-directive.directive';
 import { CinderConfig } from './logic/control/init/types';
+import { CheckboxInputDirectiveDirective } from './directives/control/inputs/checkbox/checkbox-input-directive.directive';
+import { RangeInputDirectiveDirective } from './directives/control/inputs/range/range-input-directive.directive';
 
 /**
  * This module represents the entry point of cinder-forms.
@@ -15,9 +17,19 @@ import { CinderConfig } from './logic/control/init/types';
  * - [documentation](https://github.com/cinder-forms/cinder-forms)
  */
 @NgModule({
-  declarations: [DefaultInputDirective, NumberInputDirectiveDirective],
+  declarations: [
+    DefaultInputDirective,
+    NumberInputDirectiveDirective,
+    CheckboxInputDirectiveDirective,
+    RangeInputDirectiveDirective,
+  ],
   imports: [CommonModule],
-  exports: [DefaultInputDirective, NumberInputDirectiveDirective],
+  exports: [
+    DefaultInputDirective,
+    NumberInputDirectiveDirective,
+    CheckboxInputDirectiveDirective,
+    RangeInputDirectiveDirective,
+  ],
   providers: [
     {
       provide: CONFIG_TOKEN,
