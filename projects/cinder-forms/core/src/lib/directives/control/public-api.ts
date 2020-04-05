@@ -1,1 +1,1 @@
-export { DefaultInputDirective } from './inputs/default-input.directive';
+export { DefaultInputDirective } from './inputs/default/default-input.directive';
