@@ -1,7 +1,7 @@
-import { ValidatorsToErrors } from './../../logic/control/types';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CinderControl } from '../../../public-api';
 import { CinderControlUpdate, UnknownValidators } from '../../logic/control/init/types';
+import { ValidatorsToErrors } from './../../logic/control/types';
 
 export const connectControl = <
   T extends any,
