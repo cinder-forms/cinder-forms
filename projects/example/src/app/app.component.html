@@ -2,3 +2,9 @@
 <small *ngIf="simpleControl.errors.maxLength3">
   {{ simpleControl.errors.maxLength3 }}
 </small>
+
+<form>
+  <input [cinderControl]="simpleGroup.controls.text" />
+  <input type="range" [cinderControl]="simpleGroup.controls.number" />
+  <input type="number" [cinderControl]="simpleGroup.controls.number" />
+</form>

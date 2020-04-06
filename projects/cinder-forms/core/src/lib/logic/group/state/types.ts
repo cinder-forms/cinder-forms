@@ -21,7 +21,7 @@ export type GroupBuilder<RStateControls extends GroupStateControls> = (
   init: typeof initControlState
 ) => RStateControls;
 
-export type GroupInit<TControls extends {}> = {
+export type GroupInit<TControls extends BaseControls> = {
   [K in keyof TControls]: CinderControlInit<TControls[K], UnknownValidators<TControls[K]>>;
 };
 

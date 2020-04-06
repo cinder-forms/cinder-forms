@@ -12,7 +12,7 @@ describe('selectGroup', () => {
   const createTestGroup = () =>
     initGroup({
       key1: ['test', [equalsTest]],
-      key2: ['notTest', [equalsTest]],
+      key2: ['notTest'],
     });
 
   let baseGroupState: ReturnType<typeof createTestGroup>;
